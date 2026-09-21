@@ -52,3 +52,6 @@ PANEL ADMINISTRATIVO — PASOS PARA QUE FUNCIONE
 IMPORTANTE:
 La publishable key puede estar en el navegador. NO uses service_role key en config.js.
 El panel utiliza Supabase Auth + RLS.
+
+IDENTIDAD VISUAL:
+La web usa los colores tomados visualmente del logo: amarillo cálido, verde menta, verde oliva y café oscuro. El logo se incluye localmente como logo-influencers-del-senor.png.
