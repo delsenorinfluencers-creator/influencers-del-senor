@@ -37,3 +37,18 @@ Ejecuta supabase.sql completo en SQL Editor. El script corrige el problema de la
 
 NOTA:
 La clave usada es la publishable key de Supabase que proporcionaste. Para producción, el panel administrativo debe usar Supabase Auth y RLS; no pongas una service_role key en el navegador.
+
+
+PANEL ADMINISTRATIVO — PASOS PARA QUE FUNCIONE
+1. En Supabase entra a Authentication > Users > Add user.
+2. Crea el correo y contraseña que usarás para el panel.
+3. Copia el UUID de ese usuario.
+4. En Supabase > SQL Editor ejecuta:
+   insert into public.admins(id) values ('UUID_DEL_USUARIO');
+5. Abre /admin/ en tu sitio Vercel.
+6. Inicia sesión con el correo y contraseña creados.
+7. Desde el panel podrás publicar Noticias, 64 Datos y Editoriales.
+
+IMPORTANTE:
+La publishable key puede estar en el navegador. NO uses service_role key en config.js.
+El panel utiliza Supabase Auth + RLS.
