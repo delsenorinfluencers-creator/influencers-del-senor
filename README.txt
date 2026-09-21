@@ -74,3 +74,56 @@ MEJORAS VISUALES
 - 64 Datos dinámicos desde Supabase.
 - Reproductor Facebook Live dinámico en Inicio y En Vivo.
 - Diseño responsive mejorado.
+
+
+ACCESO AL PANEL
+El menú superior ahora incluye el botón “🔐 Iniciar sesión”, que lleva a /admin/. En la portada también aparece el botón.
+
+
+ACTUALIZACIÓN EN VIVO:
+El panel /admin/ ahora permite configurar:
+- M3U8/HLS
+- Video MP4 en loop
+- Facebook Live
+- YouTube Live
+- Activar/desactivar
+- Mostrar en Inicio
+- Prioridad
+
+Ejecuta el supabase.sql completo para crear live_streams y sus políticas RLS.
+Para M3U8 usa una URL pública accesible por HTTPS.
+Para videos loop usa una URL directa a .mp4; el navegador puede bloquear autoplay con sonido, por eso inicia silenciado.
+
+
+PANEL ADMINISTRATIVO COMPLETO
+=============================
+El panel /admin/ ahora administra:
+- Dashboard y resumen
+- Iglesia al Día (crear, editar, eliminar, publicar/ocultar, categorías y videos)
+- Programas (11 programas iniciales, nombre, slug, descripción, logo, orden, visibilidad)
+- Episodios/videos (programa, título, número, orden, YouTube, Facebook, MP4, imagen)
+- En Vivo (M3U8/HLS, video loop, Facebook Live, YouTube Live, activar/desactivar, Inicio y /en-vivo/)
+- 64 Datos (1-64, texto, imagen, video, publicación y activación en octubre)
+- Diócesis (historia y datos)
+- Parroquias
+- Sacerdotes/información pastoral
+- Advocaciones marianas
+- Quiénes somos / Integrantes
+- Editorial (autor, fecha, imagen, publicación)
+- Configuración (logo, redes, WhatsApp, contacto y SEO)
+- Carga de imágenes al bucket público "media" de Supabase Storage
+
+MODELO DE DATOS
+---------------
+No se crean 11 tablas para los programas. Se usan:
+programs  -> los programas
+episodes  -> los videos/episodios relacionados con cada programa
+
+IMPORTANTE
+----------
+1. Ejecuta el supabase.sql completo en Supabase SQL Editor.
+2. En Supabase Authentication crea el usuario administrador.
+3. Copia su UUID y ejecuta:
+   INSERT INTO public.admins(id) VALUES ('UUID_DEL_USUARIO');
+4. Sube todo el contenido del ZIP a GitHub, manteniendo las carpetas.
+5. En Vercel conserva las variables NEXT_PUBLIC_SUPABASE_URL y NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY.
