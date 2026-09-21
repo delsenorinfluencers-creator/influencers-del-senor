@@ -1,209 +1,41 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Jóvenes Influencers del Señor - Medio de comunicación católico de la Diócesis de Ocaña.">
-  <title>Jóvenes Influencers del Señor</title>
-  <link rel="stylesheet" href="estilos.css">
-</head>
-<body>
-
-<header class="encabezado">
-  <div class="contenedor barra">
-    <a class="marca" href="#inicio">
-      <img src="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png" alt="Jóvenes Influencers del Señor">
-      <span>Jóvenes Influencers<br><small>del Señor</small></span>
-    </a>
-
-    <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
-
-    <nav id="menu">
-      <a href="#inicio">Inicio</a>
-      <a href="#iglesia">Iglesia al Día</a>
-      <a href="#programas">Programas</a>
-      <a href="#64datos">64 Datos</a>
-      <a href="#diocesis">Diócesis</a>
-      <a href="#editorial">Editorial</a>
-      <a href="#quienes">Quiénes somos</a>
-    </nav>
-  </div>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Inicio - Jóvenes Influencers del Señor"><title>Inicio | Jóvenes Influencers del Señor</title><link rel="stylesheet" href="/estilos.css"></head><body>
+<header class="header">
+ <div class="container bar">
+  <a class="brand" href="/">
+   <img src="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png" alt="Jóvenes Influencers del Señor">
+   <span>Jóvenes Influencers<br><small>del Señor</small></span>
+  </a>
+  <button class="menu" id="menuBtn">☰</button>
+  <nav class="nav" id="nav">
+   <a href="/">Inicio</a>
+   <a href="/iglesia-al-dia/">Iglesia al Día</a>
+   <a href="/programas/">Programas</a>
+   <a href="/en-vivo/">En Vivo</a>
+   <a href="/64-datos/">64 Datos</a>
+   <a href="/diocesis/">Diócesis</a>
+   <a href="/editorial/">Editorial</a>
+   <a href="/quienes-somos/">Quiénes somos</a>
+  </nav>
+ </div>
 </header>
-
 <main>
-
-<section class="hero" id="inicio">
-  <div class="contenedor hero-grid">
-    <div>
-      <p class="etiqueta">MEDIO CATÓLICO DE COMUNICACIÓN</p>
-      <h1>Jóvenes Influencers del Señor</h1>
-      <p class="hero-text">
-        Comunicación al servicio de Dios. Información, formación y
-        evangelización digital desde la Diócesis de Ocaña.
-      </p>
-      <a class="boton" href="#iglesia">Conoce nuestro contenido</a>
-    </div>
-
-    <div class="hero-logo">
-      <img src="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png" alt="Logo Jóvenes Influencers del Señor">
-    </div>
-  </div>
-</section>
-
-<section class="seccion especial" id="64datos">
-  <div class="contenedor">
-    <div class="especial-card">
-      <div>
-        <p class="etiqueta">ESPECIAL · OCTUBRE</p>
-        <h2>64 Datos Históricos</h2>
-        <p>
-          Un recorrido audiovisual por la historia de la Diócesis de Ocaña.
-          Durante octubre presentaremos 64 datos históricos acompañados de sus
-          respectivos videos.
-        </p>
-        <a class="boton" href="#datos-lista">Ver los 64 datos</a>
-      </div>
-      <img src="https://i.ibb.co/HfhqmYQs/file-000000006d4c81f5b9452f237ee19824.png"
-           alt="Logo 64 años de la Diócesis">
-    </div>
-  </div>
-</section>
-
-<section class="seccion" id="iglesia">
-  <div class="contenedor">
-    <p class="etiqueta">ACTUALIDAD</p>
-    <h2>Iglesia al Día</h2>
-    <p class="intro">
-      Noticias diocesanas, nacionales e internacionales. Las noticias podrán
-      incluir videos de YouTube o Facebook.
-    </p>
-
-    <div class="tarjetas">
-      <article class="tarjeta">
-        <span>⛪</span>
-        <h3>Noticias Diocesanas</h3>
-        <p>La actualidad de la Diócesis de Ocaña.</p>
-      </article>
-      <article class="tarjeta">
-        <span>🇨🇴</span>
-        <h3>Noticias Nacionales</h3>
-        <p>Información de la Iglesia y la sociedad en Colombia.</p>
-      </article>
-      <article class="tarjeta">
-        <span>🌎</span>
-        <h3>Noticias Internacionales</h3>
-        <p>La vida de la Iglesia Católica en el mundo.</p>
-      </article>
-    </div>
-
-    <div class="video-demo">
-      <p class="etiqueta">VIDEO</p>
-      <h3>Las noticias tendrán su reproductor aquí</h3>
-      <p>
-        Cuando conectemos Supabase, cada noticia podrá traer automáticamente
-        su video de YouTube o Facebook.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="seccion gris" id="programas">
-  <div class="contenedor">
-    <p class="etiqueta">CONTENIDO AUDIOVISUAL</p>
-    <h2>Nuestros programas</h2>
-
-    <div class="programas" id="programasLista"></div>
-  </div>
-</section>
-
-<section class="seccion" id="datos-lista">
-  <div class="contenedor">
-    <p class="etiqueta">ESPECIAL DE OCTUBRE</p>
-    <h2>64 Datos Históricos</h2>
-    <p class="intro">
-      La sección estará activa durante todo octubre de 2026 y cada dato tendrá
-      su propio video.
-    </p>
-
-    <div class="datos" id="datosHistoricos"></div>
-  </div>
-</section>
-
-<section class="seccion gris" id="diocesis">
-  <div class="contenedor">
-    <p class="etiqueta">NUESTRA IGLESIA</p>
-    <h2>Diócesis de Ocaña</h2>
-
-    <div class="tarjetas">
-      <article class="tarjeta">
-        <h3>Historia de la Diócesis</h3>
-        <p>Un espacio para conocer nuestra historia diocesana.</p>
-      </article>
-      <article class="tarjeta">
-        <h3>Todas las parroquias</h3>
-        <p>Directorio de las parroquias de la Diócesis.</p>
-      </article>
-      <article class="tarjeta">
-        <h3>Advocaciones Marianas</h3>
-        <p>Conoce las advocaciones marianas de nuestra Iglesia.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="seccion" id="editorial">
-  <div class="contenedor">
-    <p class="etiqueta">REFLEXIÓN</p>
-    <h2>Editorial</h2>
-    <div class="editorial">
-      <h3>Escritos que ayudan a reflexionar</h3>
-      <p>
-        Aquí publicaremos editoriales y escritos sobre temas importantes para
-        nuestra Iglesia, nuestra sociedad y nuestra vida cristiana.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="seccion gris" id="quienes">
-  <div class="contenedor">
-    <p class="etiqueta">NUESTRA MISIÓN</p>
-    <h2>Quiénes somos</h2>
-    <p class="intro">
-      Jóvenes Influencers del Señor es un medio de comunicación católico
-      orientado a informar, formar y evangelizar mediante contenidos digitales.
-    </p>
-
-    <div class="equipo">
-      <div>
-        <h3>Nuestro equipo</h3>
-        <p>
-          Aquí se mostrará el fragmento con todos los integrantes del proyecto.
-        </p>
-      </div>
-      <div>
-        <h3>Nuestras parroquias</h3>
-        <p>
-          Tendremos un directorio con todas las parroquias de la Diócesis.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
+<section class="hero" id="inicio"><div class="container hero-grid"><div>
+<p class="eyebrow">MEDIO CATÓLICO DE COMUNICACIÓN</p><h1>Jóvenes Influencers del Señor</h1>
+<p class="lead">Comunicación al servicio de Dios. Información, formación y evangelización digital desde la Diócesis de Ocaña.</p>
+<a class="btn" href="/iglesia-al-dia/">Ver Iglesia al Día</a> <a class="btn" href="/en-vivo/">🔴 Señal en vivo</a>
+</div><div class="hero-logo"><img src="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png" alt="Logo"></div></div></section>
+<section class="section"><div class="container"><div class="special"><div><p class="eyebrow">ESPECIAL · OCTUBRE 2026</p><h2>64 Datos Históricos</h2><p class="intro">Un recorrido audiovisual por la historia de la Diócesis de Ocaña. La sección estará activa durante octubre.</p><a class="btn" href="/64-datos/">Entrar al especial</a></div><img src="https://i.ibb.co/HfhqmYQs/file-000000006d4c81f5b9452f237ee19824.png" alt="64 años"></div></div></section>
+<section class="section gray"><div class="container"><p class="eyebrow">CONTENIDO</p><h2>Explora nuestro sitio</h2><div class="cards">
+<a class="card" href="/iglesia-al-dia/"><h3>Iglesia al Día</h3><p>Noticias diocesanas, nacionales e internacionales, con videos.</p></a>
+<a class="card" href="/programas/"><h3>Programas</h3><p>Todos nuestros contenidos audiovisuales.</p></a>
+<a class="card" href="/diocesis/"><h3>Diócesis de Ocaña</h3><p>Historia, parroquias y advocaciones marianas.</p></a>
+<a class="card" href="/editorial/"><h3>Editorial</h3><p>Escritos sobre temas importantes.</p></a>
+<a class="card" href="/quienes-somos/"><h3>Quiénes somos</h3><p>Equipo y misión del proyecto.</p></a>
+<a class="card" href="/en-vivo/"><h3>Señal en vivo</h3><p>Transmisiones y celebraciones.</p></a>
+</div></div></section>
 </main>
-
-<footer>
-  <div class="contenedor footer-inner">
-    <img src="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png" alt="Jóvenes Influencers del Señor">
-    <div>
-      <strong>Jóvenes Influencers del Señor</strong>
-      <p>Comunicación al servicio de Dios.</p>
-      <p>Medio de comunicación católico de la Diócesis de Ocaña.</p>
-    </div>
-  </div>
-</footer>
-
-<script src="app.js"></script>
-</body>
-</html>
+<footer><div class="container footer">
+ <img src="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png" alt="Logo">
+ <div><strong>Jóvenes Influencers del Señor</strong><p>Comunicación al servicio de Dios.</p><p>Medio de comunicación católico de la Diócesis de Ocaña.</p></div>
+</div></footer>
+<script src="/config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/common.js"></script></body></html>

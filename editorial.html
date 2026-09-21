@@ -1,0 +1,30 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Editorial - Jóvenes Influencers del Señor"><title>Editorial | Jóvenes Influencers del Señor</title><link rel="stylesheet" href="/estilos.css"></head><body>
+<header class="header">
+ <div class="container bar">
+  <a class="brand" href="index.html">
+   <img src="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png" alt="Jóvenes Influencers del Señor">
+   <span>Jóvenes Influencers<br><small>del Señor</small></span>
+  </a>
+  <button class="menu" id="menuBtn">☰</button>
+  <nav class="nav" id="nav">
+   <a href="index.html">Inicio</a>
+   <a href="iglesia-al-dia.html">Iglesia al Día</a>
+   <a href="programas.html">Programas</a>
+   <a href="en-vivo.html">En Vivo</a>
+   <a href="64-datos.html">64 Datos</a>
+   <a href="diocesis.html">Diócesis</a>
+   <a href="editorial.html">Editorial</a>
+   <a href="quienes-somos.html">Quiénes somos</a>
+  </nav>
+ </div>
+</header>
+<main>
+<section class="section"><div class="container"><p class="crumb">Inicio / Editorial</p><p class="eyebrow">REFLEXIÓN</p><h1>Editorial</h1><p class="intro">Escritos sobre temas importantes para nuestra Iglesia, nuestra sociedad y nuestra vida cristiana.</p><div id="editorials" class="grid"></div></div></section>
+</main>
+<footer><div class="container footer">
+ <img src="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png" alt="Logo">
+ <div><strong>Jóvenes Influencers del Señor</strong><p>Comunicación al servicio de Dios.</p><p>Medio de comunicación católico de la Diócesis de Ocaña.</p></div>
+</div></footer>
+<script src="/config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/common.js"></script><script>
+async function load(){const box=document.getElementById("editorials");const {data,error}=await sb.from("editorials").select("*").eq("published",true).order("published_at",{ascending:false});if(error){box.innerHTML="<article class='card'><h3>No se pudieron cargar los editoriales.</h3></article>";return}box.innerHTML=data.length?data.map(x=>`<article class="editorial"><h2>${esc(x.title)}</h2>${x.author?`<p><b>Por:</b> ${esc(x.author)}</p>`:""}<p>${esc(x.excerpt||x.content).replaceAll("\\n","<br>")}</p></article>`).join(""):"<article class='card'><h3>Aún no hay editoriales publicados.</h3></article>"}load();
+</script></body></html>
