@@ -5,13 +5,586 @@
 
 
 /* =========================================================
-   AÑO AUTOMÁTICO
+   CONFIGURACIÓN
 ========================================================= */
 
-const currentYear = document.getElementById("currentYear");
+const CONFIG = {
 
-if (currentYear) {
-    currentYear.textContent = new Date().getFullYear();
+  nombre:
+    "Jóvenes Influencers del Señor",
+
+  logo:
+    "https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png",
+
+  mesEspecial:
+    9 // Octubre = 9 en JavaScript
+
+};
+
+
+/* =========================================================
+   DATOS DE PROGRAMAS
+========================================================= */
+
+const programas = [
+
+  {
+    nombre: "Iglesia al Día",
+    descripcion: "Noticias y videos de la vida de la Iglesia.",
+    icono: "fa-newspaper"
+  },
+
+  {
+    nombre: "Un Café con Aroma de Fe",
+    descripcion: "Conversaciones para compartir y fortalecer la fe.",
+    icono: "fa-mug-hot"
+  },
+
+  {
+    nombre: "El Podcast",
+    descripcion: "Charlas, testimonios y conversaciones.",
+    icono: "fa-microphone"
+  },
+
+  {
+    nombre: "El Youcat te Conecta",
+    descripcion: "Fe y formación para las nuevas generaciones.",
+    icono: "fa-book-open"
+  },
+
+  {
+    nombre: "La Voz Líder",
+    descripcion: "Historias, liderazgo y experiencias.",
+    icono: "fa-microphone-lines"
+  },
+
+  {
+    nombre: "Hagan lo que Él les Diga",
+    descripcion: "Reflexiones y experiencias de fe.",
+    icono: "fa-heart"
+  },
+
+  {
+    nombre: "Una Palabra en 60 Segundos",
+    descripcion: "Un mensaje breve para cada día.",
+    icono: "fa-clock"
+  },
+
+  {
+    nombre: "Fe y Vida Diaria",
+    descripcion: "La fe llevada a nuestra vida cotidiana.",
+    icono: "fa-sun"
+  },
+
+  {
+    nombre: "La Santa Misa",
+    descripcion: "Celebraciones litúrgicas.",
+    icono: "fa-church"
+  },
+
+  {
+    nombre: "Kerigma en Fuego",
+    descripcion: "Evangelización y anuncio del Evangelio.",
+    icono: "fa-fire"
+  },
+
+  {
+    nombre: "Semilla Vocacional",
+    descripcion: "Un espacio para descubrir la vocación.",
+    icono: "fa-seedling"
+  },
+
+  {
+    nombre: "Cultiva la Fe",
+    descripcion: "Formación y crecimiento espiritual.",
+    icono: "fa-leaf"
+  }
+
+];
+
+
+/* =========================================================
+   NOTICIAS DE EJEMPLO
+========================================================= */
+
+const noticias = [
+
+  {
+    categoria: "DIÓCESIS",
+    titulo: "Noticias de la vida de la Iglesia",
+    descripcion:
+      "Aquí podrás publicar las noticias y acontecimientos de la Diócesis."
+  },
+
+  {
+    categoria: "EVANGELIZACIÓN",
+    titulo: "Compartiendo la fe en comunidad",
+    descripcion:
+      "Contenido evangelizador para nuestras comunidades y nuevas generaciones."
+  },
+
+  {
+    categoria: "JUVENTUD",
+    titulo: "Los jóvenes y la comunicación",
+    descripcion:
+      "Historias, experiencias y proyectos protagonizados por los jóvenes."
+  },
+
+  {
+    categoria: "FORMACIÓN",
+    titulo: "Formación para nuestra comunidad",
+    descripcion:
+      "Espacios para aprender, reflexionar y crecer en la fe."
+  },
+
+  {
+    categoria: "VIDA DIOCESANA",
+    titulo: "Una Iglesia que camina unida",
+    descripcion:
+      "Información sobre las actividades y experiencias de nuestras comunidades."
+  },
+
+  {
+    categoria: "COMUNIDAD",
+    titulo: "La Iglesia cerca de la gente",
+    descripcion:
+      "Historias y testimonios de nuestras comunidades."
+  }
+
+];
+
+
+/* =========================================================
+   EDITORIALES
+========================================================= */
+
+const editoriales = [
+
+  {
+    titulo: "La comunicación al servicio de la evangelización",
+    descripcion:
+      "Reflexiones sobre el papel de los medios de comunicación en la misión evangelizadora."
+  },
+
+  {
+    titulo: "Los jóvenes y la Iglesia",
+    descripcion:
+      "Un espacio para reflexionar sobre la participación juvenil en la vida de la Iglesia."
+  },
+
+  {
+    titulo: "Fe en tiempos digitales",
+    descripcion:
+      "Reflexiones sobre cómo comunicar valores y esperanza en el mundo digital."
+  }
+
+];
+
+
+/* =========================================================
+   PARROQUIAS
+   NOTA:
+   NO SE INVENTAN NOMBRES.
+========================================================= */
+
+const parroquias = [
+
+  "Parroquia 01",
+  "Parroquia 02",
+  "Parroquia 03",
+  "Parroquia 04",
+  "Parroquia 05",
+  "Parroquia 06",
+  "Parroquia 07",
+  "Parroquia 08"
+
+];
+
+
+/* =========================================================
+   INTEGRANTES
+========================================================= */
+
+const integrantes = [
+
+  {
+    nombre: "Integrante",
+    cargo: "Equipo de comunicación"
+  },
+
+  {
+    nombre: "Integrante",
+    cargo: "Producción audiovisual"
+  },
+
+  {
+    nombre: "Integrante",
+    cargo: "Contenido digital"
+  },
+
+  {
+    nombre: "Integrante",
+    cargo: "Evangelización"
+
+  }
+
+];
+
+
+/* =========================================================
+   FUNCIÓN PARA CREAR PROGRAMAS
+========================================================= */
+
+function renderProgramas() {
+
+  const container =
+    document.getElementById("programasGrid");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  programas.forEach((programa, index) => {
+
+    const card =
+      document.createElement("article");
+
+    card.className = "program-card";
+
+    card.dataset.video = "";
+
+    card.innerHTML = `
+
+      <div class="program-number">
+        ${String(index + 1).padStart(2, "0")}
+      </div>
+
+      <div class="program-play">
+        <i class="fa-solid fa-play"></i>
+      </div>
+
+      <div class="program-content">
+
+        <h3>
+          ${programa.nombre}
+        </h3>
+
+        <span>
+          ${programa.descripcion}
+        </span>
+
+      </div>
+
+    `;
+
+    card.addEventListener("click", () => {
+
+      abrirVideo(
+        "",
+        programa.nombre
+      );
+
+    });
+
+    container.appendChild(card);
+
+  });
+
+}
+
+
+/* =========================================================
+   FUNCIÓN PARA CREAR NOTICIAS
+========================================================= */
+
+function renderNoticias() {
+
+  const container =
+    document.getElementById("newsGrid");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  noticias.forEach((noticia) => {
+
+    const card =
+      document.createElement("article");
+
+    card.className = "news-card";
+
+    card.innerHTML = `
+
+      <div class="news-image">
+
+        <i class="fa-solid fa-cross"></i>
+
+      </div>
+
+      <div class="news-content">
+
+        <span class="news-tag">
+          ${noticia.categoria}
+        </span>
+
+        <h3>
+          ${noticia.titulo}
+        </h3>
+
+        <p>
+          ${noticia.descripcion}
+        </p>
+
+      </div>
+
+    `;
+
+    container.appendChild(card);
+
+  });
+
+}
+
+
+/* =========================================================
+   FUNCIÓN PARA CREAR EDITORIALES
+========================================================= */
+
+function renderEditoriales() {
+
+  const container =
+    document.getElementById("editorialGrid");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  editoriales.forEach((editorial) => {
+
+    const card =
+      document.createElement("article");
+
+    card.className = "editorial-card";
+
+    card.innerHTML = `
+
+      <div class="editorial-icon">
+        <i class="fa-solid fa-feather"></i>
+      </div>
+
+      <h3>
+        ${editorial.titulo}
+      </h3>
+
+      <p>
+        ${editorial.descripcion}
+      </p>
+
+    `;
+
+    container.appendChild(card);
+
+  });
+
+}
+
+
+/* =========================================================
+   64 DATOS HISTÓRICOS
+========================================================= */
+
+function crearDatosHistoricos() {
+
+  const container =
+    document.getElementById("historicalGrid");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  for (let i = 1; i <= 64; i++) {
+
+    const numero =
+      String(i).padStart(2, "0");
+
+    const item =
+      document.createElement("article");
+
+    item.className = "history-item";
+
+    item.innerHTML = `
+
+      <div class="history-item-number">
+        DATO ${numero}
+      </div>
+
+      <h4>
+        Contenido histórico ${numero}
+      </h4>
+
+      <p>
+        Información oficial próximamente.
+      </p>
+
+      <button
+        class="history-video-btn"
+        type="button"
+      >
+        <i class="fa-solid fa-play"></i>
+        Ver video
+      </button>
+
+    `;
+
+    const button =
+      item.querySelector(
+        ".history-video-btn"
+      );
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        abrirVideo(
+          "",
+          `64 Datos Históricos — Dato ${numero}`
+        );
+
+      }
+    );
+
+    container.appendChild(item);
+
+  }
+
+}
+
+
+/* =========================================================
+   PARROQUIAS
+========================================================= */
+
+function renderParroquias() {
+
+  const container =
+    document.getElementById("parishesGrid");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  parroquias.forEach((parroquia) => {
+
+    const card =
+      document.createElement("article");
+
+    card.className = "parish-card";
+
+    card.innerHTML = `
+
+      <i class="fa-solid fa-church"></i>
+
+      <h3>
+        ${parroquia}
+      </h3>
+
+      <p>
+        Información próximamente.
+      </p>
+
+    `;
+
+    container.appendChild(card);
+
+  });
+
+}
+
+
+/* =========================================================
+   INTEGRANTES
+========================================================= */
+
+function renderIntegrantes() {
+
+  const container =
+    document.getElementById("teamGrid");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  integrantes.forEach((integrante) => {
+
+    const card =
+      document.createElement("article");
+
+    card.className = "team-card";
+
+    card.innerHTML = `
+
+      <div class="team-avatar">
+        <i class="fa-solid fa-user"></i>
+      </div>
+
+      <h3>
+        ${integrante.nombre}
+      </h3>
+
+      <span>
+        ${integrante.cargo}
+      </span>
+
+    `;
+
+    container.appendChild(card);
+
+  });
+
+}
+
+
+/* =========================================================
+   CONTROL DEL ESPECIAL DE OCTUBRE
+========================================================= */
+
+function controlarEspecialOctubre() {
+
+  const ahora =
+    new Date();
+
+  const esOctubre =
+    ahora.getMonth() === CONFIG.mesEspecial;
+
+
+  const section =
+    document.getElementById(
+      "datos-historicos"
+    );
+
+  const nav =
+    document.getElementById(
+      "datosNav"
+    );
+
+
+  if (!section || !nav) return;
+
+
+  if (esOctubre) {
+
+    section.classList.remove("hidden");
+
+    nav.classList.remove("hidden");
+
+  } else {
+
+    section.classList.add("hidden");
+
+    nav.classList.add("hidden");
+
+  }
+
 }
 
 
@@ -19,601 +592,373 @@ if (currentYear) {
    MENÚ MÓVIL
 ========================================================= */
 
-const menuToggle = document.getElementById("menuToggle");
-const mainNav = document.getElementById("mainNav");
+function configurarMenu() {
 
-if (menuToggle && mainNav) {
+  const toggle =
+    document.getElementById(
+      "menuToggle"
+    );
 
-    menuToggle.addEventListener("click", () => {
+  const nav =
+    document.getElementById(
+      "mainNav"
+    );
 
-        mainNav.classList.toggle("open");
+  if (!toggle || !nav) return;
 
-        const icon = menuToggle.querySelector("i");
 
-        if (mainNav.classList.contains("open")) {
+  toggle.addEventListener(
+    "click",
+    () => {
 
-            icon.classList.remove("fa-bars");
-            icon.classList.add("fa-xmark");
+      nav.classList.toggle(
+        "active"
+      );
 
-        } else {
+      const abierto =
+        nav.classList.contains(
+          "active"
+        );
 
-            icon.classList.remove("fa-xmark");
-            icon.classList.add("fa-bars");
-
-        }
-
-    });
-
-}
-
-
-/* =========================================================
-   CERRAR MENÚ AL HACER CLICK
-========================================================= */
-
-const navLinks = document.querySelectorAll(".nav-link");
-
-navLinks.forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        if (mainNav) {
-            mainNav.classList.remove("open");
-        }
-
-        if (menuToggle) {
-
-            const icon =
-                menuToggle.querySelector("i");
-
-            if (icon) {
-
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars");
-
-            }
-
-        }
-
-    });
-
-});
-
-
-/* =========================================================
-   NAVEGACIÓN ACTIVA
-========================================================= */
-
-const sections = document.querySelectorAll(
-    "main section[id]"
-);
-
-window.addEventListener("scroll", () => {
-
-    let current = "";
-
-    sections.forEach(section => {
-
-        const sectionTop =
-            section.offsetTop - 120;
-
-        const sectionHeight =
-            section.offsetHeight;
-
-        if (
-            window.scrollY >= sectionTop &&
-            window.scrollY <
-            sectionTop + sectionHeight
-        ) {
-
-            current =
-                section.getAttribute("id");
-
-        }
-
-    });
-
-
-    navLinks.forEach(link => {
-
-        link.classList.remove("active");
-
-        const href =
-            link.getAttribute("href");
-
-        if (href === `#${current}`) {
-
-            link.classList.add("active");
-
-        }
-
-    });
-
-});
-
-
-/* =========================================================
-   BUSCADOR
-========================================================= */
-
-const openSearch =
-    document.getElementById("openSearch");
-
-const closeSearch =
-    document.getElementById("closeSearch");
-
-const searchOverlay =
-    document.getElementById("searchOverlay");
-
-const searchInput =
-    document.getElementById("searchInput");
-
-const searchResults =
-    document.getElementById("searchResults");
-
-
-if (openSearch && searchOverlay) {
-
-    openSearch.addEventListener("click", () => {
-
-        searchOverlay.classList.add("open");
-
-        setTimeout(() => {
-
-            if (searchInput) {
-                searchInput.focus();
-            }
-
-        }, 100);
-
-    });
-
-}
-
-
-if (closeSearch && searchOverlay) {
-
-    closeSearch.addEventListener("click", () => {
-
-        searchOverlay.classList.remove("open");
-
-        if (searchInput) {
-            searchInput.value = "";
-        }
-
-        if (searchResults) {
-            searchResults.innerHTML = "";
-        }
-
-    });
-
-}
-
-
-/* =========================================================
-   DATOS PARA BUSCADOR
-========================================================= */
-
-const searchableContent = [
-
-    {
-        title: "Iglesia al Día",
-        category: "Noticias",
-        url: "#noticias"
-    },
-
-    {
-        title: "Un café con aroma de fe",
-        category: "Programas",
-        url: "#programas"
-    },
-
-    {
-        title: "El Podcast",
-        category: "Programas",
-        url: "#programas"
-    },
-
-    {
-        title: "El Youcat te conecta",
-        category: "Programas",
-        url: "#programas"
-    },
-
-    {
-        title: "La Voz Líder",
-        category: "Programas",
-        url: "#programas"
-    },
-
-    {
-        title: "Hagan lo que Él les diga",
-        category: "Programas",
-        url: "#programas"
-    },
-
-    {
-        title: "Una palabra en 60 segundos",
-        category: "Programas",
-        url: "#programas"
-    },
-
-    {
-        title: "Fe y vida diaria",
-        category: "Programas",
-        url: "#programas"
-    },
-
-    {
-        title: "La Santa Misa",
-        category: "Programas",
-        url: "#programas"
-    },
-
-    {
-        title: "Kerigma en fuego",
-        category: "Programas",
-        url: "#programas"
-    },
-
-    {
-        title: "Semilla vocacional",
-        category: "Programas",
-        url: "#programas"
-    },
-
-    {
-        title: "Cultiva la Fe",
-        category: "Programas",
-        url: "#programas"
-    },
-
-    {
-        title: "Historia de la Diócesis",
-        category: "Diócesis",
-        url: "#diocesis"
-    },
-
-    {
-        title: "Advocaciones Marianas",
-        category: "Diócesis",
-        url: "#diocesis"
-    },
-
-    {
-        title: "Nuestras Parroquias",
-        category: "Diócesis",
-        url: "#diocesis"
-    },
-
-    {
-        title: "Quiénes somos",
-        category: "Jóvenes Influencers del Señor",
-        url: "#quienes-somos"
-    },
-
-    {
-        title: "Editorial",
-        category: "Opinión y reflexión",
-        url: "#editorial"
-    },
-
-    {
-        title: "Videos",
-        category: "Videoteca",
-        url: "#videos"
-    }
-
-];
-
-
-if (searchInput && searchResults) {
-
-    searchInput.addEventListener("input", () => {
-
-        const query =
-            searchInput.value
-                .toLowerCase()
-                .trim();
-
-        searchResults.innerHTML = "";
-
-        if (!query) {
-            return;
-        }
-
-
-        const results =
-            searchableContent.filter(item =>
-
-                item.title
-                    .toLowerCase()
-                    .includes(query)
-
-                ||
-
-                item.category
-                    .toLowerCase()
-                    .includes(query)
-
-            );
-
-
-        if (results.length === 0) {
-
-            searchResults.innerHTML = `
-                <div class="search-result">
-                    <strong>No encontramos resultados</strong>
-                    <span>Prueba con otra palabra.</span>
-                </div>
-            `;
-
-            return;
-        }
-
-
-        results.forEach(item => {
-
-            const result =
-                document.createElement("a");
-
-            result.href = item.url;
-
-            result.className =
-                "search-result";
-
-            result.innerHTML = `
-                <strong>${item.title}</strong>
-                <span>${item.category}</span>
-            `;
-
-            result.addEventListener("click", () => {
-
-                searchOverlay.classList.remove("open");
-
-                searchInput.value = "";
-
-                searchResults.innerHTML = "";
-
-            });
-
-            searchResults.appendChild(result);
-
-        });
-
-    });
-
-}
-
-
-/* =========================================================
-   ESC PARA CERRAR BUSCADOR
-========================================================= */
-
-document.addEventListener("keydown", event => {
-
-    if (
-        event.key === "Escape" &&
-        searchOverlay &&
-        searchOverlay.classList.contains("open")
-    ) {
-
-        searchOverlay.classList.remove("open");
+      toggle.innerHTML =
+        abierto
+          ? `<i class="fa-solid fa-xmark"></i>`
+          : `<i class="fa-solid fa-bars"></i>`;
 
     }
-
-});
-
-
-/* =========================================================
-   MODAL DE VIDEOS
-========================================================= */
-
-const videoModal =
-    document.getElementById("videoModal");
-
-const videoFrame =
-    document.getElementById("videoFrame");
-
-const closeVideo =
-    document.getElementById("closeVideo");
-
-const playButtons =
-    document.querySelectorAll(".play-button");
+  );
 
 
-playButtons.forEach(button => {
+  nav.querySelectorAll("a").forEach(
+    (link) => {
 
-    button.addEventListener("click", event => {
+      link.addEventListener(
+        "click",
+        () => {
 
-        event.preventDefault();
-        event.stopPropagation();
+          nav.classList.remove(
+            "active"
+          );
 
-        const card =
-            button.closest(".program-card");
-
-        if (!card) {
-            return;
-        }
-
-        const videoURL =
-            card.dataset.video;
-
-        if (
-            videoURL &&
-            videoURL !==
-            "https://www.youtube.com/embed/"
-        ) {
-
-            videoFrame.src =
-                `${videoURL}?autoplay=1`;
-
-        } else {
-
-            videoFrame.src = "";
-
-            alert(
-                "Este programa todavía no tiene un video configurado."
-            );
-
-            return;
+          toggle.innerHTML =
+            `<i class="fa-solid fa-bars"></i>`;
 
         }
-
-        videoModal.classList.add("open");
-
-    });
-
-});
-
-
-if (closeVideo) {
-
-    closeVideo.addEventListener("click", () => {
-
-        closeVideoModal();
-
-    });
-
-}
-
-
-if (videoModal) {
-
-    videoModal.addEventListener("click", event => {
-
-        if (
-            event.target === videoModal
-        ) {
-
-            closeVideoModal();
-
-        }
-
-    });
-
-}
-
-
-function closeVideoModal() {
-
-    videoModal.classList.remove("open");
-
-    videoFrame.src = "";
-
-}
-
-
-/* =========================================================
-   ESC PARA CERRAR VIDEO
-========================================================= */
-
-document.addEventListener("keydown", event => {
-
-    if (
-        event.key === "Escape" &&
-        videoModal &&
-        videoModal.classList.contains("open")
-    ) {
-
-        closeVideoModal();
+      );
 
     }
+  );
 
-});
+}
 
 
 /* =========================================================
-   BOTÓN VOLVER ARRIBA
+   VIDEO MODAL
 ========================================================= */
 
-const backTop =
-    document.getElementById("backTop");
+function abrirVideo(
+  videoUrl,
+  titulo
+) {
+
+  const modal =
+    document.getElementById(
+      "videoModal"
+    );
+
+  const container =
+    document.getElementById(
+      "modalVideoContainer"
+    );
+
+  if (!modal || !container) return;
 
 
-window.addEventListener("scroll", () => {
+  /*
+    Si posteriormente se agrega un enlace
+    de YouTube, esta función podrá mostrarlo.
+  */
 
-    if (!backTop) {
-        return;
-    }
+  if (videoUrl) {
 
-    if (window.scrollY > 500) {
+    const youtubeId =
+      obtenerYoutubeId(
+        videoUrl
+      );
 
-        backTop.classList.add("show");
+    if (youtubeId) {
+
+      container.innerHTML = `
+
+        <iframe
+          class="video-iframe"
+          src="https://www.youtube.com/embed/${youtubeId}"
+          title="${titulo}"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+
+      `;
 
     } else {
 
-        backTop.classList.remove("show");
+      container.innerHTML = `
+
+        <div class="modal-video-placeholder">
+
+          <i class="fa-solid fa-video"></i>
+
+          <h3>
+            ${titulo}
+          </h3>
+
+          <p>
+            El video estará disponible próximamente.
+          </p>
+
+        </div>
+
+      `;
 
     }
 
-});
+  } else {
+
+    container.innerHTML = `
+
+      <div class="modal-video-placeholder">
+
+        <i class="fa-solid fa-video"></i>
+
+        <h3>
+          ${titulo}
+        </h3>
+
+        <p>
+          Este espacio está preparado para
+          incorporar el video correspondiente.
+        </p>
+
+      </div>
+
+    `;
+
+  }
 
 
-if (backTop) {
+  modal.classList.add("active");
 
-    backTop.addEventListener("click", () => {
+  modal.setAttribute(
+    "aria-hidden",
+    "false"
+  );
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-    });
+  document.body.style.overflow =
+    "hidden";
 
 }
 
 
 /* =========================================================
-   ANIMACIÓN SUAVE DE TARJETAS
+   OBTENER ID DE YOUTUBE
 ========================================================= */
 
-const animatedElements =
-    document.querySelectorAll(
-        ".program-card, .news-card, .diocese-card, .parish-card, .team-card, .video-card"
+function obtenerYoutubeId(url) {
+
+  if (!url) return null;
+
+  const patrones = [
+
+    /youtube\.com\/watch\?v=([^&]+)/,
+
+    /youtu\.be\/([^?&]+)/,
+
+    /youtube\.com\/embed\/([^?&]+)/,
+
+    /youtube\.com\/shorts\/([^?&]+)/
+
+  ];
+
+
+  for (const patron of patrones) {
+
+    const resultado =
+      url.match(patron);
+
+    if (resultado) {
+
+      return resultado[1];
+
+    }
+
+  }
+
+  return null;
+
+}
+
+
+/* =========================================================
+   CERRAR VIDEO
+========================================================= */
+
+function cerrarVideo() {
+
+  const modal =
+    document.getElementById(
+      "videoModal"
+    );
+
+  const container =
+    document.getElementById(
+      "modalVideoContainer"
+    );
+
+  if (!modal) return;
+
+
+  modal.classList.remove(
+    "active"
+  );
+
+  modal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+  if (container) {
+
+    container.innerHTML = "";
+
+  }
+
+  document.body.style.overflow =
+    "";
+
+}
+
+
+/* =========================================================
+   CONFIGURAR MODAL
+========================================================= */
+
+function configurarModal() {
+
+  const close =
+    document.getElementById(
+      "modalClose"
+    );
+
+  const overlay =
+    document.querySelector(
+      ".video-modal-overlay"
     );
 
 
-if ("IntersectionObserver" in window) {
+  if (close) {
 
-    const observer =
-        new IntersectionObserver(
-            entries => {
+    close.addEventListener(
+      "click",
+      cerrarVideo
+    );
 
-                entries.forEach(entry => {
-
-                    if (entry.isIntersecting) {
-
-                        entry.target.style.opacity = "1";
-                        entry.target.style.transform =
-                            "translateY(0)";
-
-                        observer.unobserve(
-                            entry.target
-                        );
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.08
-            }
-        );
+  }
 
 
-    animatedElements.forEach(element => {
+  if (overlay) {
 
-        element.style.opacity = "0";
+    overlay.addEventListener(
+      "click",
+      cerrarVideo
+    );
 
-        element.style.transform =
-            "translateY(18px)";
+  }
 
-        element.style.transition =
-            "opacity .5s ease, transform .5s ease";
 
-        observer.observe(element);
+  document.addEventListener(
+    "keydown",
+    (event) => {
+
+      if (
+        event.key === "Escape"
+      ) {
+
+        cerrarVideo();
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   AÑO AUTOMÁTICO
+========================================================= */
+
+function actualizarAnio() {
+
+  const elemento =
+    document.getElementById(
+      "currentYear"
+    );
+
+  if (!elemento) return;
+
+  elemento.textContent =
+    new Date().getFullYear();
+
+}
+
+
+/* =========================================================
+   SCROLL SUAVE
+========================================================= */
+
+function configurarScroll() {
+
+  document
+    .querySelectorAll(
+      'a[href^="#"]'
+    )
+    .forEach((link) => {
+
+      link.addEventListener(
+        "click",
+        (event) => {
+
+          const destino =
+            link.getAttribute(
+              "href"
+            );
+
+          if (
+            !destino ||
+            destino === "#"
+          ) {
+
+            return;
+
+          }
+
+
+          const elemento =
+            document.querySelector(
+              destino
+            );
+
+          if (!elemento) return;
+
+          event.preventDefault();
+
+          elemento.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
+        }
+      );
 
     });
 
@@ -621,60 +966,34 @@ if ("IntersectionObserver" in window) {
 
 
 /* =========================================================
-   CERRAR MENÚ AL CAMBIAR A ESCRITORIO
+   INICIALIZACIÓN
 ========================================================= */
 
-window.addEventListener("resize", () => {
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
 
-    if (
-        window.innerWidth > 800 &&
-        mainNav
-    ) {
+    renderProgramas();
 
-        mainNav.classList.remove("open");
+    renderNoticias();
 
-        if (menuToggle) {
+    renderEditoriales();
 
-            const icon =
-                menuToggle.querySelector("i");
+    crearDatosHistoricos();
 
-            if (icon) {
+    renderParroquias();
 
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars");
+    renderIntegrantes();
 
-            }
+    controlarEspecialOctubre();
 
-        }
+    configurarMenu();
 
-    }
+    configurarModal();
 
-});
+    actualizarAnio();
 
+    configurarScroll();
 
-/* =========================================================
-   PREVENIR ENLACES "#" VACÍOS
-========================================================= */
-
-document.querySelectorAll('a[href="#"]').forEach(link => {
-
-    link.addEventListener("click", event => {
-
-        event.preventDefault();
-
-    });
-
-});
-
-
-/* =========================================================
-   MENSAJE DE INICIO
-========================================================= */
-
-console.log(
-    "✝ Jóvenes Influencers del Señor | Diócesis de Ocaña"
-);
-
-console.log(
-    "Sitio preparado para futura integración con Supabase."
+  }
 );
