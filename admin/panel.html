@@ -1,126 +1,358 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Panel administrativo | Jóvenes Influencers del Señor</title>
 
-  <link rel="icon"
-        href="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png">
-
-  <link rel="stylesheet" href="../estilos.css">
-
   <style>
-    body {
-      margin: 0;
-      background: #f7f7f7;
-      font-family: Arial, sans-serif;
+    :root {
+      --verde: #a8d8c0;
+      --verde-oscuro: #6da88e;
+      --crema: #fff8df;
+      --amarillo: #f7dc70;
+      --oscuro: #18231f;
+      --gris: #f4f6f5;
+      --blanco: #ffffff;
+      --rojo: #d94b4b;
+      --borde: #e2e7e4;
     }
 
-    .admin-layout {
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--gris);
+      color: var(--oscuro);
+    }
+
+    .loading {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .loading-box {
+      background: white;
+      padding: 35px;
+      border-radius: 18px;
+      box-shadow: 0 10px 40px rgba(0,0,0,.08);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    .loading-box img {
+      width: 110px;
+      height: 110px;
+      object-fit: contain;
+      margin-bottom: 20px;
+    }
+
+    .error {
+      background: #ffe7e7;
+      color: #9d2020;
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* LOGIN */
+    .login-screen {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background:
+        radial-gradient(circle at top, #fff8df 0%, #f4f6f5 55%);
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 430px;
+      background: white;
+      padding: 38px;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.12);
+      text-align: center;
+    }
+
+    .login-card img {
+      width: 130px;
+      height: 130px;
+      object-fit: contain;
+      margin-bottom: 15px;
+    }
+
+    .login-card h1 {
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+
+    .login-card p {
+      color: #65716b;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    .login-card input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid var(--borde);
+      border-radius: 10px;
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      border-radius: 10px;
+      padding: 13px 18px;
+      font-weight: bold;
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: var(--verde-oscuro);
+      color: white;
+      font-size: 16px;
+    }
+
+    .btn-primary:hover {
+      background: #568a72;
+    }
+
+    .message {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .message.error-message {
+      display: block;
+      background: #ffe8e8;
+      color: #a32121;
+    }
+
+    .message.success-message {
+      display: block;
+      background: #e4f7ec;
+      color: #286744;
+    }
+
+    /* PANEL */
+    .app {
       min-height: 100vh;
       display: flex;
     }
 
-    .admin-sidebar {
-      width: 250px;
-      background: #111;
+    .sidebar {
+      width: 270px;
+      background: var(--oscuro);
       color: white;
-      padding: 20px;
-      box-sizing: border-box;
+      min-height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      overflow-y: auto;
+      z-index: 10;
     }
 
-    .admin-logo {
+    .sidebar-header {
+      padding: 24px 20px;
       text-align: center;
-      margin-bottom: 30px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
     }
 
-    .admin-logo img {
-      width: 100px;
-      height: 100px;
+    .sidebar-header img {
+      width: 85px;
+      height: 85px;
       object-fit: contain;
+      background: white;
+      border-radius: 50%;
+      padding: 5px;
     }
 
-    .admin-logo h2 {
-      font-size: 18px;
-      margin: 10px 0;
+    .sidebar-header h2 {
+      font-size: 16px;
+      margin-top: 12px;
     }
 
-    .admin-menu button {
+    .sidebar-header small {
+      color: var(--verde);
+    }
+
+    .menu-title {
+      font-size: 11px;
+      color: #8ea097;
+      padding: 20px 20px 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .side-btn {
       width: 100%;
-      display: block;
-      border: 0;
-      background: transparent;
-      color: white;
       text-align: left;
-      padding: 13px 10px;
-      margin-bottom: 5px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 15px;
+      background: transparent;
+      color: #eaf0ed;
+      padding: 13px 20px;
+      border-radius: 0;
+      font-size: 14px;
     }
 
-    .admin-menu button:hover {
-      background: #333;
+    .side-btn:hover,
+    .side-btn.active {
+      background: rgba(168,216,192,.15);
+      color: var(--verde);
     }
 
-    .admin-main {
-      flex: 1;
+    .logout {
+      margin: 20px;
+      width: calc(100% - 40px);
+      background: #7b3030;
+      color: white;
+    }
+
+    .content {
+      margin-left: 270px;
+      width: calc(100% - 270px);
       padding: 30px;
-      box-sizing: border-box;
     }
 
-    .admin-header {
+    .topbar {
       background: white;
-      padding: 20px;
-      border-radius: 12px;
+      border-radius: 16px;
+      padding: 18px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 25px;
-      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+      box-shadow: 0 5px 20px rgba(0,0,0,.05);
     }
 
-    .dashboard-grid {
+    .topbar h1 {
+      font-size: 22px;
+    }
+
+    .user-info {
+      font-size: 13px;
+      color: #65716b;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .welcome {
+      background: linear-gradient(135deg, var(--verde), var(--crema));
+      padding: 35px;
+      border-radius: 20px;
+      margin-bottom: 25px;
+    }
+
+    .welcome h2 {
+      margin-bottom: 8px;
+    }
+
+    .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
     }
 
-    .dashboard-card {
+    .card {
       background: white;
-      border-radius: 12px;
-      padding: 25px;
-      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.05);
     }
 
-    .dashboard-card h3 {
-      margin-top: 0;
-    }
-
-    .dashboard-number {
-      font-size: 32px;
+    .card .number {
+      font-size: 30px;
       font-weight: bold;
+      color: var(--verde-oscuro);
+      margin-top: 10px;
     }
 
-    .loading {
-      padding: 30px;
-      text-align: center;
-    }
-
-    .error {
-      background: #ffe5e5;
-      color: #a00000;
-      padding: 15px;
-      border-radius: 8px;
+    .module {
+      background: white;
+      border-radius: 18px;
+      padding: 25px;
       margin-bottom: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.05);
     }
 
-    @media (max-width: 800px) {
-      .admin-layout {
-        display: block;
+    .module h2 {
+      margin-bottom: 8px;
+    }
+
+    .module p {
+      color: #65716b;
+      line-height: 1.5;
+    }
+
+    .program-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .program {
+      border: 1px solid var(--borde);
+      padding: 15px;
+      border-radius: 12px;
+      background: #fafcfb;
+    }
+
+    .program strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    @media (max-width: 1000px) {
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 750px) {
+      .sidebar {
+        width: 220px;
       }
 
-      .admin-sidebar {
-        width: 100%;
+      .content {
+        margin-left: 220px;
+        width: calc(100% - 220px);
+        padding: 15px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .program-list {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -128,354 +360,976 @@
 
 <body>
 
-<div id="app">
-  <div class="loading">
-    Cargando panel administrativo...
+<!-- CARGA -->
+<div id="loading" class="loading">
+  <div class="loading-box">
+    <img id="loadingLogo"
+         src="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png"
+         alt="Jóvenes Influencers del Señor">
+
+    <h2>Cargando panel administrativo...</h2>
+    <p id="loadingText">Conectando con Supabase.</p>
+
+    <div id="configError"></div>
   </div>
 </div>
 
-<!-- 1. Configuración de Supabase -->
+
+<!-- LOGIN -->
+<div id="loginScreen" class="login-screen hidden">
+
+  <div class="login-card">
+
+    <img
+      src="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png"
+      alt="Jóvenes Influencers del Señor"
+    >
+
+    <h1>Panel administrativo</h1>
+
+    <p>
+      Jóvenes Influencers del Señor<br>
+      Comunicación al servicio de Dios
+    </p>
+
+    <input
+      type="email"
+      id="email"
+      placeholder="Correo electrónico"
+      autocomplete="email"
+    >
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Contraseña"
+      autocomplete="current-password"
+    >
+
+    <button
+      class="btn-primary"
+      id="loginButton"
+    >
+      Iniciar sesión
+    </button>
+
+    <div id="loginMessage" class="message"></div>
+
+  </div>
+
+</div>
+
+
+<!-- PANEL -->
+<div id="adminApp" class="app hidden">
+
+  <aside class="sidebar">
+
+    <div class="sidebar-header">
+
+      <img
+        src="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png"
+        alt="Logo"
+      >
+
+      <h2>Jóvenes Influencers</h2>
+      <small>Panel administrativo</small>
+
+    </div>
+
+    <div class="menu-title">Principal</div>
+
+    <button class="side-btn active" data-section="dashboard">
+      📊 Dashboard
+    </button>
+
+    <div class="menu-title">Contenido</div>
+
+    <button class="side-btn" data-section="noticias">
+      📰 Iglesia al Día
+    </button>
+
+    <button class="side-btn" data-section="programas">
+      🎬 Programas
+    </button>
+
+    <button class="side-btn" data-section="envivo">
+      🔴 En Vivo
+    </button>
+
+    <button class="side-btn" data-section="datos64">
+      ✝️ 64 Datos Históricos
+    </button>
+
+    <button class="side-btn" data-section="diocesis">
+      ⛪ Diócesis
+    </button>
+
+    <button class="side-btn" data-section="quienes">
+      👥 Quiénes somos
+    </button>
+
+    <button class="side-btn" data-section="editorial">
+      ✍️ Editorial
+    </button>
+
+    <div class="menu-title">Sistema</div>
+
+    <button class="side-btn" data-section="usuarios">
+      👤 Usuarios
+    </button>
+
+    <button class="side-btn" data-section="configuracion">
+      ⚙️ Configuración
+    </button>
+
+    <button class="logout" id="logoutButton">
+      Cerrar sesión
+    </button>
+
+  </aside>
+
+
+  <main class="content">
+
+    <div class="topbar">
+
+      <h1 id="pageTitle">
+        Dashboard
+      </h1>
+
+      <div class="user-info">
+        <span id="userEmail"></span>
+      </div>
+
+    </div>
+
+
+    <!-- DASHBOARD -->
+
+    <section
+      id="dashboard"
+      class="section active"
+    >
+
+      <div class="welcome">
+
+        <h2>Bienvenido al panel administrativo</h2>
+
+        <p>
+          Desde aquí podrás administrar los contenidos
+          de Jóvenes Influencers del Señor.
+        </p>
+
+      </div>
+
+      <div class="cards">
+
+        <div class="card">
+          <strong>Noticias</strong>
+          <div class="number" id="newsCount">0</div>
+        </div>
+
+        <div class="card">
+          <strong>Videos</strong>
+          <div class="number" id="videoCount">0</div>
+        </div>
+
+        <div class="card">
+          <strong>Programas</strong>
+          <div class="number">11</div>
+        </div>
+
+        <div class="card">
+          <strong>64 Datos</strong>
+          <div class="number">64</div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- NOTICIAS -->
+
+    <section
+      id="noticias"
+      class="section"
+    >
+
+      <div class="module">
+
+        <h2>📰 Iglesia al Día</h2>
+
+        <p>
+          Desde aquí podrás administrar las noticias
+          diocesanas, nacionales e internacionales.
+        </p>
+
+        <br>
+
+        <button class="btn-primary">
+          Crear noticia
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- PROGRAMAS -->
+
+    <section
+      id="programas"
+      class="section"
+    >
+
+      <div class="module">
+
+        <h2>🎬 Programas</h2>
+
+        <p>
+          Administra los programas y sus episodios.
+        </p>
+
+        <div class="program-list">
+
+          <div class="program">
+            <strong>Un café con aroma de fe</strong>
+            Videos y episodios
+          </div>
+
+          <div class="program">
+            <strong>El Podcast</strong>
+            Videos y episodios
+          </div>
+
+          <div class="program">
+            <strong>El Youcat te conecta</strong>
+            Videos y episodios
+          </div>
+
+          <div class="program">
+            <strong>La voz líder</strong>
+            Videos y episodios
+          </div>
+
+          <div class="program">
+            <strong>Hagan lo que Él les diga</strong>
+            Videos y episodios
+          </div>
+
+          <div class="program">
+            <strong>Una palabra en 60 segundos</strong>
+            Videos y episodios
+          </div>
+
+          <div class="program">
+            <strong>Fe y vida diaria</strong>
+            Videos y episodios
+          </div>
+
+          <div class="program">
+            <strong>La Santa Misa</strong>
+            Videos y episodios
+          </div>
+
+          <div class="program">
+            <strong>Kerigma en fuego</strong>
+            Videos y episodios
+          </div>
+
+          <div class="program">
+            <strong>Semilla vocacional</strong>
+            Videos y episodios
+          </div>
+
+          <div class="program">
+            <strong>Cultiva la fe</strong>
+            Videos y episodios
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- EN VIVO -->
+
+    <section
+      id="envivo"
+      class="section"
+    >
+
+      <div class="module">
+
+        <h2>🔴 En Vivo</h2>
+
+        <p>
+          Configuración de las transmisiones en vivo.
+        </p>
+
+        <br>
+
+        <p>
+          Aquí podremos administrar posteriormente:
+        </p>
+
+        <br>
+
+        <ul>
+          <li>Facebook Live</li>
+          <li>YouTube Live</li>
+          <li>URL M3U8</li>
+          <li>Videos en loop</li>
+          <li>Título de transmisión</li>
+          <li>Imagen de transmisión</li>
+          <li>Mostrar en Inicio</li>
+          <li>Mostrar en En Vivo</li>
+        </ul>
+
+      </div>
+
+    </section>
+
+
+    <!-- 64 DATOS -->
+
+    <section
+      id="datos64"
+      class="section"
+    >
+
+      <div class="module">
+
+        <h2>✝️ 64 Datos Históricos</h2>
+
+        <p>
+          Administra los 64 datos históricos de la
+          Diócesis de Ocaña.
+        </p>
+
+        <br>
+
+        <p>
+          Esta sección estará disponible durante
+          octubre de 2026.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- DIOCESIS -->
+
+    <section
+      id="diocesis"
+      class="section"
+    >
+
+      <div class="module">
+
+        <h2>⛪ Diócesis de Ocaña</h2>
+
+        <p>
+          Administración de la historia, parroquias,
+          sacerdotes y advocaciones marianas.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- QUIENES -->
+
+    <section
+      id="quienes"
+      class="section"
+    >
+
+      <div class="module">
+
+        <h2>👥 Quiénes somos</h2>
+
+        <p>
+          Administración de integrantes, fotografías,
+          cargos, biografías y redes sociales.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- EDITORIAL -->
+
+    <section
+      id="editorial"
+      class="section"
+    >
+
+      <div class="module">
+
+        <h2>✍️ Editorial</h2>
+
+        <p>
+          Crea y administra artículos editoriales,
+          autores, imágenes y publicaciones.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- USUARIOS -->
+
+    <section
+      id="usuarios"
+      class="section"
+    >
+
+      <div class="module">
+
+        <h2>👤 Usuarios administradores</h2>
+
+        <p>
+          En esta sección podremos administrar los
+          usuarios autorizados para utilizar el panel.
+        </p>
+
+        <br>
+
+        <p>
+          El sistema utilizará la tabla
+          <strong>admins</strong> de Supabase.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONFIGURACIÓN -->
+
+    <section
+      id="configuracion"
+      class="section"
+    >
+
+      <div class="module">
+
+        <h2>⚙️ Configuración</h2>
+
+        <p>
+          Configuración general del sitio.
+        </p>
+
+        <br>
+
+        <ul>
+          <li>Logo</li>
+          <li>Facebook</li>
+          <li>YouTube</li>
+          <li>WhatsApp</li>
+          <li>SEO</li>
+          <li>Información de contacto</li>
+        </ul>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<!-- CONFIGURACIÓN DE SUPABASE -->
 <script src="../config.js"></script>
 
-<!-- 2. Librería oficial de Supabase -->
+<!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<!-- 3. Panel -->
+
 <script>
-(function () {
 
-  console.log("Iniciando panel administrativo...");
+let supabaseClient = null;
 
-  // Comprobar que Supabase se cargó
-  if (!window.supabase) {
-    document.getElementById("app").innerHTML = `
-      <div class="error">
-        <strong>Error:</strong> No se pudo cargar Supabase.
-        <br><br>
-        Comprueba tu conexión a Internet.
-      </div>
-    `;
-    return;
-  }
 
-  // Comprobar configuración
-  if (!window.SUPABASE_URL || !window.SUPABASE_KEY) {
-    document.getElementById("app").innerHTML = `
-      <div class="error">
-        <strong>Error de configuración.</strong>
-        <br><br>
-        No se encontraron las variables de Supabase en config.js.
-      </div>
-    `;
-    return;
-  }
+/* =========================================================
+   FUNCIONES DE INTERFAZ
+========================================================= */
 
-  // Crear cliente
-  const supabaseClient = window.supabase.createClient(
-    window.SUPABASE_URL,
-    window.SUPABASE_KEY
-  );
+function showConfigError(message) {
 
-  // Hacerlo global para los demás módulos
-  window.supabaseClient = supabaseClient;
+  document.getElementById("loadingText").innerHTML =
+    "No se pudo iniciar el panel.";
 
-  console.log("Supabase inicializado correctamente.");
+  document.getElementById("configError").innerHTML = `
+    <div class="error">
+      <strong>Error de configuración</strong>
+      <br><br>
+      ${message}
+    </div>
+  `;
+}
 
-  iniciarPanel();
 
-  async function iniciarPanel() {
+function showLogin() {
+
+  document
+    .getElementById("loading")
+    .classList.add("hidden");
+
+  document
+    .getElementById("loginScreen")
+    .classList.remove("hidden");
+}
+
+
+function showPanel(user) {
+
+  document
+    .getElementById("loading")
+    .classList.add("hidden");
+
+  document
+    .getElementById("loginScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("adminApp")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("userEmail")
+    .textContent = user.email || "";
+
+}
+
+
+/* =========================================================
+   INICIAR SUPABASE
+========================================================= */
+
+async function init() {
+
+  try {
+
+    /*
+      IMPORTANTE:
+
+      config.js utiliza:
+
+      SUPABASE_URL
+      SUPABASE_PUBLISHABLE_KEY
+
+      No SUPABASE_KEY.
+    */
+
+    if (!window.SUPABASE_URL) {
+
+      showConfigError(
+        "No se encontró SUPABASE_URL en config.js."
+      );
+
+      return;
+    }
+
+
+    if (!window.SUPABASE_PUBLISHABLE_KEY) {
+
+      showConfigError(
+        "No se encontró SUPABASE_PUBLISHABLE_KEY en config.js."
+      );
+
+      return;
+    }
+
+
+    if (!window.supabase) {
+
+      showConfigError(
+        "La biblioteca de Supabase no pudo cargarse."
+      );
+
+      return;
+    }
+
+
+    supabaseClient =
+      window.supabase.createClient(
+        window.SUPABASE_URL,
+        window.SUPABASE_PUBLISHABLE_KEY
+      );
+
+
+    /*
+      Comprobar sesión actual
+    */
 
     const {
-      data: { session },
-      error: sessionError
+      data: {
+        session
+      }
     } = await supabaseClient.auth.getSession();
 
-    if (sessionError) {
-      mostrarError(sessionError.message);
-      return;
-    }
 
     if (!session) {
-      window.location.href = "./index.html";
+
+      showLogin();
+
       return;
     }
 
-    const usuario = session.user;
 
-    console.log("Usuario conectado:", usuario.email);
+    /*
+      Comprobar administrador
+    */
 
-    // Comprobar administrador
-    const { data: admin, error: adminError } =
-      await supabaseClient
-        .from("admins")
-        .select("id")
-        .eq("id", usuario.id)
-        .maybeSingle();
+    const isAdmin =
+      await checkAdmin(session.user.id);
 
-    if (adminError) {
-      mostrarError(
-        "No se pudo comprobar el administrador: " +
-        adminError.message
-      );
+
+    if (!isAdmin) {
+
+      document
+        .getElementById("loading")
+        .classList.remove("hidden");
+
+      document
+        .getElementById("loadingText")
+        .innerHTML =
+        "El usuario inició sesión, pero todavía no está autorizado como administrador.";
+
+      document
+        .getElementById("configError")
+        .innerHTML = `
+          <div class="error">
+            <strong>Usuario no autorizado</strong>
+            <br><br>
+            UUID:
+            <br>
+            <code>${session.user.id}</code>
+            <br><br>
+            Agrega este UUID a la tabla
+            <strong>admins</strong> en Supabase.
+          </div>
+        `;
+
       return;
     }
 
-    if (!admin) {
-      document.getElementById("app").innerHTML = `
-        <div class="error">
-          <h2>Usuario no autorizado</h2>
-          <p>
-            El usuario inició sesión correctamente,
-            pero todavía no está registrado como administrador.
-          </p>
-          <p>
-            Usuario:
-            <strong>${escapeHtml(usuario.email)}</strong>
-          </p>
-          <button onclick="cerrarSesion()">
-            Cerrar sesión
-          </button>
-        </div>
-      `;
+
+    showPanel(session.user);
+
+    await loadDashboard();
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    showConfigError(
+      error.message || "Error desconocido."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   COMPROBAR ADMIN
+========================================================= */
+
+async function checkAdmin(userId) {
+
+  const {
+    data,
+    error
+  } = await supabaseClient
+    .from("admins")
+    .select("id")
+    .eq("id", userId)
+    .maybeSingle();
+
+
+  if (error) {
+
+    console.error(
+      "Error comprobando administrador:",
+      error
+    );
+
+    /*
+      Si la tabla todavía no existe,
+      mostramos el error real.
+    */
+
+    throw new Error(
+      "No se pudo consultar la tabla admins: " +
+      error.message
+    );
+  }
+
+
+  return !!data;
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+document
+  .getElementById("loginButton")
+  .addEventListener("click", async function() {
+
+    const email =
+      document
+        .getElementById("email")
+        .value
+        .trim();
+
+    const password =
+      document
+        .getElementById("password")
+        .value;
+
+
+    const message =
+      document.getElementById("loginMessage");
+
+
+    message.className = "message";
+    message.textContent = "";
+
+
+    if (!email || !password) {
+
+      message.className =
+        "message error-message";
+
+      message.textContent =
+        "Escribe el correo y la contraseña.";
+
       return;
     }
 
-    mostrarPanel(usuario);
-  }
 
-  function mostrarPanel(usuario) {
+    this.disabled = true;
 
-    document.getElementById("app").innerHTML = `
+    this.textContent =
+      "Iniciando sesión...";
 
-      <div class="admin-layout">
-
-        <aside class="admin-sidebar">
-
-          <div class="admin-logo">
-
-            <img
-              src="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png"
-              alt="Jóvenes Influencers del Señor">
-
-            <h2>
-              Panel administrativo
-            </h2>
-
-          </div>
-
-          <nav class="admin-menu">
-
-            <button onclick="mostrarSeccion('dashboard')">
-              📊 Dashboard
-            </button>
-
-            <button onclick="mostrarSeccion('noticias')">
-              📰 Iglesia al Día
-            </button>
-
-            <button onclick="mostrarSeccion('programas')">
-              🎬 Programas
-            </button>
-
-            <button onclick="mostrarSeccion('envivo')">
-              🔴 En Vivo
-            </button>
-
-            <button onclick="mostrarSeccion('datos64')">
-              ✝️ 64 Datos
-            </button>
-
-            <button onclick="mostrarSeccion('diocesis')">
-              ⛪ Diócesis
-            </button>
-
-            <button onclick="mostrarSeccion('editorial')">
-              ✍️ Editorial
-            </button>
-
-            <button onclick="mostrarSeccion('equipo')">
-              👥 Quiénes somos
-            </button>
-
-            <button onclick="mostrarSeccion('usuarios')">
-              👤 Usuarios
-            </button>
-
-            <button onclick="mostrarSeccion('configuracion')">
-              ⚙️ Configuración
-            </button>
-
-            <hr>
-
-            <button onclick="cerrarSesion()">
-              🚪 Cerrar sesión
-            </button>
-
-          </nav>
-
-        </aside>
-
-        <main class="admin-main">
-
-          <div class="admin-header">
-
-            <h1>
-              Panel administrativo
-            </h1>
-
-            <p>
-              Bienvenido,
-              <strong>${escapeHtml(usuario.email)}</strong>
-            </p>
-
-          </div>
-
-          <div id="contenido-panel">
-
-            <div class="dashboard-grid">
-
-              <div class="dashboard-card">
-                <h3>📰 Noticias</h3>
-                <div class="dashboard-number" id="totalNoticias">
-                  ...
-                </div>
-              </div>
-
-              <div class="dashboard-card">
-                <h3>🎬 Programas</h3>
-                <div class="dashboard-number" id="totalProgramas">
-                  ...
-                </div>
-              </div>
-
-              <div class="dashboard-card">
-                <h3>🎥 Episodios</h3>
-                <div class="dashboard-number" id="totalEpisodios">
-                  ...
-                </div>
-              </div>
-
-              <div class="dashboard-card">
-                <h3>✝️ 64 Datos</h3>
-                <div class="dashboard-number" id="totalDatos">
-                  ...
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-        </main>
-
-      </div>
-    `;
-
-    cargarResumen();
-  }
-
-  async function cargarResumen() {
-
-    contarTabla("news", "totalNoticias");
-    contarTabla("programs", "totalProgramas");
-    contarTabla("episodes", "totalEpisodios");
-    contarTabla("historical_64", "totalDatos");
-
-  }
-
-  async function contarTabla(tabla, elemento) {
 
     try {
 
-      const { count, error } =
-        await supabaseClient
-          .from(tabla)
-          .select("*", {
-            count: "exact",
-            head: true
-          });
+      const {
+        data,
+        error
+      } =
+        await supabaseClient.auth.signInWithPassword({
+          email,
+          password
+        });
 
-      if (!error) {
-        const el = document.getElementById(elemento);
 
-        if (el) {
-          el.textContent = count ?? 0;
-        }
+      if (error) {
+
+        throw error;
+
       }
+
+
+      const isAdmin =
+        await checkAdmin(
+          data.user.id
+        );
+
+
+      if (!isAdmin) {
+
+        message.className =
+          "message error-message";
+
+        message.innerHTML =
+          "El usuario inició sesión, pero todavía no está autorizado como administrador.";
+
+
+        await supabaseClient.auth.signOut();
+
+        return;
+      }
+
+
+      message.className =
+        "message success-message";
+
+      message.textContent =
+        "Acceso autorizado.";
+
+
+      setTimeout(() => {
+
+        showPanel(data.user);
+
+        loadDashboard();
+
+      }, 500);
+
 
     } catch (error) {
 
-      console.error(
-        "Error consultando",
-        tabla,
-        error
-      );
+      console.error(error);
+
+      message.className =
+        "message error-message";
+
+      message.textContent =
+        error.message ||
+        "No se pudo iniciar sesión.";
+
+    } finally {
+
+      this.disabled = false;
+
+      this.textContent =
+        "Iniciar sesión";
 
     }
-  }
 
-  window.mostrarSeccion = function (seccion) {
+  });
 
-    const contenido =
-      document.getElementById("contenido-panel");
 
-    const nombres = {
-      dashboard: "📊 Dashboard",
-      noticias: "📰 Iglesia al Día",
-      programas: "🎬 Programas",
-      envivo: "🔴 En Vivo",
-      datos64: "✝️ 64 Datos Históricos",
-      diocesis: "⛪ Diócesis",
-      editorial: "✍️ Editorial",
-      equipo: "👥 Quiénes somos",
-      usuarios: "👤 Usuarios",
-      configuracion: "⚙️ Configuración"
-    };
+/* =========================================================
+   CERRAR SESIÓN
+========================================================= */
 
-    contenido.innerHTML = `
-      <div class="dashboard-card">
-        <h2>${nombres[seccion] || "Sección"}</h2>
-        <p>
-          Esta sección del panel administrativo está disponible
-          para gestionar el contenido.
-        </p>
-      </div>
-    `;
-
-  };
-
-  window.cerrarSesion = async function () {
+document
+  .getElementById("logoutButton")
+  .addEventListener("click", async function() {
 
     await supabaseClient.auth.signOut();
 
-    window.location.href = "./index.html";
+    location.reload();
 
-  };
+  });
 
-  function mostrarError(mensaje) {
 
-    document.getElementById("app").innerHTML = `
-      <div style="padding:40px">
-        <div class="error">
-          <h2>Error</h2>
-          <p>${escapeHtml(mensaje)}</p>
-        </div>
-      </div>
-    `;
+/* =========================================================
+   MENU
+========================================================= */
+
+document
+  .querySelectorAll(".side-btn")
+  .forEach(button => {
+
+    button.addEventListener("click", function() {
+
+      const section =
+        this.dataset.section;
+
+
+      document
+        .querySelectorAll(".side-btn")
+        .forEach(btn =>
+          btn.classList.remove("active")
+        );
+
+
+      this.classList.add("active");
+
+
+      document
+        .querySelectorAll(".section")
+        .forEach(item =>
+          item.classList.remove("active")
+        );
+
+
+      const target =
+        document.getElementById(section);
+
+
+      if (target) {
+
+        target.classList.add("active");
+
+      }
+
+
+      const title =
+        this.textContent.trim();
+
+
+      document
+        .getElementById("pageTitle")
+        .textContent = title;
+
+    });
+
+  });
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+async function loadDashboard() {
+
+  try {
+
+    /*
+      Intentamos contar noticias.
+
+      Si la tabla todavía no existe,
+      simplemente dejamos 0.
+    */
+
+    const result =
+      await supabaseClient
+        .from("news")
+        .select("*", {
+          count: "exact",
+          head: true
+        });
+
+
+    if (!result.error) {
+
+      document
+        .getElementById("newsCount")
+        .textContent =
+        result.count || 0;
+
+    }
+
+
+  } catch (error) {
+
+    console.log(
+      "El contador de noticias todavía no está disponible."
+    );
 
   }
 
-  function escapeHtml(text) {
+}
 
-    const div = document.createElement("div");
 
-    div.textContent = text;
+/* =========================================================
+   INICIAR
+========================================================= */
 
-    return div.innerHTML;
+init();
 
-  }
-
-})();
 </script>
 
 </body>
