@@ -127,3 +127,6 @@ IMPORTANTE
    INSERT INTO public.admins(id) VALUES ('UUID_DEL_USUARIO');
 4. Sube todo el contenido del ZIP a GitHub, manteniendo las carpetas.
 5. En Vercel conserva las variables NEXT_PUBLIC_SUPABASE_URL y NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY.
+
+
+CAMBIO: El botón 🔐 Iniciar sesión aparece únicamente en el menú superior. Se eliminó el botón de inicio y cualquier acceso duplicado visible en el contenido de la portada.
