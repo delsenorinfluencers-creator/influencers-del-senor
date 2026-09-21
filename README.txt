@@ -1,20 +1,26 @@
-JOVENES INFLUENCERS DEL SEÑOR — VERSION ESTILO MEDIO CATOLICO
+VERSION ESTILO CANAL CATOLICO
 
-CAMBIO IMPORTANTE DE SUPABASE:
-El SQL anterior podía fallar si las tablas ya existían sin la columna "published".
-Este supabase.sql usa ALTER TABLE ... ADD COLUMN IF NOT EXISTS y está preparado para una base existente.
+Esta versión toma como referencia la estructura editorial de un canal católico como Tele VID:
+- cabecera de canal
+- señal en vivo destacada
+- actualidad/noticias
+- programación
+- especiales
+- formación y espiritualidad
+- navegación de canal
+- pie de página institucional
 
-PASOS:
-1. Abre Supabase > SQL Editor.
-2. Copia TODO el contenido de supabase.sql.
-3. Ejecuta el script completo.
-4. Sube todos los archivos del ZIP a la raíz de GitHub.
-5. Vercel: Framework Other; Build Command vacío; Output Directory vacío.
-6. Las rutas son tipo:
-   https://TU-DOMINIO.vercel.app/#/noticias
-   https://TU-DOMINIO.vercel.app/#/programas
-   https://TU-DOMINIO.vercel.app/#/en-vivo
+No copia textos, identidad ni código de Tele VID; adapta la idea de portal de medio católico a Jóvenes Influencers del Señor.
 
-La portada fue rediseñada con estética editorial de medio católico: actualidad, noticias, programas, especial histórico, formación y navegación clara.
+URLs:
+#/noticias
+#/programas
+#/en-vivo
+#/64-datos
+#/diocesis
+#/editorial
+#/quienes-somos
+#/admin
 
-Pie de página: Sitio web creado por Gamarra TV.
+SUPABASE:
+Usa el supabase.sql incluido en este ZIP. Está corregido para el error de columna "published" porque agrega la columna si las tablas ya existían.
