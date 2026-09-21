@@ -1,1814 +1,1134 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
 
-    <title>Jóvenes Influencers del Señor | Diócesis de Ocaña</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
-    <meta
-        name="description"
-        content="Jóvenes Influencers del Señor, medio de comunicación católico de la Diócesis de Ocaña. Noticias, evangelización, formación, programas y videos."
-    >
+  <meta
+    name="description"
+    content="Jóvenes Influencers del Señor - Medio de comunicación y evangelización de la Diócesis de Ocaña."
+  />
 
-    <meta name="theme-color" content="#0b1f3a">
+  <meta
+    name="keywords"
+    content="Jóvenes Influencers del Señor, Diócesis de Ocaña, Iglesia Católica, evangelización, noticias, fe"
+  />
 
-    <link rel="icon" href="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png">
+  <meta name="theme-color" content="#071a3a" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Jóvenes Influencers del Señor | Diócesis de Ocaña</title>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
-        rel="stylesheet"
-    >
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png"
+  />
 
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <link rel="stylesheet" href="styles.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
 
-<!-- =========================================================
-     BARRA SUPERIOR
-========================================================= -->
+  <!-- =====================================================
+       BARRA SUPERIOR
+  ====================================================== -->
 
-<div class="topbar">
+  <div class="top-bar">
+    <div class="container top-bar-content">
 
-    <div class="container topbar-content">
+      <div class="top-message">
+        <i class="fa-solid fa-cross"></i>
+        Comunicación, fe y evangelización
+      </div>
 
-        <div class="topbar-left">
-            <span>
-                <i class="fa-solid fa-cross"></i>
-                Medio de Comunicación Católico
-            </span>
-
-            <span>
-                <i class="fa-solid fa-church"></i>
-                Diócesis de Ocaña
-            </span>
-        </div>
-
-        <div class="topbar-social">
-
-            <a href="#" aria-label="Facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-
-            <a href="#" aria-label="YouTube">
-                <i class="fab fa-youtube"></i>
-            </a>
-
-            <a href="#" aria-label="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-
-            <a href="#" aria-label="TikTok">
-                <i class="fab fa-tiktok"></i>
-            </a>
-
-        </div>
+      <div class="top-links">
+        <a href="#contacto">Contacto</a>
+        <span>|</span>
+        <a href="#quienes-somos">Quiénes Somos</a>
+      </div>
 
     </div>
+  </div>
 
-</div>
 
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
 
-<!-- =========================================================
-     HEADER
-========================================================= -->
-
-<header class="header">
+  <header class="main-header">
 
     <div class="container header-content">
 
-        <a href="#inicio" class="brand">
+      <a href="#inicio" class="brand">
 
-            <div class="logo-box">
+        <div class="logo-box">
+          <img
+            src="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png"
+            alt="Jóvenes Influencers del Señor"
+          />
+        </div>
 
-                <img
-                    src="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png"
-                    alt="Jóvenes Influencers del Señor"
-                >
+        <div class="brand-text">
+          <strong>Jóvenes Influencers</strong>
+          <span>del Señor</span>
+        </div>
 
-            </div>
+      </a>
 
-            <div class="brand-text">
 
-                <strong>JÓVENES INFLUENCERS</strong>
-                <span>DEL SEÑOR</span>
+      <!-- BOTÓN MENÚ MÓVIL -->
 
-            </div>
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Abrir menú"
+      >
+        <i class="fa-solid fa-bars"></i>
+      </button>
 
+
+      <!-- NAVEGACIÓN -->
+
+      <nav class="main-nav" id="mainNav">
+
+        <a href="#inicio">Inicio</a>
+
+        <a href="#iglesia-al-dia">Iglesia al Día</a>
+
+        <a href="#programas">Programas</a>
+
+        <a href="#editorial">Editorial</a>
+
+        <a
+          href="#datos-historicos"
+          id="datosNav"
+          class="temporal-nav"
+        >
+          64 Datos Históricos
         </a>
 
+        <div class="nav-dropdown">
 
-        <nav class="main-nav" id="mainNav">
+          <button class="dropdown-button">
+            Diócesis
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
 
-            <a href="#inicio" class="nav-link active">
-                Inicio
+          <div class="dropdown-menu">
+
+            <a href="#historia">
+              Historia
             </a>
 
-            <a href="#noticias" class="nav-link">
-                Noticias
+            <a href="#advocaciones">
+              Advocaciones Marianas
             </a>
 
-            <a href="#programas" class="nav-link">
-                Programas
+            <a href="#parroquias">
+              Parroquias
             </a>
 
-            <a href="#diocesis" class="nav-link">
-                Diócesis
-            </a>
-
-            <a href="#editorial" class="nav-link">
-                Editorial
-            </a>
-
-            <a href="#videos" class="nav-link">
-                Videos
-            </a>
-
-            <a href="#quienes-somos" class="nav-link">
-                Quiénes somos
-            </a>
-
-        </nav>
-
-
-        <div class="header-actions">
-
-            <button
-                class="search-button"
-                id="openSearch"
-                aria-label="Buscar"
-            >
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-
-            <a href="#en-vivo" class="live-button">
-                <span class="live-dot"></span>
-                EN VIVO
-            </a>
-
-            <button
-                class="menu-toggle"
-                id="menuToggle"
-                aria-label="Abrir menú"
-            >
-                <i class="fa-solid fa-bars"></i>
-            </button>
+          </div>
 
         </div>
+
+        <a href="#quienes-somos">
+          Quiénes Somos
+        </a>
+
+        <a href="#contacto">
+          Contacto
+        </a>
+
+      </nav>
 
     </div>
 
-</header>
+  </header>
 
 
-<!-- =========================================================
-     BUSCADOR
-========================================================= -->
+  <main id="inicio">
 
-<div class="search-overlay" id="searchOverlay">
 
-    <div class="search-container">
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
-        <button class="close-search" id="closeSearch">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
+    <section class="hero">
 
-        <span class="search-label">
-            Buscar en Jóvenes Influencers del Señor
-        </span>
+      <div class="hero-overlay"></div>
 
-        <div class="search-input-wrapper">
+      <div class="container hero-content">
 
-            <i class="fa-solid fa-magnifying-glass"></i>
+        <div class="hero-badge">
+          <i class="fa-solid fa-cross"></i>
+          MEDIO DE COMUNICACIÓN CATÓLICO
+        </div>
 
-            <input
-                type="search"
-                id="searchInput"
-                placeholder="Buscar noticias, programas, parroquias..."
-                autocomplete="off"
-            >
+        <h1>
+          Jóvenes Influencers
+          <span>del Señor</span>
+        </h1>
+
+        <p>
+          Comunicación, fe y evangelización desde la
+          Diócesis de Ocaña.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a
+            href="#programas"
+            class="btn btn-primary"
+          >
+            <i class="fa-solid fa-play"></i>
+            Ver nuestros programas
+          </a>
+
+          <a
+            href="#quienes-somos"
+            class="btn btn-outline"
+          >
+            Conócenos
+          </a>
 
         </div>
 
-        <div class="search-results" id="searchResults"></div>
+      </div>
 
-    </div>
-
-</div>
+    </section>
 
 
-<main id="inicio">
+    <!-- =====================================================
+         CINTILLO
+    ====================================================== -->
 
+    <section class="breaking-bar">
 
-<!-- =========================================================
-     HERO
-========================================================= -->
+      <div class="container breaking-content">
 
-<section class="hero">
-
-    <div class="hero-background"></div>
-
-    <div class="container hero-content">
-
-        <div class="hero-copy">
-
-            <span class="hero-kicker">
-                <i class="fa-solid fa-cross"></i>
-                Diócesis de Ocaña
-            </span>
-
-            <h1>
-                Jóvenes que
-                <span>evangelizan</span>
-                con los medios.
-            </h1>
-
-            <p>
-                Un medio de comunicación católico para informar,
-                formar y llevar el mensaje de Cristo a cada corazón.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="#noticias" class="btn btn-primary">
-                    <i class="fa-solid fa-newspaper"></i>
-                    Ver noticias
-                </a>
-
-                <a href="#programas" class="btn btn-outline">
-                    <i class="fa-solid fa-play"></i>
-                    Nuestros programas
-                </a>
-
-            </div>
-
+        <div class="breaking-label">
+          <i class="fa-solid fa-bullhorn"></i>
+          EN COMUNIDAD
         </div>
 
-
-        <div class="hero-feature">
-
-            <div class="feature-image">
-
-                <div class="feature-placeholder">
-                    <i class="fa-solid fa-video"></i>
-                </div>
-
-                <span class="feature-label">
-                    DESTACADO
-                </span>
-
-            </div>
-
-            <div class="feature-content">
-
-                <span class="category">
-                    Evangelización
-                </span>
-
-                <h2>
-                    Una voz joven para anunciar la alegría del Evangelio
-                </h2>
-
-                <p>
-                    Noticias, formación, testimonios y contenidos
-                    para vivir la fe todos los días.
-                </p>
-
-            </div>
-
+        <div class="breaking-text">
+          Fe que comunica, jóvenes que evangelizan y una Iglesia
+          que camina junto a su comunidad.
         </div>
 
-    </div>
+      </div>
 
-</section>
-
-
-<!-- =========================================================
-     EN VIVO
-========================================================= -->
-
-<section class="live-section" id="en-vivo">
-
-    <div class="container">
-
-        <div class="section-heading light-heading">
-
-            <div>
-
-                <span class="eyebrow">
-                    <span class="live-dot"></span>
-                    TRANSMISIÓN
-                </span>
-
-                <h2>
-                    Jóvenes Influencers del Señor
-                </h2>
-
-            </div>
-
-            <span class="live-status">
-                <span class="live-dot"></span>
-                EN VIVO
-            </span>
-
-        </div>
+    </section>
 
 
-        <div class="live-grid">
+    <!-- =====================================================
+         CONTENIDO DESTACADO
+    ====================================================== -->
 
-            <div class="video-player">
+    <section class="section featured-section">
 
-                <div class="video-placeholder">
-
-                    <i class="fa-solid fa-play"></i>
-
-                    <span>
-                        Señal en vivo
-                    </span>
-
-                    <small>
-                        Espacio preparado para conectar la transmisión.
-                    </small>
-
-                </div>
-
-            </div>
-
-
-            <aside class="live-sidebar">
-
-                <div class="now-card">
-
-                    <span class="small-label">
-                        AHORA
-                    </span>
-
-                    <h3>
-                        Jóvenes Influencers del Señor
-                    </h3>
-
-                    <p>
-                        Contenido de evangelización y formación.
-                    </p>
-
-                </div>
-
-
-                <div class="next-card">
-
-                    <span class="small-label">
-                        PRÓXIMAMENTE
-                    </span>
-
-                    <h3>
-                        Programación
-                    </h3>
-
-                    <p>
-                        Próximamente podrás administrar aquí
-                        la programación del canal.
-                    </p>
-
-                </div>
-
-            </aside>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     NOTICIAS
-========================================================= -->
-
-<section class="section news-section" id="noticias">
-
-    <div class="container">
+      <div class="container">
 
         <div class="section-heading">
 
-            <div>
-
-                <span class="eyebrow">
-                    IGLESIA AL DÍA
-                </span>
-
-                <h2>
-                    Noticias de la Iglesia
-                </h2>
-
-            </div>
-
-            <a href="#" class="view-all">
-                Ver todas
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
-
-        </div>
-
-
-        <div class="news-layout">
-
-            <article class="main-news-card">
-
-                <div class="news-image">
-
-                    <div class="image-placeholder">
-                        <i class="fa-solid fa-church"></i>
-                    </div>
-
-                    <span class="news-tag">
-                        DIÓCESIS
-                    </span>
-
-                </div>
-
-                <div class="news-content">
-
-                    <span class="news-date">
-                        <i class="fa-regular fa-calendar"></i>
-                        Noticias Diocesanas
-                    </span>
-
-                    <h3>
-                        La Iglesia continúa llevando esperanza
-                        y fe a las comunidades
-                    </h3>
-
-                    <p>
-                        Aquí aparecerán las principales noticias
-                        de la Diócesis de Ocaña y sus parroquias.
-                    </p>
-
-                    <a href="#" class="read-more">
-                        Leer noticia
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <div class="news-list">
-
-                <article class="small-news-card">
-
-                    <div class="small-news-image">
-                        <i class="fa-solid fa-cross"></i>
-                    </div>
-
-                    <div>
-
-                        <span class="category">
-                            IGLESIA
-                        </span>
-
-                        <h3>
-                            Noticias de la Iglesia Católica
-                        </h3>
-
-                        <span class="news-date">
-                            Hoy
-                        </span>
-
-                    </div>
-
-                </article>
-
-
-                <article class="small-news-card">
-
-                    <div class="small-news-image">
-                        <i class="fa-solid fa-people-group"></i>
-                    </div>
-
-                    <div>
-
-                        <span class="category">
-                            JUVENTUD
-                        </span>
-
-                        <h3>
-                            Jóvenes protagonistas de la evangelización
-                        </h3>
-
-                        <span class="news-date">
-                            Hoy
-                        </span>
-
-                    </div>
-
-                </article>
-
-
-                <article class="small-news-card">
-
-                    <div class="small-news-image">
-                        <i class="fa-solid fa-hands-praying"></i>
-                    </div>
-
-                    <div>
-
-                        <span class="category">
-                            FE
-                        </span>
-
-                        <h3>
-                            Comunidades que viven la fe
-                        </h3>
-
-                        <span class="news-date">
-                            Hoy
-                        </span>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     PROGRAMAS
-========================================================= -->
-
-<section class="section programs-section" id="programas">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div>
-
-                <span class="eyebrow">
-                    NUESTROS PROGRAMAS
-                </span>
-
-                <h2>
-                    Contenido para alimentar la fe
-                </h2>
-
-            </div>
-
-            <a href="#programas" class="view-all">
-                Todos los programas
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
-
-        </div>
-
-
-        <div class="programs-grid">
-
-
-            <article class="program-card" data-video="https://www.youtube.com/embed/">
-
-                <div class="program-image program-blue">
-
-                    <i class="fa-solid fa-mug-hot"></i>
-
-                    <button class="play-button">
-                        <i class="fa-solid fa-play"></i>
-                    </button>
-
-                </div>
-
-                <div class="program-content">
-
-                    <span>
-                        CONVERSACIÓN
-                    </span>
-
-                    <h3>
-                        Un café con aroma de fe
-                    </h3>
-
-                    <p>
-                        Conversaciones que inspiran y fortalecen la fe.
-                    </p>
-
-                </div>
-
-            </article>
-
-
-            <article class="program-card">
-
-                <div class="program-image program-gold">
-
-                    <i class="fa-solid fa-microphone"></i>
-
-                    <button class="play-button">
-                        <i class="fa-solid fa-play"></i>
-                    </button>
-
-                </div>
-
-                <div class="program-content">
-
-                    <span>
-                        PODCAST
-                    </span>
-
-                    <h3>
-                        El Podcast
-                    </h3>
-
-                    <p>
-                        Conversaciones, testimonios y actualidad.
-                    </p>
-
-                </div>
-
-            </article>
-
-
-            <article class="program-card">
-
-                <div class="program-image program-purple">
-
-                    <i class="fa-solid fa-book-open"></i>
-
-                    <button class="play-button">
-                        <i class="fa-solid fa-play"></i>
-                    </button>
-
-                </div>
-
-                <div class="program-content">
-
-                    <span>
-                        FORMACIÓN
-                    </span>
-
-                    <h3>
-                        El Youcat te conecta
-                    </h3>
-
-                    <p>
-                        Juventud, fe y formación cristiana.
-                    </p>
-
-                </div>
-
-            </article>
-
-
-            <article class="program-card">
-
-                <div class="program-image program-red">
-
-                    <i class="fa-solid fa-bullhorn"></i>
-
-                    <button class="play-button">
-                        <i class="fa-solid fa-play"></i>
-                    </button>
-
-                </div>
-
-                <div class="program-content">
-
-                    <span>
-                        LIDERAZGO
-                    </span>
-
-                    <h3>
-                        La Voz Líder
-                    </h3>
-
-                    <p>
-                        Jóvenes que inspiran y lideran.
-                    </p>
-
-                </div>
-
-            </article>
-
-
-            <article class="program-card">
-
-                <div class="program-image program-green">
-
-                    <i class="fa-solid fa-heart"></i>
-
-                    <button class="play-button">
-                        <i class="fa-solid fa-play"></i>
-                    </button>
-
-                </div>
-
-                <div class="program-content">
-
-                    <span>
-                        EVANGELIZACIÓN
-                    </span>
-
-                    <h3>
-                        Hagan lo que Él les diga
-                    </h3>
-
-                    <p>
-                        Reflexiones para caminar junto a Cristo.
-                    </p>
-
-                </div>
-
-            </article>
-
-
-            <article class="program-card">
-
-                <div class="program-image program-orange">
-
-                    <span class="sixty">
-                        60"
-                    </span>
-
-                    <button class="play-button">
-                        <i class="fa-solid fa-play"></i>
-                    </button>
-
-                </div>
-
-                <div class="program-content">
-
-                    <span>
-                        REFLEXIÓN
-                    </span>
-
-                    <h3>
-                        Una palabra en 60 segundos
-                    </h3>
-
-                    <p>
-                        Una palabra de fe para cada día.
-                    </p>
-
-                </div>
-
-            </article>
-
-
-            <article class="program-card">
-
-                <div class="program-image program-teal">
-
-                    <i class="fa-solid fa-sun"></i>
-
-                    <button class="play-button">
-                        <i class="fa-solid fa-play"></i>
-                    </button>
-
-                </div>
-
-                <div class="program-content">
-
-                    <span>
-                        VIDA
-                    </span>
-
-                    <h3>
-                        Fe y vida diaria
-                    </h3>
-
-                    <p>
-                        La fe llevada a nuestra vida cotidiana.
-                    </p>
-
-                </div>
-
-            </article>
-
-
-            <article class="program-card">
-
-                <div class="program-image program-navy">
-
-                    <i class="fa-solid fa-church"></i>
-
-                    <button class="play-button">
-                        <i class="fa-solid fa-play"></i>
-                    </button>
-
-                </div>
-
-                <div class="program-content">
-
-                    <span>
-                        LITURGIA
-                    </span>
-
-                    <h3>
-                        La Santa Misa
-                    </h3>
-
-                    <p>
-                        Eucaristía y vida de la Iglesia.
-                    </p>
-
-                </div>
-
-            </article>
-
-
-            <article class="program-card">
-
-                <div class="program-image program-fire">
-
-                    <i class="fa-solid fa-fire"></i>
-
-                    <button class="play-button">
-                        <i class="fa-solid fa-play"></i>
-                    </button>
-
-                </div>
-
-                <div class="program-content">
-
-                    <span>
-                        KERIGMA
-                    </span>
-
-                    <h3>
-                        Kerigma en fuego
-                    </h3>
-
-                    <p>
-                        El anuncio vivo del Evangelio.
-                    </p>
-
-                </div>
-
-            </article>
-
-
-            <article class="program-card">
-
-                <div class="program-image program-violet">
-
-                    <i class="fa-solid fa-seedling"></i>
-
-                    <button class="play-button">
-                        <i class="fa-solid fa-play"></i>
-                    </button>
-
-                </div>
-
-                <div class="program-content">
-
-                    <span>
-                        VOCACIÓN
-                    </span>
-
-                    <h3>
-                        Semilla vocacional
-                    </h3>
-
-                    <p>
-                        Historias y llamados al servicio.
-                    </p>
-
-                </div>
-
-            </article>
-
-
-            <article class="program-card">
-
-                <div class="program-image program-leaf">
-
-                    <i class="fa-solid fa-leaf"></i>
-
-                    <button class="play-button">
-                        <i class="fa-solid fa-play"></i>
-                    </button>
-
-                </div>
-
-                <div class="program-content">
-
-                    <span>
-                        FORMACIÓN
-                    </span>
-
-                    <h3>
-                        Cultiva la Fe
-                    </h3>
-
-                    <p>
-                        Formación para crecer espiritualmente.
-                    </p>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     NOTICIERO
-========================================================= -->
-
-<section class="daily-news">
-
-    <div class="container daily-news-grid">
-
-        <div class="daily-news-content">
-
-            <span class="eyebrow light">
-                INFORMACIÓN Y EVANGELIZACIÓN
+          <div>
+            <span class="section-kicker">
+              CONTENIDO DESTACADO
             </span>
 
             <h2>
-                Noticiero diario
+              Vive y comparte la fe
             </h2>
-
-            <p>
-                Muy pronto encontrarás aquí nuestro espacio informativo
-                con las principales noticias diocesanas, nacionales e
-                internacionales y toda la actualidad de la Iglesia.
-            </p>
-
-            <a href="#videos" class="btn btn-white">
-                <i class="fa-solid fa-play"></i>
-                Ver emisiones
-            </a>
+          </div>
 
         </div>
 
 
-        <div class="daily-news-card">
+        <div class="featured-grid">
 
-            <div class="noticiero-icon">
-                <i class="fa-solid fa-tv"></i>
+          <article class="featured-video">
+
+            <div class="video-placeholder">
+
+              <div class="video-icon">
+                <i class="fa-solid fa-play"></i>
+              </div>
+
+              <span>
+                VIDEO DESTACADO
+              </span>
+
+              <strong>
+                Próximamente
+              </strong>
+
+              <small>
+                Aquí podrás destacar tu contenido principal.
+              </small>
+
             </div>
+
+          </article>
+
+
+          <div class="featured-info">
+
+            <span class="content-label">
+              JÓVENES INFLUENCERS DEL SEÑOR
+            </span>
+
+            <h2>
+              Una nueva manera de comunicar nuestra fe
+            </h2>
+
+            <p>
+              Este espacio estará dedicado a compartir contenidos
+              audiovisuales, noticias, testimonios, formación y
+              experiencias de fe.
+            </p>
+
+            <a
+              href="#programas"
+              class="text-button"
+            >
+              Explorar contenidos
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         IGLESIA AL DÍA
+    ====================================================== -->
+
+    <section
+      class="section section-light"
+      id="iglesia-al-dia"
+    >
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div>
+
+            <span class="section-kicker">
+              INFORMACIÓN
+            </span>
+
+            <h2>
+              Iglesia al Día
+            </h2>
+
+            <p>
+              Noticias y videos de la vida de la Iglesia.
+            </p>
+
+          </div>
+
+          <a href="#" class="view-all">
+            Ver todo
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+
+        </div>
+
+
+        <div
+          class="news-grid"
+          id="newsGrid"
+        ></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PROGRAMAS
+    ====================================================== -->
+
+    <section
+      class="section"
+      id="programas"
+    >
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div>
+
+            <span class="section-kicker">
+              PRODUCCIONES
+            </span>
+
+            <h2>
+              Nuestros Programas
+            </h2>
+
+            <p>
+              Contenidos audiovisuales para vivir, conocer
+              y compartir nuestra fe.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="programs-grid"
+          id="programasGrid"
+        ></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         64 DATOS HISTÓRICOS
+    ====================================================== -->
+
+    <section
+      class="section historical-section temporal-section"
+      id="datos-historicos"
+    >
+
+      <div class="container">
+
+        <div class="historical-header">
+
+          <div>
+
+            <span class="historical-badge">
+              ESPECIAL DE OCTUBRE
+            </span>
+
+            <h2>
+              64 Datos Históricos
+            </h2>
+
+            <p>
+              Un recorrido audiovisual por la historia de la
+              Diócesis de Ocaña.
+            </p>
+
+          </div>
+
+          <div class="historical-date">
+
+            <i class="fa-regular fa-calendar"></i>
+
+            <strong>
+              Del 1 al 31 de octubre
+            </strong>
 
             <span>
-                PRÓXIMAMENTE
+              Especial temporal
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="historical-feature">
+
+          <div class="historical-video">
+
+            <div class="video-placeholder gold">
+
+              <div class="video-icon">
+                <i class="fa-solid fa-play"></i>
+              </div>
+
+              <span>
+                ESPECIAL
+              </span>
+
+              <strong>
+                64 Datos Históricos
+              </strong>
+
+              <small>
+                Video destacado del especial.
+              </small>
+
+            </div>
+
+          </div>
+
+
+          <div class="historical-description">
+
+            <span>
+              HISTORIA Y MEMORIA
             </span>
 
             <h3>
-                Noticias Diocesanas
+              Conoce nuestra historia
             </h3>
 
             <p>
-                Información con sentido cristiano.
+              Durante octubre presentaremos 64 contenidos
+              audiovisuales dedicados a conocer diferentes
+              momentos de la historia diocesana.
             </p>
 
+            <p class="small-note">
+              Los datos históricos definitivos deberán ser
+              cargados con información oficial.
+            </p>
+
+          </div>
+
         </div>
 
-    </div>
 
-</section>
+        <div
+          class="historical-grid"
+          id="historicalGrid"
+        ></div>
+
+      </div>
+
+    </section>
 
 
-<!-- =========================================================
-     EDITORIAL
-========================================================= -->
+    <!-- =====================================================
+         EDITORIAL
+    ====================================================== -->
 
-<section class="section editorial-section" id="editorial">
+    <section
+      class="section section-light"
+      id="editorial"
+    >
 
-    <div class="container">
+      <div class="container">
 
         <div class="section-heading">
 
-            <div>
+          <div>
 
-                <span class="eyebrow">
-                    EDITORIAL
-                </span>
-
-                <h2>
-                    Pensar, reflexionar y vivir la fe
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <div class="editorial-grid">
-
-            <article class="editorial-main">
-
-                <div class="editorial-image">
-
-                    <i class="fa-solid fa-feather-pointed"></i>
-
-                </div>
-
-                <div class="editorial-content">
-
-                    <span>
-                        REFLEXIÓN
-                    </span>
-
-                    <h3>
-                        La comunicación también puede ser
-                        un camino de evangelización
-                    </h3>
-
-                    <p>
-                        Espacio destinado a escritos, reflexiones
-                        y temas importantes para la Iglesia y la sociedad.
-                    </p>
-
-                    <a href="#" class="read-more">
-                        Leer editorial
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <div class="editorial-list">
-
-                <article>
-                    <span>FE Y JUVENTUD</span>
-                    <h3>
-                        Jóvenes llamados a transformar el mundo
-                    </h3>
-                </article>
-
-                <article>
-                    <span>IGLESIA</span>
-                    <h3>
-                        La misión evangelizadora en los medios
-                    </h3>
-                </article>
-
-                <article>
-                    <span>VIDA</span>
-                    <h3>
-                        Vivir la fe en medio de los desafíos actuales
-                    </h3>
-                </article>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     DIÓCESIS
-========================================================= -->
-
-<section class="section diocese-section" id="diocesis">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div>
-
-                <span class="eyebrow">
-                    CONOCE NUESTRA IGLESIA
-                </span>
-
-                <h2>
-                    Diócesis de Ocaña
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <div class="diocese-grid">
-
-            <a href="#" class="diocese-card">
-
-                <div class="diocese-icon">
-                    <i class="fa-solid fa-landmark"></i>
-                </div>
-
-                <h3>
-                    Historia de la Diócesis
-                </h3>
-
-                <p>
-                    Conoce nuestra historia y legado.
-                </p>
-
-                <i class="fa-solid fa-arrow-right"></i>
-
-            </a>
-
-
-            <a href="#" class="diocese-card">
-
-                <div class="diocese-icon">
-                    <i class="fa-solid fa-hands-praying"></i>
-                </div>
-
-                <h3>
-                    Advocaciones Marianas
-                </h3>
-
-                <p>
-                    Conoce las advocaciones presentes en nuestra Iglesia.
-                </p>
-
-                <i class="fa-solid fa-arrow-right"></i>
-
-            </a>
-
-
-            <a href="#" class="diocese-card">
-
-                <div class="diocese-icon">
-                    <i class="fa-solid fa-church"></i>
-                </div>
-
-                <h3>
-                    Nuestras Parroquias
-                </h3>
-
-                <p>
-                    Descubre las parroquias de la Diócesis de Ocaña.
-                </p>
-
-                <i class="fa-solid fa-arrow-right"></i>
-
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     PARROQUIAS
-========================================================= -->
-
-<section class="parishes-section">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div>
-
-                <span class="eyebrow">
-                    COMUNIDAD
-                </span>
-
-                <h2>
-                    Nuestras parroquias
-                </h2>
-
-            </div>
-
-            <a href="#" class="view-all">
-                Ver todas
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
-
-        </div>
-
-
-        <div class="parishes-grid">
-
-            <article class="parish-card">
-
-                <div class="parish-image">
-                    <i class="fa-solid fa-church"></i>
-                </div>
-
-                <div>
-
-                    <span>
-                        OCAÑA
-                    </span>
-
-                    <h3>
-                        Parroquia
-                    </h3>
-
-                    <p>
-                        Información parroquial próximamente.
-                    </p>
-
-                </div>
-
-            </article>
-
-
-            <article class="parish-card">
-
-                <div class="parish-image">
-                    <i class="fa-solid fa-church"></i>
-                </div>
-
-                <div>
-
-                    <span>
-                        DIÓCESIS DE OCAÑA
-                    </span>
-
-                    <h3>
-                        Comunidad parroquial
-                    </h3>
-
-                    <p>
-                        Información parroquial próximamente.
-                    </p>
-
-                </div>
-
-            </article>
-
-
-            <article class="parish-card">
-
-                <div class="parish-image">
-                    <i class="fa-solid fa-cross"></i>
-                </div>
-
-                <div>
-
-                    <span>
-                        IGLESIA
-                    </span>
-
-                    <h3>
-                        Nuestra comunidad
-                    </h3>
-
-                    <p>
-                        Próximamente podrás consultar todas las parroquias.
-                    </p>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     QUIÉNES SOMOS
-========================================================= -->
-
-<section class="section about-section" id="quienes-somos">
-
-    <div class="container about-grid">
-
-        <div class="about-copy">
-
-            <span class="eyebrow">
-                QUIÉNES SOMOS
+            <span class="section-kicker">
+              OPINIÓN Y REFLEXIÓN
             </span>
 
             <h2>
-                Una comunidad joven al servicio de la evangelización
+              Editorial
             </h2>
 
             <p>
-                Jóvenes Influencers del Señor es un medio de comunicación
-                católico orientado a informar, formar y evangelizar,
-                llevando el mensaje de Jesucristo a través de los medios
-                de comunicación.
+              Espacio para reflexionar sobre temas importantes
+              desde una mirada cristiana.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="editorial-grid"
+          id="editorialGrid"
+        ></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         HISTORIA
+    ====================================================== -->
+
+    <section
+      class="section"
+      id="historia"
+    >
+
+      <div class="container">
+
+        <div class="history-layout">
+
+          <div class="history-image">
+
+            <div class="history-placeholder">
+
+              <i class="fa-solid fa-church"></i>
+
+              <span>
+                Historia de la Diócesis
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="history-content">
+
+            <span class="section-kicker">
+              NUESTRA HISTORIA
+            </span>
+
+            <h2>
+              Historia de la Diócesis
+            </h2>
+
+            <p>
+              Este espacio estará dedicado a presentar la historia
+              oficial de la Diócesis de Ocaña, sus acontecimientos,
+              comunidades y momentos significativos.
             </p>
 
             <p>
-                Desde la Diócesis de Ocaña queremos utilizar las nuevas
-                herramientas digitales para acercar la Iglesia a las
-                personas, especialmente a los jóvenes.
+              La información histórica será incorporada a partir
+              de fuentes oficiales de la Diócesis.
             </p>
 
-            <a href="#" class="btn btn-primary">
-                Conoce nuestra historia
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
-
-        </div>
-
-
-        <div class="about-visual">
-
-            <div class="about-logo">
-
-                <img
-                    src="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png"
-                    alt="Jóvenes Influencers del Señor"
-                >
-
-            </div>
-
-            <div class="about-cross">
-                <i class="fa-solid fa-cross"></i>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     EQUIPO
-========================================================= -->
-
-<section class="section team-section">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div>
-
-                <span class="eyebrow">
-                    NUESTRO EQUIPO
-                </span>
-
-                <h2>
-                    Personas que hacen posible este proyecto
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <div class="team-grid">
-
-            <article class="team-card">
-
-                <div class="team-photo">
-                    <i class="fa-solid fa-user"></i>
-                </div>
-
-                <h3>
-                    Integrante
-                </h3>
-
-                <span>
-                    Equipo de comunicación
-                </span>
-
-            </article>
-
-
-            <article class="team-card">
-
-                <div class="team-photo">
-                    <i class="fa-solid fa-user"></i>
-                </div>
-
-                <h3>
-                    Integrante
-                </h3>
-
-                <span>
-                    Equipo de comunicación
-                </span>
-
-            </article>
-
-
-            <article class="team-card">
-
-                <div class="team-photo">
-                    <i class="fa-solid fa-user"></i>
-                </div>
-
-                <h3>
-                    Integrante
-                </h3>
-
-                <span>
-                    Equipo de comunicación
-                </span>
-
-            </article>
-
-
-            <article class="team-card">
-
-                <div class="team-photo">
-                    <i class="fa-solid fa-user"></i>
-                </div>
-
-                <h3>
-                    Integrante
-                </h3>
-
-                <span>
-                    Equipo de comunicación
-                </span>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     VIDEOS
-========================================================= -->
-
-<section class="section videos-section" id="videos">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div>
-
-                <span class="eyebrow">
-                    VIDEOTECA
-                </span>
-
-                <h2>
-                    Últimos videos
-                </h2>
-
-            </div>
-
-            <a href="#" class="view-all">
-                Ver todos
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
-
-        </div>
-
-
-        <div class="videos-grid">
-
-            <article class="video-card">
-
-                <div class="video-thumbnail">
-
-                    <i class="fa-solid fa-play"></i>
-
-                    <span>
-                        01:00
-                    </span>
-
-                </div>
-
-                <div class="video-content">
-
-                    <span>
-                        UNA PALABRA EN 60 SEGUNDOS
-                    </span>
-
-                    <h3>
-                        Un mensaje para comenzar el día
-                    </h3>
-
-                </div>
-
-            </article>
-
-
-            <article class="video-card">
-
-                <div class="video-thumbnail">
-
-                    <i class="fa-solid fa-play"></i>
-
-                    <span>
-                        05:30
-                    </span>
-
-                </div>
-
-                <div class="video-content">
-
-                    <span>
-                        FE Y VIDA DIARIA
-                    </span>
-
-                    <h3>
-                        La fe presente en nuestra vida cotidiana
-                    </h3>
-
-                </div>
-
-            </article>
-
-
-            <article class="video-card">
-
-                <div class="video-thumbnail">
-
-                    <i class="fa-solid fa-play"></i>
-
-                    <span>
-                        12:40
-                    </span>
-
-                </div>
-
-                <div class="video-content">
-
-                    <span>
-                        KERIGMA EN FUEGO
-                    </span>
-
-                    <h3>
-                        Anunciar a Cristo con alegría
-                    </h3>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     AGENDA
-========================================================= -->
-
-<section class="section agenda-section">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div>
-
-                <span class="eyebrow">
-                    AGENDA DIOCESANA
-                </span>
-
-                <h2>
-                    Próximos eventos
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <div class="agenda-list">
-
-            <article class="agenda-item">
-
-                <div class="agenda-date">
-
-                    <strong>
-                        00
-                    </strong>
-
-                    <span>
-                        PRÓX.
-                    </span>
-
-                </div>
-
-                <div class="agenda-info">
-
-                    <span>
-                        EVENTO DIOCESANO
-                    </span>
-
-                    <h3>
-                        Próximamente encontrarás aquí
-                        la agenda de la Diócesis.
-                    </h3>
-
-                    <p>
-                        Actividades, celebraciones, encuentros
-                        y acontecimientos de nuestra Iglesia.
-                    </p>
-
-                </div>
-
-                <i class="fa-solid fa-arrow-right"></i>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-</main>
-
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
-<footer class="footer">
-
-    <div class="container footer-main">
-
-        <div class="footer-brand">
-
-            <img
-                src="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png"
-                alt="Jóvenes Influencers del Señor"
+            <a
+              href="#datos-historicos"
+              class="btn btn-primary"
             >
+              Conocer más
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ADVOCACIONES MARIANAS
+    ====================================================== -->
+
+    <section
+      class="section section-light"
+      id="advocaciones"
+    >
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div>
+
+            <span class="section-kicker">
+              MARÍA
+            </span>
+
+            <h2>
+              Advocaciones Marianas
+            </h2>
 
             <p>
-                Medio de comunicación católico de la Diócesis de Ocaña.
-                Comunicamos para evangelizar.
+              Conoce las diferentes advocaciones marianas
+              presentes en nuestras comunidades.
             </p>
 
-            <div class="footer-social">
+          </div>
 
-                <a href="#">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
+        </div>
 
-                <a href="#">
-                    <i class="fab fa-youtube"></i>
-                </a>
 
-                <a href="#">
-                    <i class="fab fa-instagram"></i>
-                </a>
+        <div class="mary-grid">
 
-                <a href="#">
-                    <i class="fab fa-tiktok"></i>
-                </a>
+          <article class="mary-card">
+
+            <div class="mary-icon">
+              <i class="fa-solid fa-star"></i>
+            </div>
+
+            <h3>
+              Advocación Mariana
+            </h3>
+
+            <p>
+              Información oficial próximamente.
+            </p>
+
+          </article>
+
+
+          <article class="mary-card">
+
+            <div class="mary-icon">
+              <i class="fa-solid fa-star"></i>
+            </div>
+
+            <h3>
+              Advocación Mariana
+            </h3>
+
+            <p>
+              Información oficial próximamente.
+            </p>
+
+          </article>
+
+
+          <article class="mary-card">
+
+            <div class="mary-icon">
+              <i class="fa-solid fa-star"></i>
+            </div>
+
+            <h3>
+              Advocación Mariana
+            </h3>
+
+            <p>
+              Información oficial próximamente.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PARROQUIAS
+    ====================================================== -->
+
+    <section
+      class="section"
+      id="parroquias"
+    >
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div>
+
+            <span class="section-kicker">
+              COMUNIDAD
+            </span>
+
+            <h2>
+              Parroquias
+            </h2>
+
+            <p>
+              Información de las parroquias de la Diócesis.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="parishes-grid"
+          id="parishesGrid"
+        ></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         QUIÉNES SOMOS
+    ====================================================== -->
+
+    <section
+      class="section section-light"
+      id="quienes-somos"
+    >
+
+      <div class="container">
+
+        <div class="about-layout">
+
+          <div class="about-content">
+
+            <span class="section-kicker">
+              SOBRE NOSOTROS
+            </span>
+
+            <h2>
+              Jóvenes Influencers del Señor
+            </h2>
+
+            <p>
+              Somos un medio de comunicación orientado a la
+              evangelización y a la difusión de contenidos
+              relacionados con la vida de la Iglesia.
+            </p>
+
+            <p>
+              Este proyecto busca utilizar las herramientas
+              digitales y audiovisuales para acercar el mensaje
+              del Evangelio especialmente a las nuevas generaciones.
+            </p>
+
+            <div class="about-highlights">
+
+              <div>
+                <i class="fa-solid fa-video"></i>
+                <strong>Contenido audiovisual</strong>
+              </div>
+
+              <div>
+                <i class="fa-solid fa-heart"></i>
+                <strong>Evangelización</strong>
+              </div>
+
+              <div>
+                <i class="fa-solid fa-users"></i>
+                <strong>Comunidad</strong>
+              </div>
 
             </div>
 
-        </div>
+          </div>
 
 
-        <div class="footer-column">
+          <div class="about-card">
 
-            <h3>
-                Navegación
-            </h3>
-
-            <a href="#inicio">Inicio</a>
-            <a href="#noticias">Noticias</a>
-            <a href="#programas">Programas</a>
-            <a href="#videos">Videos</a>
-            <a href="#editorial">Editorial</a>
-
-        </div>
-
-
-        <div class="footer-column">
+            <div class="cross-decoration">
+              <i class="fa-solid fa-cross"></i>
+            </div>
 
             <h3>
-                Diócesis
-            </h3>
-
-            <a href="#diocesis">
-                Historia
-            </a>
-
-            <a href="#diocesis">
-                Advocaciones Marianas
-            </a>
-
-            <a href="#">
-                Parroquias
-            </a>
-
-            <a href="#quienes-somos">
-                Quiénes somos
-            </a>
-
-        </div>
-
-
-        <div class="footer-column">
-
-            <h3>
-                Contacto
+              Una Iglesia que comunica
             </h3>
 
             <p>
-                <i class="fa-solid fa-location-dot"></i>
-                Diócesis de Ocaña
+              Fe, esperanza y servicio a través de los medios
+              de comunicación.
             </p>
 
-            <p>
-                <i class="fa-solid fa-envelope"></i>
-                Próximamente
-            </p>
-
-            <p>
-                <i class="fa-solid fa-phone"></i>
-                Próximamente
-            </p>
+          </div>
 
         </div>
+
+
+        <!-- INTEGRANTES -->
+
+        <div class="team-heading">
+
+          <span class="section-kicker">
+            NUESTRO EQUIPO
+          </span>
+
+          <h2>
+            Integrantes
+          </h2>
+
+          <p>
+            Conoce a las personas que hacen parte de este proyecto.
+          </p>
+
+        </div>
+
+
+        <div
+          class="team-grid"
+          id="teamGrid"
+        ></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         NOTICIERO
+    ====================================================== -->
+
+    <section class="newsletter-section">
+
+      <div class="container newsletter-content">
+
+        <div>
+
+          <span>
+            PRÓXIMAMENTE
+          </span>
+
+          <h2>
+            Noticiero diario
+          </h2>
+
+          <p>
+            Información de la Iglesia, noticias diocesanas,
+            nacionales e internacionales.
+          </p>
+
+        </div>
+
+        <a
+          href="#contacto"
+          class="btn btn-light"
+        >
+          Más información
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONTACTO
+    ====================================================== -->
+
+    <section
+      class="section contact-section"
+      id="contacto"
+    >
+
+      <div class="container">
+
+        <div class="section-heading centered">
+
+          <span class="section-kicker">
+            CONECTA CON NOSOTROS
+          </span>
+
+          <h2>
+            Contacto
+          </h2>
+
+          <p>
+            Muy pronto podrás encontrar aquí nuestros canales
+            oficiales de contacto y redes sociales.
+          </p>
+
+        </div>
+
+
+        <div class="contact-grid">
+
+          <div class="contact-card">
+
+            <i class="fa-solid fa-envelope"></i>
+
+            <h3>
+              Correo electrónico
+            </h3>
+
+            <p>
+              Próximamente
+            </p>
+
+          </div>
+
+
+          <div class="contact-card">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            <h3>
+              Ubicación
+            </h3>
+
+            <p>
+              Diócesis de Ocaña
+            </p>
+
+          </div>
+
+
+          <div class="contact-card">
+
+            <i class="fa-solid fa-share-nodes"></i>
+
+            <h3>
+              Redes sociales
+            </h3>
+
+            <p>
+              Próximamente
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
+  <footer class="footer">
+
+    <div class="container footer-grid">
+
+      <div class="footer-brand">
+
+        <img
+          src="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png"
+          alt="Jóvenes Influencers del Señor"
+        />
+
+        <p>
+          Jóvenes Influencers del Señor.
+          Comunicación, fe y evangelización.
+        </p>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h3>
+          Navegación
+        </h3>
+
+        <a href="#inicio">Inicio</a>
+        <a href="#iglesia-al-dia">Iglesia al Día</a>
+        <a href="#programas">Programas</a>
+        <a href="#editorial">Editorial</a>
+        <a href="#quienes-somos">Quiénes Somos</a>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h3>
+          Diócesis
+        </h3>
+
+        <a href="#historia">
+          Historia
+        </a>
+
+        <a href="#advocaciones">
+          Advocaciones Marianas
+        </a>
+
+        <a href="#parroquias">
+          Parroquias
+        </a>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h3>
+          Conecta
+        </h3>
+
+        <a href="#contacto">
+          Contacto
+        </a>
+
+        <a href="#">
+          Facebook
+        </a>
+
+        <a href="#">
+          Instagram
+        </a>
+
+        <a href="#">
+          YouTube
+        </a>
+
+      </div>
 
     </div>
 
 
     <div class="footer-bottom">
 
-        <div class="container">
+      <div class="container footer-bottom-content">
 
-            <p>
-                © <span id="currentYear"></span>
-                Jóvenes Influencers del Señor.
-                Todos los derechos reservados.
-            </p>
+        <p>
+          © <span id="currentYear"></span>
+          Jóvenes Influencers del Señor.
+          Todos los derechos reservados.
+        </p>
 
-            <span>
-                Diócesis de Ocaña
-            </span>
+        <p>
+          Diócesis de Ocaña
+        </p>
 
-        </div>
+      </div>
 
     </div>
 
-</footer>
+  </footer>
 
 
-<!-- =========================================================
-     MODAL VIDEO
-========================================================= -->
+  <!-- =====================================================
+       MODAL DE VIDEO
+  ====================================================== -->
 
-<div class="video-modal" id="videoModal">
+  <div
+    class="video-modal"
+    id="videoModal"
+    aria-hidden="true"
+  >
+
+    <div class="video-modal-overlay"></div>
 
     <div class="video-modal-content">
 
-        <button class="close-video" id="closeVideo">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
+      <button
+        class="modal-close"
+        id="modalClose"
+        aria-label="Cerrar video"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
 
-        <div class="video-frame">
-
-            <iframe
-                id="videoFrame"
-                src=""
-                title="Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-            </iframe>
-
-        </div>
+      <div id="modalVideoContainer"></div>
 
     </div>
 
-</div>
+  </div>
 
 
-<!-- =========================================================
-     BOTÓN VOLVER ARRIBA
-========================================================= -->
-
-<button
-    class="back-top"
-    id="backTop"
-    aria-label="Volver arriba"
->
-    <i class="fa-solid fa-arrow-up"></i>
-</button>
-
-
-<script src="app.js"></script>
+  <script src="app.js"></script>
 
 </body>
 </html>
