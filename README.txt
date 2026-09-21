@@ -64,3 +64,13 @@ En /admin/, entra a 🔴 En Vivo, pega la URL del video Facebook Live y marca �
 La señal aparecerá en /en-vivo/ y también en la página de inicio.
 Para ocultarla, desmarca “Mostrar como EN VIVO”.
 La URL debe ser la URL pública del VIDEO LIVE concreto de Facebook, no solamente la URL de la página.
+
+
+MEJORAS VISUALES
+- Identidad visual basada en el logo: verde oliva, verde menta, amarillo y café.
+- Inicio renovado con portada, En Vivo, últimas noticias, especial 64 Datos y programas.
+- Buscador en la barra superior.
+- Noticias dinámicas desde Supabase.
+- 64 Datos dinámicos desde Supabase.
+- Reproductor Facebook Live dinámico en Inicio y En Vivo.
+- Diseño responsive mejorado.
