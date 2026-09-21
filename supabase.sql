@@ -60,3 +60,19 @@ drop policy if exists "admin advocations" on public.marian_advocations;
 create policy "admin advocations" on public.marian_advocations for all using (public.is_admin()) with check (public.is_admin());
 drop policy if exists "admin self" on public.admins;
 create policy "admin self" on public.admins for select using (auth.uid()=id);
+
+
+-- SEÑAL EN VIVO: el administrador activa/desactiva la transmisión y coloca la URL del Facebook Live.
+create table if not exists public.live_streams(
+ id uuid primary key default gen_random_uuid(),
+ title text not null default 'Jóvenes Influencers del Señor',
+ description text,
+ facebook_url text,
+ active boolean not null default false,
+ updated_at timestamptz not null default now()
+);
+alter table public.live_streams enable row level security;
+drop policy if exists "public active live" on public.live_streams;
+create policy "public active live" on public.live_streams for select using (active=true);
+drop policy if exists "admin live" on public.live_streams;
+create policy "admin live" on public.live_streams for all using (public.is_admin()) with check (public.is_admin());

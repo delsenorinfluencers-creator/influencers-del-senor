@@ -55,3 +55,12 @@ El panel utiliza Supabase Auth + RLS.
 
 IDENTIDAD VISUAL:
 La web usa los colores tomados visualmente del logo: amarillo cálido, verde menta, verde oliva y café oscuro. El logo se incluye localmente como logo-influencers-del-senor.png.
+
+
+SEÑAL EN VIVO FACEBOOK
+
+Se agregó la tabla live_streams. Ejecuta el supabase.sql actualizado.
+En /admin/, entra a 🔴 En Vivo, pega la URL del video Facebook Live y marca “Mostrar como EN VIVO”.
+La señal aparecerá en /en-vivo/ y también en la página de inicio.
+Para ocultarla, desmarca “Mostrar como EN VIVO”.
+La URL debe ser la URL pública del VIDEO LIVE concreto de Facebook, no solamente la URL de la página.

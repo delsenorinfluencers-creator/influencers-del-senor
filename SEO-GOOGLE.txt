@@ -1,0 +1,12 @@
+SEO preparado para https://influencersdelsenor.com
+
+Archivos: sitemap.xml, robots.txt, favicon.png, apple-touch-icon.png, site.webmanifest.
+Todas las páginas tienen title, description, canonical, robots, Open Graph, Twitter Card y Schema.org.
+
+Después de publicar en Vercel:
+1) Verifica el dominio en Google Search Console.
+2) Envía https://influencersdelsenor.com/sitemap.xml
+3) Usa Inspección de URL para solicitar indexación de la página principal y páginas importantes.
+4) No bloquees el favicon ni las páginas públicas en robots.txt.
+
+El favicon ayuda a que Google pueda mostrar un icono junto al resultado, pero Google no garantiza que siempre lo muestre.
