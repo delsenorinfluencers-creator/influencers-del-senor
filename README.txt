@@ -1,26 +1,39 @@
-VERSION ESTILO CANAL CATOLICO
+JOVENES INFLUENCERS DEL SEÑOR — WEB MULTIPAGINA
 
-Esta versión toma como referencia la estructura editorial de un canal católico como Tele VID:
-- cabecera de canal
-- señal en vivo destacada
-- actualidad/noticias
-- programación
-- especiales
-- formación y espiritualidad
-- navegación de canal
-- pie de página institucional
+Estructura:
+/
+/iglesia-al-dia/
+/programas/
+/programas/1/ ... /programas/11/
+/en-vivo/
+/64-datos/
+/diocesis/
+/editorial/
+/quienes-somos/
+/admin/
 
-No copia textos, identidad ni código de Tele VID; adapta la idea de portal de medio católico a Jóvenes Influencers del Señor.
+SUBIR A GITHUB:
+Sube TODA la carpeta y conserva las carpetas. Deben quedar en la raíz del repositorio:
+index.html
+estilos.css
+config.js
+common.js
+supabase.sql
+iglesia-al-dia/index.html
+programas/index.html
+programas/1/index.html ... programas/11/index.html
+en-vivo/index.html
+64-datos/index.html
+diocesis/index.html
+editorial/index.html
+quienes-somos/index.html
+admin/index.html
 
-URLs:
-#/noticias
-#/programas
-#/en-vivo
-#/64-datos
-#/diocesis
-#/editorial
-#/quienes-somos
-#/admin
+VERCEL:
+Importa el repositorio. Framework: Other. Build command: vacío. Output directory: vacío.
 
 SUPABASE:
-Usa el supabase.sql incluido en este ZIP. Está corregido para el error de columna "published" porque agrega la columna si las tablas ya existían.
+Ejecuta supabase.sql completo en SQL Editor. El script corrige el problema de la columna "published" agregándola si ya existían las tablas.
+
+NOTA:
+La clave usada es la publishable key de Supabase que proporcionaste. Para producción, el panel administrativo debe usar Supabase Auth y RLS; no pongas una service_role key en el navegador.
