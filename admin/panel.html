@@ -11,6 +11,52 @@
 *{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Arial,sans-serif;color:var(--ink)}
 button,input,textarea,select{font:inherit}.admin-layout{min-height:100vh;display:flex}.admin-sidebar{width:270px;background:var(--dark);color:#fff;padding:18px;position:sticky;top:0;height:100vh;overflow:auto}.admin-logo{text-align:center}.admin-logo img{width:100px;height:100px;object-fit:contain}.admin-logo h2{font-size:18px;margin:8px 0 22px}.admin-menu button{width:100%;display:block;border:0;background:transparent;color:#fff;text-align:left;padding:12px 10px;margin:3px 0;border-radius:10px;cursor:pointer}.admin-menu button:hover,.admin-menu button.active{background:#40362e}.admin-main{flex:1;padding:26px;min-width:0}.admin-header,.card{background:var(--card);border-radius:18px;padding:20px;box-shadow:0 5px 24px rgba(0,0,0,.06);margin-bottom:18px}.dashboard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}.stat{font-size:32px;font-weight:800;margin-top:8px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:15px;align-items:center;justify-content:space-between}.btn{border:0;border-radius:10px;padding:10px 14px;cursor:pointer;background:var(--dark);color:#fff}.btn.alt{background:var(--accent);color:#18200d}.btn.danger{background:#a52b2b}.btn.light{background:#eee;color:#222}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field input,.field textarea,.field select{padding:10px;border:1px solid #ddd;border-radius:9px;background:#fff}.field textarea{min-height:110px}.table-wrap{overflow:auto}.data-table{width:100%;border-collapse:collapse}.data-table th,.data-table td{padding:10px;border-bottom:1px solid #eee;text-align:left;vertical-align:top}.notice{padding:13px;border-radius:10px;background:#fff4cf;margin-bottom:12px}.error{background:#ffe5e5;color:#8d0000;padding:15px;border-radius:10px;margin-bottom:15px}.success{background:#e8f7df;color:#2e671f;padding:15px;border-radius:10px;margin-bottom:15px}.muted{color:#6d655e}.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:10}.modal.open{display:flex}.modal-box{background:#fff;border-radius:16px;padding:22px;max-width:800px;width:100%;max-height:90vh;overflow:auto}@media(max-width:850px){.admin-layout{display:block}.admin-sidebar{position:static;width:100%;height:auto}.form-grid{grid-template-columns:1fr}}
 </style>
+
+<style id="panel-fixed-responsive-v7">
+html,body{margin:0!important;min-height:100%;overflow-x:hidden}
+body{overflow-y:auto!important}
+.admin-shell,.panel-shell,.layout,.app-shell{min-height:100vh}
+.admin-sidebar,.sidebar,.panel-sidebar{
+ position:fixed!important;left:0!important;top:0!important;bottom:0!important;
+ width:260px!important;height:100vh!important;overflow-y:auto!important;
+ overflow-x:hidden!important;z-index:1000!important;
+ box-sizing:border-box!important;
+}
+.admin-main,.main,.content,.panel-main{
+ margin-left:260px!important;min-height:100vh!important;
+ width:calc(100% - 260px)!important;box-sizing:border-box!important;
+}
+.admin-sidebar::-webkit-scrollbar,.sidebar::-webkit-scrollbar,.panel-sidebar::-webkit-scrollbar{width:8px}
+.admin-sidebar,.sidebar,.panel-sidebar{scrollbar-width:thin}
+@media(max-width:800px){
+ .admin-sidebar,.sidebar,.panel-sidebar{
+   width:82px!important;
+ }
+ .admin-main,.main,.content,.panel-main{
+   margin-left:82px!important;width:calc(100% - 82px)!important;
+ }
+ .admin-sidebar .label,.sidebar .label,.panel-sidebar .label,
+ .admin-sidebar span:not(:first-child),.sidebar span:not(:first-child),
+ .panel-sidebar span:not(:first-child){ }
+ .admin-sidebar .brand-title{display:none}
+}
+@media(max-width:560px){
+ .admin-sidebar,.sidebar,.panel-sidebar{width:72px!important}
+ .admin-main,.main,.content,.panel-main{
+   margin-left:72px!important;width:calc(100% - 72px)!important;
+ }
+}
+#bannerDirectBtn{
+ display:block!important;visibility:visible!important;opacity:1!important;
+ min-height:46px!important;cursor:pointer!important;
+}
+.banner-admin-card{
+ display:block!important;visibility:visible!important;
+ margin:20px 0!important;padding:20px!important;
+ border:2px solid #b7c95a!important;border-radius:18px!important;
+}
+</style>
+
 </head>
 <body>
 <div id="app"><div class="card">Cargando panel administrativo...</div></div>
