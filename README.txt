@@ -24,3 +24,15 @@ ACTUALIZACION - SLUG DE NOTICIAS
 - El Slug se normaliza: minúsculas, sin tildes y palabras separadas por guiones.
 - Al guardar, el panel vuelve a generarlo desde el título para evitar inconsistencias.
 - El SQL agrega la columna news.slug si no existe y también crea un trigger en Supabase para generarlo automáticamente desde la base de datos.
+
+
+VIDEO LOOP GOOGLE DRIVE
+-----------------------
+En En Vivo > Video loop puedes pegar directamente un enlace de Google Drive,
+por ejemplo:
+https://drive.google.com/file/d/1pU59WNaYLllFXcXtOJW_XzgnZ34P1OZw/view?usp=drive_link
+
+El panel lo convierte automáticamente a:
+https://drive.google.com/uc?export=download&id=1pU59WNaYLllFXcXtOJW_XzgnZ34P1OZw
+
+La conversión se realiza antes de guardar en live_streams.loop_url.

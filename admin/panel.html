@@ -80,6 +80,27 @@ window.deleteRecord=async function(table,id){if(!confirm("¿Eliminar este regist
 function slugify(value){
  return String(value??"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,140);
 }
+
+function normalizeDriveVideoUrl(value){
+  if(!value) return value;
+  let s=String(value).trim();
+  // Google Drive: /file/d/FILE_ID/view..., /open?id=FILE_ID, or ?id=FILE_ID
+  let m=s.match(/drive\.google\.com\/file\/d\/([^/]+)/i);
+  if(!m) m=s.match(/[?&]id=([a-zA-Z0-9_-]+)/i);
+  if(!m) m=s.match(/drive\.google\.com\/open\?id=([^&]+)/i);
+  if(m && m[1]){
+    return "https://drive.google.com/uc?export=download&id="+m[1];
+  }
+  return s;
+}
+function normalizePayload(table,payload){
+  if(table==="live_streams"){
+    if(payload.loop_url) payload.loop_url=normalizeDriveVideoUrl(payload.loop_url);
+    if(payload.url && /drive\.google\.com/i.test(payload.url)) payload.url=normalizeDriveVideoUrl(payload.url);
+  }
+  return payload;
+}
+
 function openEditor(table,row){
  const keys=Object.keys(row||{}).filter(k=>!["id","created_at","updated_at"].includes(k));
  if(!keys.length){return msg("La tabla no tiene columnas editables visibles en un registro. Crea primero un registro desde Supabase o dime su estructura para preparar el formulario.",false);}
@@ -91,7 +112,7 @@ function openEditor(table,row){
    const isNewsSlug=table==="news"&&k==="slug";
    if(isNewsTitle)return `<div class="field full"><label>Título</label><input type="text" data-k="title" id="news-title-input" value="${esc(v??"")}" oninput="document.getElementById('news-slug-input').value=slugify(this.value)"></div>`;
    if(isNewsSlug)return `<div class="field full"><label>Slug <span class="muted">(se genera automáticamente)</span></label><input type="text" data-k="slug" id="news-slug-input" value="${esc(v||slugify(row?.title||""))}" readonly></div>`;
-   return `<div class="field"><label>${esc(k)}</label>${type==="checkbox"?`<input type="checkbox" data-k="${esc(k)}" ${v?"checked":""}>`:`<textarea data-k="${esc(k)}">${esc(v??"")}</textarea>`}</div>`;
+   return `<div class="field"><label>${esc(k)}${(table==="live_streams"&&k==="loop_url")?" <span class="muted">(Google Drive / MP4)</span>":""}</label>${type==="checkbox"?`<input type="checkbox" data-k="${esc(k)}" ${v?"checked":""}>`:`<textarea data-k="${esc(k)}">${esc(v??"")}</textarea>`}</div>`;
  }).join("");
  document.getElementById("contenido-panel").insertAdjacentHTML("beforeend",`<div class="modal open" id="editorModal"><div class="modal-box"><h2>${row?.id?"Editar":"Nueva"} ${esc(table)}</h2><div class="form-grid">${form}</div><div class="toolbar" style="margin-top:16px"><button class="btn alt" onclick="saveEditor('${table}',${row?.id?JSON.stringify(row.id):"null"})">Guardar</button><button class="btn light" onclick="closeEditor()">Cancelar</button></div></div></div>`);
  if(table==="news"){const t=document.getElementById("news-title-input"),g=document.getElementById("news-slug-input");if(t&&g)g.value=slugify(t.value);}
@@ -100,7 +121,7 @@ window.closeEditor=()=>document.getElementById("editorModal")?.remove();
 window.saveEditor=async function(table,id){
  const payload={};document.querySelectorAll("#editorModal [data-k]").forEach(el=>{payload[el.dataset.k]=el.type==="checkbox"?el.checked:el.value;});
  if(table==="news"&&payload.title!==undefined)payload.slug=slugify(payload.title);
- let r=id?await sb.from(table).update(payload).eq("id",id):await sb.from(table).insert(payload);
+ normalizePayload(table,payload); let r=id?await sb.from(table).update(payload).eq("id",id):await sb.from(table).insert(payload);
  if(r.error)return msg(r.error.message,false);closeEditor();msg(table==="news"?"Noticia guardada. Slug generado automáticamente.":"Guardado correctamente.");show(state.current);
 };
 window.newRecord=async function(table){

@@ -53,3 +53,11 @@ drop trigger if exists news_generate_slug on public.news;
 create trigger news_generate_slug
 before insert or update of title on public.news
 for each row execute function public.generate_news_slug();
+
+
+-- Google Drive loop:
+-- El panel convierte automáticamente:
+-- https://drive.google.com/file/d/FILE_ID/view?usp=drive_link
+-- en:
+-- https://drive.google.com/uc?export=download&id=FILE_ID
+-- No hace falta almacenar una segunda columna.
