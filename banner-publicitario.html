@@ -1,0 +1,86 @@
+<!-- BANNER PUBLICITARIO -->
+<section class="publicidad-section" id="publicidad">
+  <div class="container">
+    <div class="publicidad-slider" id="publicidadSlider"></div>
+  </div>
+</section>
+
+<script>
+async function cargarBannersPublicitarios() {
+  const contenedor = document.getElementById("publicidadSlider");
+  const seccion = document.getElementById("publicidad");
+  if (!contenedor || !window.sb) return;
+
+  try {
+    const { data, error } = await window.sb
+      .from("advertising_banners")
+      .select("*")
+      .eq("active", true)
+      .order("sort_order", { ascending: true });
+
+    if (error) throw error;
+
+    if (!data || data.length === 0) {
+      seccion.style.display = "none";
+      return;
+    }
+
+    contenedor.innerHTML = "";
+
+    data.forEach((banner, index) => {
+      const slide = document.createElement("div");
+      slide.className = "publicidad-slide" + (index === 0 ? " active" : "");
+
+      const img = document.createElement("img");
+      img.src = banner.image_url;
+      img.alt = banner.title || "Publicidad";
+      img.loading = index === 0 ? "eager" : "lazy";
+
+      if (banner.link_url) {
+        const a = document.createElement("a");
+        a.href = banner.link_url;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.appendChild(img);
+        slide.appendChild(a);
+      } else {
+        slide.appendChild(img);
+      }
+
+      contenedor.appendChild(slide);
+    });
+
+    if (data.length <= 1) return;
+
+    let actual = 0;
+
+    function siguiente() {
+      const slides = contenedor.querySelectorAll(".publicidad-slide");
+      if (!slides.length) return;
+
+      slides[actual].classList.remove("active");
+      actual = (actual + 1) % slides.length;
+      slides[actual].classList.add("active");
+
+      const segundos =
+        Number(data[actual]?.duration_seconds) > 0
+          ? Number(data[actual].duration_seconds)
+          : 5;
+
+      setTimeout(siguiente, segundos * 1000);
+    }
+
+    const inicial =
+      Number(data[0]?.duration_seconds) > 0
+        ? Number(data[0].duration_seconds)
+        : 5;
+
+    setTimeout(siguiente, inicial * 1000);
+
+  } catch (error) {
+    console.error("Error cargando banners publicitarios:", error);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", cargarBannersPublicitarios);
+</script>
