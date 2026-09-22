@@ -6,5 +6,7 @@ window.JIS_CONFIG={
   siteName:"Jóvenes Influencers del Señor",
   siteUrl:"https://influencers-del-senor.vercel.app",
   facebook:"https://www.facebook.com/jovenesinfluencersdelsenor",
+  youtube:"",
+  whatsapp:"",
   liveUrl:""
 };

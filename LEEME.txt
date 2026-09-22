@@ -1,34 +1,14 @@
-# Panel completo — Jóvenes Influencers del Señor
+JÓVENES INFLUENCERS DEL SEÑOR - VERSIÓN MEJORADA
 
-## Sube estos archivos a GitHub
-
-config.js
-admin/panel.html
-supabase-completo.sql
-
-## Supabase
-
-1. Authentication: crea el usuario.
-2. SQL Editor: ejecuta `supabase-completo.sql`.
-3. El SQL crea las tablas, RLS, bucket `media`, 11 programas y 64 registros.
-4. El UUID inicial incluido es el que mostraste anteriormente. Si cambió, modifica la última sentencia INSERT del SQL.
-
-## Vercel
-
-Conserva:
-/
-  config.js
-  admin/
-    panel.html
-
-La URL del panel será:
-
-https://influencers-del-senor.vercel.app/admin/panel.html
-
-## Storage
-
-El panel sube imágenes al bucket público `media` y genera la URL pública automáticamente.
-
-## Seguridad
-
-No coloques una service_role key en el navegador. Se utiliza la Publishable Key.
+1. En Supabase > SQL Editor ejecuta supabase-completo.sql UNA VEZ.
+2. El script crea las tablas, columnas faltantes, RLS, bucket media y los 11 programas y 64 datos.
+3. El administrador inicial configurado es edinandres789@gmail.com. Si necesitas otro correo, cambia ese correo en el INSERT del SQL antes de ejecutarlo.
+4. Para agregar futuros administradores: el usuario primero debe existir en Authentication > Users. Luego, desde el panel > Usuarios / administradores, agrega su UUID, correo y rol.
+5. Storage: el SQL crea el bucket público media y las políticas para que los administradores puedan subir imágenes.
+6. En Vivo: desde el panel selecciona m3u8, youtube, facebook, mp4 o webm. Activa Transmisión activa y las casillas Mostrar en Inicio / Mostrar en En Vivo.
+7. YouTube/Facebook dependen de que el contenido sea público y de las políticas del navegador. El reproductor intenta autoplay y usa silencio para facilitar el autoplay.
+8. M3U8 se reproduce con HLS.js cuando el navegador no tiene HLS nativo. MP4/WEBM se reproducen directamente.
+9. Noticias: categoría, autor/editor, fecha, hora, imagen, contenido, publicación y URL amigable /iglesia-al-dia/noticia/slug.
+10. Todas las páginas conservan el mismo encabezado, menú, logo, favicon y pie de página. El pie muestra centrado © año Jóvenes Influencers del Señor y Creado por Gamarra TV.
+11. Si cambias el logo desde Configuración, las páginas públicas lo cargan desde site_settings; el favicon también se actualiza al logo configurado.
+12. Después de subir el proyecto a Vercel, haz un despliegue nuevo y limpia la caché del navegador con Ctrl+F5.
