@@ -1,0 +1,8 @@
+MEDIDA DE BANNER PUBLICITARIO
+==============================
+Medida solicitada: 1983 x 793 px
+Proporción: 1983:793 (aprox. 2.5006:1)
+
+El contenedor del banner utiliza aspect-ratio: 1983 / 793.
+Las imágenes se muestran con object-fit: cover para mantener el área sin deformación.
+La medida es responsive: en PC y celular conserva la misma proporción.

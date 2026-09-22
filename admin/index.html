@@ -23,7 +23,7 @@ html,body{margin:0!important;min-height:100%;overflow-x:hidden}
  .admin-table{min-width:700px}
  .table-wrap{overflow-x:auto!important}
 }
-.banner-preview{width:180px;height:70px;object-fit:cover;border-radius:10px;border:1px solid #ddd}
+.banner-preview{width:180px;aspect-ratio:1983/793; height:auto;object-fit:cover;border-radius:10px;border:1px solid #ddd}
 </style>
 </head><body><div id="root">Cargando panel...</div>
 <script src="/config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/common.js"></script><script>
@@ -84,3 +84,24 @@ document.querySelectorAll('.side button[data-mod]').forEach(b=>b.addEventListene
 show('dashboard');
 })();
 </script></body></html>
+
+/* BANNER PUBLICITARIO: proporción exacta 1983 x 793 */
+.banner-publicitario,
+.advertising-banner,
+.banner-carousel,
+.banner-slider,
+.banner-slide {
+  width: 100%;
+  aspect-ratio: 1983 / 793;
+  overflow: hidden;
+}
+.banner-publicitario img,
+.advertising-banner img,
+.banner-carousel img,
+.banner-slider img,
+.banner-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
