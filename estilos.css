@@ -357,3 +357,36 @@ footer .footer-creator b{color:#fff}
 @media(max-width:620px){
   .header .nav{left:10px;right:10px}
 }
+
+
+/* V16 — Quiénes somos: un solo encabezado y texto a todo el ancho */
+.quienes-somos-page .quienes-somos-card,
+.quienes-somos-page .about-card,
+.about-us-page .quienes-somos-card,
+.about-us-page .about-card{
+  width:100%;
+  max-width:none;
+}
+.quienes-somos-page .quienes-somos-content,
+.quienes-somos-page .about-content,
+.about-us-page .quienes-somos-content,
+.about-us-page .about-content{
+  width:100%;
+  max-width:1100px;
+  margin:0 auto;
+  font-size:1.05rem;
+  line-height:1.8;
+}
+.quienes-somos-page .quienes-somos-content h1,
+.quienes-somos-page .about-content h1,
+.about-us-page .quienes-somos-content h1,
+.about-us-page .about-content h1{
+  margin-top:0;
+  margin-bottom:24px;
+}
+.quienes-somos-page .quienes-somos-content p,
+.quienes-somos-page .about-content p,
+.about-us-page .quienes-somos-content p,
+.about-us-page .about-content p{
+  margin:0 0 18px;
+}
