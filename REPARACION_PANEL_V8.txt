@@ -1,0 +1,8 @@
+REPARACION V8
+1. admin/index.html es el panel principal y ahora contiene Publicidad/Banner.
+2. Se corrigió Configuración: antes hacía eq('id', true), causando "invalid input syntax for type integer: true".
+3. Ahora la configuración busca la primera fila real de site_settings y actualiza su ID real.
+4. Menú fijo en PC y menú desplegable en celular.
+5. No es necesario cambiar el tipo de id de site_settings.
+6. Ejecutar advertising_banners.sql si advertising_banners aún no existe.
+7. Después de desplegar, usar Ctrl+F5.

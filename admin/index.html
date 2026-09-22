@@ -1,4 +1,31 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Panel administrativo | Jóvenes Influencers del Señor</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/estilos.css"></head><body><div id="root">Cargando panel...</div>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Panel administrativo | Jóvenes Influencers del Señor</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/estilos.css">
+<style id="admin-fixed-v8">
+html,body{margin:0!important;min-height:100%;overflow-x:hidden}
+.admin{min-height:100vh!important;display:block!important}
+.side{
+ position:fixed!important;left:0!important;top:0!important;bottom:0!important;
+ width:270px!important;height:100vh!important;overflow-y:auto!important;
+ z-index:9999!important;box-sizing:border-box!important;
+}
+.main{margin-left:270px!important;min-height:100vh!important;padding:28px!important;box-sizing:border-box!important}
+.admin-mobile-toggle{display:none;position:fixed;z-index:10001;top:10px;left:10px;border:0;border-radius:10px;padding:10px 13px;background:#21180f;color:#fff;font-weight:800;cursor:pointer}
+@media(max-width:980px){
+ .admin-mobile-toggle{display:block}
+ .side{width:260px!important;transform:translateX(-105%);transition:transform .2s ease}
+ .side.mobile-open{transform:translateX(0)}
+ .main{margin-left:0!important;padding:70px 14px 22px!important}
+ .side nav{display:grid!important;grid-template-columns:1fr!important}
+ .side h2{font-size:16px}
+}
+@media(max-width:620px){
+ .side{width:88vw!important;max-width:320px!important}
+ .admin-top{align-items:flex-start!important;flex-direction:column!important}
+ .admin-table{min-width:700px}
+ .table-wrap{overflow-x:auto!important}
+}
+.banner-preview{width:180px;height:70px;object-fit:cover;border-radius:10px;border:1px solid #ddd}
+</style>
+</head><body><div id="root">Cargando panel...</div>
 <script src="/config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/common.js"></script><script>
 (async()=>{
  const root=document.getElementById('root');const sb=await JIS.supa();
@@ -16,21 +43,42 @@
   team:{label:'👥 Integrantes',table:'team_members',title:'Quiénes somos / Integrantes',fields:[['name','Nombre','text',true],['role','Cargo / función','text'],['biography','Biografía','textarea'],['photo_url','Foto','url'],['facebook_url','Facebook','url'],['instagram_url','Instagram','url'],['youtube_url','YouTube','url'],['published','Publicado','checkbox'],['sort_order','Orden','number']]},
   editorial:{label:'✍️ Editorial',table:'editorials',title:'Editorial',fields:[['title','Título','text',true],['slug','Slug','text'],['content','Contenido','textarea'],['image_url','Imagen','url'],['author_name','Autor','text'],['published_at','Fecha','datetime-local'],['published','Publicado','checkbox']]},
   admins:{label:'👤 Usuarios / administradores',table:'admins',title:'Administradores',fields:[['id','UUID del usuario','text',true],['email','Correo','text'],['role','Rol','select',['admin','editor']]]},
+  banners:{label:'📢 Publicidad / Banner',table:'advertising_banners',title:'Publicidad / Banners',fields:[
+    ['title','Título','text'],
+    ['image_url','Imagen URL','url',true],
+    ['link_url','Enlace','url'],
+    ['duration_seconds','Segundos','number'],
+    ['sort_order','Orden','number'],
+    ['active','Activo','checkbox']
+  ]},
   settings:{label:'⚙️ Configuración',table:'site_settings',title:'Configuración del sitio',single:true,fields:[['site_name','Nombre del sitio','text'],['logo_url','Logo','url'],['logo64_url','Logo 64 Datos','url'],['facebook_url','Facebook','url'],['youtube_url','YouTube','url'],['whatsapp','WhatsApp','text'],['site_description','Descripción','textarea'],['footer_creator','Creado por','text']]}
  };
  let current='dashboard';
  function layout(){root.innerHTML=`<div class="admin"><aside class="side"><img src="${JIS.esc(window.JIS_CONFIG.logo)}" alt=""><h2>Panel administrativo</h2><nav id="sideNav">${Object.entries(modules).map(([k,v])=>`<button data-mod="${k}">${v.label}</button>`).join('')}</nav><hr><button id="logout">🚪 Cerrar sesión</button></aside><main class="main"><div id="view"></div></main></div>`;root.querySelectorAll('[data-mod]').forEach(b=>b.onclick=()=>show(b.dataset.mod));document.getElementById('logout').onclick=async()=>{await sb.auth.signOut();location.href='/admin/login.html'};}
  async function count(table){const r=await sb.from(table).select('*',{count:'exact',head:true});return r.error?'—':(r.count||0)}
  async function dashboard(){const pairs=[['Noticias','news'],['Programas','programs'],['Episodios','episodes'],['En vivo','live_streams'],['64 datos','historical_64'],['Editoriales','editorials'],['Integrantes','team_members']];const vals=await Promise.all(pairs.map(async x=>[x[0],await count(x[1])]));document.getElementById('view').innerHTML=`<div class="panel"><div class="admin-top"><div><p class="eyebrow">ADMINISTRACIÓN</p><h1>Dashboard</h1><p>Sesión: <b>${JIS.esc(session.user.email)}</b></p></div></div><div class="grid">${vals.map(x=>`<div class="stat"><span>${x[0]}</span><br><b>${x[1]}</b></div>`).join('')}</div><div class="panel" style="margin-top:18px"><h2>Control central</h2><p>Desde este panel puedes administrar los contenidos que aparecen en el sitio, incluida la señal en vivo, noticias, programas, episodios, 64 Datos, Diócesis, integrantes, editoriales, usuarios y configuración.</p></div></div>`}
- async function loadRows(m){let q=sb.from(m.table).select('*');if(m.single)q=q.eq('id',true);if(m.table==='programs')q=q.order('sort_order');if(m.table==='episodes')q=q.order('sort_order');if(m.table==='historical_64')q=q.order('id');if(m.table==='news'||m.table==='editorials')q=q.order('created_at',{ascending:false});const r=await q;if(r.error)throw r.error;return r.data||[]}
+ async function loadRows(m){let q=sb.from(m.table).select('*');if(m.single)q=q.order('id',{ascending:true}).limit(1);if(m.table==='programs')q=q.order('sort_order');if(m.table==='episodes')q=q.order('sort_order');if(m.table==='historical_64')q=q.order('id');if(m.table==='news'||m.table==='editorials')q=q.order('created_at',{ascending:false});const r=await q;if(r.error)throw r.error;return r.data||[]}
  function fieldHtml(f,row,programs=[]){const [key,label,type,reqOrOpts]=f;const req=reqOrOpts===true?' required':'';let val=row?.[key]??'';if(key==='published_at'&&val)val=new Date(val).toISOString().slice(0,16);if(type==='checkbox')return `<div class="field"><label><input id="f_${key}" type="checkbox" ${val?'checked':''}> ${label}</label></div>`;if(['image_url','photo_url','logo_url','logo64_url'].includes(key))return `<div class="field"><label>${label}</label><input id="f_${key}" type="url" value="${JIS.esc(val)}"${req}><input id="up_${key}" type="file" accept="image/*"><small>O selecciona una imagen para subirla a Supabase Storage.</small></div>`;if(type==='textarea')return `<div class="field full"><label>${label}</label><textarea id="f_${key}"${req}>${JIS.esc(val)}</textarea></div>`;if(type==='select')return `<div class="field"><label>${label}</label><select id="f_${key}">${reqOrOpts.map(o=>`<option ${String(val)===o?'selected':''}>${JIS.esc(o)}</option>`).join('')}</select></div>`;if(type==='program')return `<div class="field"><label>${label}</label><select id="f_${key}"${req}>${programs.map(o=>`<option value="${o.id}" ${String(val)===String(o.id)?'selected':''}>${JIS.esc(o.name)}</option>`).join('')}</select></div>`;return `<div class="field"><label>${label}</label><input id="f_${key}" type="${type==='url'?'url':type}" value="${JIS.esc(val)}"${req}></div>`}
  async function moduleView(key){const m=modules[key],v=document.getElementById('view');if(key==='dashboard'){dashboard();return}try{const rows=await loadRows(m);let programs=[];if(key==='episodes'){const rr=await sb.from('programs').select('id,name').order('sort_order');programs=rr.data||[];}v.innerHTML=`<div class="panel"><div class="admin-top"><div><p class="eyebrow">PANEL</p><h1>${m.title}</h1></div>${!m.single?'<button class="btn" id="newBtn">＋ Nuevo</button>':''}</div><div id="formArea"></div><div class="table-wrap"><table class="admin-table"><thead><tr>${m.fields.map(f=>`<th>${f[1]}</th>`).join('')}<th>Acciones</th></tr></thead><tbody>${rows.map(r=>`<tr>${m.fields.map(f=>{let x=r[f[0]];if(f[2]==='checkbox')x=x?'Sí':'No';if(f[0]==='content')x=String(x||'').slice(0,90)+'…';return `<td>${JIS.esc(x)}</td>`}).join('')}<td><div class="admin-actions"><button class="small-btn" data-edit="${JIS.esc(r.id??true)}">Editar</button>${!m.single?`<button class="small-btn danger" data-del="${JIS.esc(r.id)}">Eliminar</button>`:''}</div></td></tr>`).join('')}</tbody></table></div></div>`;
  if(!m.single)document.getElementById('newBtn').onclick=()=>openForm(key,null,programs);v.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>{const r=rows.find(x=>String(x.id??true)===b.dataset.edit);openForm(key,r,programs)});v.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{if(!confirm('¿Eliminar este contenido?'))return;const rr=await sb.from(m.table).delete().eq('id',b.dataset.del);if(rr.error)alert(rr.error.message);else moduleView(key)});
- if(m.single&&rows[0])openForm(key,rows[0],programs);else if(m.single&&!rows[0])openForm(key,{id:true},programs);
+ if(m.single&&rows[0])openForm(key,rows[0],programs);else if(m.single&&!rows[0])openForm(key,{},programs);
  }catch(e){v.innerHTML=`<div class="panel"><div class="notice">${JIS.esc(e.message)}</div></div>`}}
  function slugify(value){return String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,140)}
- function openForm(key,row,programs){const m=modules[key],area=document.getElementById('formArea');area.innerHTML=`<div class="panel" style="margin:0 0 20px;background:#fbfaf6"><h2>${row?'Editar':'Nuevo'}</h2><form id="editForm" class="form-grid">${m.fields.map(f=>fieldHtml(f,row,programs)).join('')}<div class="field full"><div class="admin-actions"><button class="btn" type="submit">Guardar</button><button class="small-btn" type="button" id="cancelForm">Cancelar</button></div><div id="formMsg"></div></div></form></div>`;document.getElementById('cancelForm').onclick=()=>area.innerHTML='';if(key==='news'){const titleEl=document.getElementById('f_title'),slugEl=document.getElementById('f_slug');if(titleEl&&slugEl){slugEl.readOnly=true;titleEl.addEventListener('input',()=>slugEl.value=slugify(titleEl.value));if(!row)slugEl.value=slugify(titleEl.value);}}m.fields.filter(f=>['image_url','photo_url','logo_url','logo64_url'].includes(f[0])).forEach(f=>{const input=document.getElementById('up_'+f[0]);if(input)input.onchange=async()=>{if(!input.files[0])return;const file=input.files[0];const path='admin/'+Date.now()+'-'+file.name.replace(/[^a-zA-Z0-9._-]/g,'-');const up=await sb.storage.from('media').upload(path,file,{upsert:true,contentType:file.type});if(up.error){alert(up.error.message);return}const pub=sb.storage.from('media').getPublicUrl(path);document.getElementById('f_'+f[0]).value=pub.data.publicUrl;}});document.getElementById('editForm').onsubmit=async e=>{e.preventDefault();const obj={};for(const f of m.fields){const key=f[0],type=f[2],el=document.getElementById('f_'+key);if(key==='id'&&m.table!=='admins'&&m.table!=='historical_64')continue;if(type==='checkbox')obj[key]=el.checked;else if(type==='number')obj[key]=el.value===''?null:Number(el.value);else obj[key]=el.value||null;}if(m.table==='news'){obj.slug=slugify(obj.title);if(!obj.author_name)obj.author_name=session.user.email;}if(m.table==='news'&&obj.published&&!obj.published_at)obj.published_at=new Date().toISOString();if(m.table==='editorials'&&obj.published&&!obj.published_at)obj.published_at=new Date().toISOString();let r;if(row){if(m.single)r=await sb.from(m.table).update(obj).eq('id',true);else r=await sb.from(m.table).update(obj).eq('id',row.id)}else r=await sb.from(m.table).insert(obj);const msg=document.getElementById('formMsg');if(r.error){msg.className='notice';msg.textContent=r.error.message}else{area.innerHTML='<div class="notice">Guardado correctamente.</div>';setTimeout(()=>moduleView(key),500)}}}
+ function openForm(key,row,programs){const m=modules[key],area=document.getElementById('formArea');area.innerHTML=`<div class="panel" style="margin:0 0 20px;background:#fbfaf6"><h2>${row?'Editar':'Nuevo'}</h2><form id="editForm" class="form-grid">${m.fields.map(f=>fieldHtml(f,row,programs)).join('')}<div class="field full"><div class="admin-actions"><button class="btn" type="submit">Guardar</button><button class="small-btn" type="button" id="cancelForm">Cancelar</button></div><div id="formMsg"></div></div></form></div>`;document.getElementById('cancelForm').onclick=()=>area.innerHTML='';if(key==='news'){const titleEl=document.getElementById('f_title'),slugEl=document.getElementById('f_slug');if(titleEl&&slugEl){slugEl.readOnly=true;titleEl.addEventListener('input',()=>slugEl.value=slugify(titleEl.value));if(!row)slugEl.value=slugify(titleEl.value);}}m.fields.filter(f=>['image_url','photo_url','logo_url','logo64_url'].includes(f[0])).forEach(f=>{const input=document.getElementById('up_'+f[0]);if(input)input.onchange=async()=>{if(!input.files[0])return;const file=input.files[0];const path='admin/'+Date.now()+'-'+file.name.replace(/[^a-zA-Z0-9._-]/g,'-');const up=await sb.storage.from('media').upload(path,file,{upsert:true,contentType:file.type});if(up.error){alert(up.error.message);return}const pub=sb.storage.from('media').getPublicUrl(path);document.getElementById('f_'+f[0]).value=pub.data.publicUrl;}});document.getElementById('editForm').onsubmit=async e=>{e.preventDefault();const obj={};for(const f of m.fields){const key=f[0],type=f[2],el=document.getElementById('f_'+key);if(key==='id'&&m.table!=='admins'&&m.table!=='historical_64')continue;if(type==='checkbox')obj[key]=el.checked;else if(type==='number')obj[key]=el.value===''?null:Number(el.value);else obj[key]=el.value||null;}if(m.table==='news'){obj.slug=slugify(obj.title);if(!obj.author_name)obj.author_name=session.user.email;}if(m.table==='news'&&obj.published&&!obj.published_at)obj.published_at=new Date().toISOString();if(m.table==='editorials'&&obj.published&&!obj.published_at)obj.published_at=new Date().toISOString();let r;if(row){
+   if(m.single){
+     const existingId=row.id;
+     r=await sb.from(m.table).update(obj).eq('id',existingId);
+   }else{
+     r=await sb.from(m.table).update(obj).eq('id',row.id);
+   }
+ }else{
+   r=await sb.from(m.table).insert(obj);
+ }const msg=document.getElementById('formMsg');if(r.error){msg.className='notice';msg.textContent=r.error.message}else{area.innerHTML='<div class="notice">Guardado correctamente.</div>';setTimeout(()=>moduleView(key),500)}}}
  async function show(k){current=k;root.querySelectorAll('[data-mod]').forEach(b=>b.classList.toggle('active',b.dataset.mod===k));await moduleView(k)}
- layout();show('dashboard');
+ layout();
+const mobileBtn=document.getElementById('mobileAdminMenu');
+if(mobileBtn)mobileBtn.onclick=()=>document.querySelector('.side')?.classList.toggle('mobile-open');
+document.querySelectorAll('.side button[data-mod]').forEach(b=>b.addEventListener('click',()=>document.querySelector('.side')?.classList.remove('mobile-open')));
+show('dashboard');
 })();
 </script></body></html>
