@@ -51,7 +51,9 @@ function unauthorized(){app.innerHTML='<div class="card error"><h2>Usuario no au
 function renderShell(){
  app.innerHTML=`<div class="admin-layout">
  <aside class="admin-sidebar"><div class="admin-logo"><img src="${esc(cfg.logo||"../logo-influencers-del-senor.png")}" onerror="this.src='../logo-influencers-del-senor.png'"><h2>Panel administrativo</h2></div>
- <nav class="admin-menu">${sections.map(s=>`<button id="nav-${s[0]}" onclick="show('${s[0]}')">${s[1]}</button>`).join("")}<hr><button onclick="logout()">🚪 Cerrar sesión</button></nav></aside>
+ <nav class="admin-menu">${sections.map(s=>`<button id="nav-${s[0]}" onclick="show('${s[0]}')">${s[1]}</button>`).join("")}<hr><button onclick="logout()">🚪 Cerrar sesión</button><div style="margin:14px 0 0;padding-top:14px;border-top:1px solid rgba(255,255,255,.18)">
+<button id="bannerDirectBtn" class="btn alt" style="width:100%;font-weight:800" onclick="show('banners')">📢 BANNERS PUBLICITARIOS</button>
+</div></nav></aside>
  <main class="admin-main"><div class="admin-header"><h1 id="section-title">Panel administrativo</h1><p>Bienvenido, <b>${esc(state.user.email)}</b></p></div><div id="flash" style="display:none"></div><div id="contenido-panel"></div></main></div>`;
 }
 window.show=async function(name){
@@ -63,12 +65,22 @@ window.show=async function(name){
  try{await ({dashboard:dashboard,noticias:news,programas:programs,episodios:episodes,envivo:live,datos64:data64,diocesis:diocese,parroquias:parishes,equipo:team,editorial:editorial,usuarios:admins,configuracion:settings,banners:banners}[name]||dashboard)();}
  catch(e){c.innerHTML='<div class="card error">'+esc(e.message||e)+'</div>';}
 };
+function abrirSeccionDesdeURL(){
+  const q=new URLSearchParams(location.search);
+  const hash=(location.hash||"").replace("#","");
+  const s=q.get("seccion")||hash;
+  if(s && sections.some(x=>x[0]===s)) show(s);
+}
 window.mostrarSeccion=window.show;
 async function rows(table,limit=200){const r=await sb.from(table).select("*").limit(limit);if(r.error)throw r.error;return r.data||[];}
 async function count(table){const r=await sb.from(table).select("*",{count:"exact",head:true});return r.error?null:r.count;}
 async function dashboard(){
  const vals=await Promise.all(["news","programs","episodes","historical_64"].map(count));
- document.getElementById("contenido-panel").innerHTML='<div class="dashboard-grid">'+["📰 Noticias","🎬 Programas","🎞️ Episodios","✝️ 64 Datos"].map((x,i)=>`<div class="card"><h3>${x}</h3><div class="stat">${vals[i]??"—"}</div></div>`).join("")+'</div><div class="card"><h2>Panel conectado</h2><p class="muted">El panel no usa filtros booleanos rígidos como <code>.eq("published", true)</code>, evitando el error de columnas INTEGER que apareció en tu estructura.</p></div>';
+ document.getElementById("contenido-panel").innerHTML='<div class="dashboard-grid">'+["📰 Noticias","🎬 Programas","🎞️ Episodios","✝️ 64 Datos"].map((x,i)=>`<div class="card"><h3>${x}</h3><div class="stat">${vals[i]??"—"}</div></div>`).join("")+'</div><div class="card" style="border:2px solid #b7c95a">
+<h2>📢 Banners publicitarios</h2>
+<p class="muted">Administra las imágenes publicitarias que aparecen en Inicio. Se muestran una a una con transición Fade.</p>
+<button class="btn alt" onclick="show('banners')">Administrar banners</button>
+</div><div class="card"><h2>Panel conectado</h2><p class="muted">El panel no usa filtros booleanos rígidos como <code>.eq("published", true)</code>, evitando el error de columnas INTEGER que apareció en tu estructura.</p></div>';
 }
 function tableHtml(data,table){
  if(!data.length)return '<div class="notice">No hay registros todavía.</div>';
@@ -257,6 +269,7 @@ window.deleteBanner=async function(id){
 
 window.logout=async()=>{await sb.auth.signOut();location.href="./index.html";};
 init();
+setTimeout(abrirSeccionDesdeURL,700);
 })();
 </script>
 </body>

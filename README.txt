@@ -47,3 +47,14 @@ CARGA DE IMAGENES DE EN VIVO
 5. Máximo recomendado: 8 MB.
 
 BANNERS: el panel ahora incluye 📢 Banners publicitarios. Ejecuta supabase-reparacion.sql para crear advertising_banners. Las imágenes se introducen por URL, con duración, orden, enlace y activo.
+
+
+VERSION 6 - BANNERS VISIBLES EN EL PANEL
+-----------------------------------------
+Ahora aparece un botón destacado "📢 BANNERS PUBLICITARIOS"
+debajo del menú del panel y una tarjeta en Dashboard.
+También puede abrirse directamente con:
+  /admin/panel.html#banners
+  /admin/panel.html?seccion=banners
+
+Ejecuta supabase-reparacion.sql para asegurar advertising_banners.
