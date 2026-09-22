@@ -1,8 +1,9 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Jóvenes Influencers del Señor | Comunicación al servicio de Dios</title><meta name="description" content="Información, formación y evangelización digital desde la Iglesia católica."><meta property="og:title" content="Jóvenes Influencers del Señor"><meta property="og:description" content="Comunicación al servicio de Dios."><meta property="og:image" content="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png"><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/estilos.css"></head><body>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Jóvenes Influencers del Señor | Comunicación al servicio de Dios</title><meta name="description" content="Información, formación y evangelización digital desde la Iglesia católica."><meta property="og:title" content="Jóvenes Influencers del Señor"><meta property="og:description" content="Comunicación al servicio de Dios."><meta property="og:image" content="https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png"><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/estilos.css"><link rel="stylesheet" href="/publicidad.css"></head><body>
 <header class="header"><div class="container bar"><a class="brand" href="/"><img data-logo alt="Logo"><span>Jóvenes Influencers<br><small>del Señor</small></span></a><button class="menu" id="menuBtn">☰</button><nav class="nav" id="nav"><a data-nav href="/">Inicio</a><a data-nav href="/iglesia-al-dia/">Iglesia al Día</a><a data-nav href="/programas/">Programas</a><a data-nav href="/en-vivo/">En Vivo</a><a data-nav href="/64-datos/">64 Datos</a><a data-nav href="/diocesis/">Diócesis</a><a data-nav href="/editorial/">Editorial</a><a data-nav href="/quienes-somos/">Quiénes somos</a><a href="/admin/login.html">🔐 Iniciar sesión</a></nav></div></header>
 <main>
 <section class="hero"><div class="container hero-grid"><div><p class="eyebrow">MEDIO CATÓLICO DE COMUNICACIÓN</p><h1>Jóvenes Influencers del Señor</h1><p class="lead">Comunicación al servicio de Dios. Información, formación y evangelización digital desde la Iglesia.</p><a class="btn" href="/iglesia-al-dia/">Ver noticias</a><a class="btn alt" href="/en-vivo/">🔴 En Vivo</a></div><div class="hero-logo"><img data-logo alt="Jóvenes Influencers del Señor"></div></div></section>
 <section class="live-section"><div class="container"><div class="section-head"><div><p class="eyebrow">SEÑAL EN VIVO</p><h2>Transmisión</h2></div><span id="liveBadge" class="live-badge hidden"><span class="dot"></span> EN VIVO</span></div><div id="liveNotice" class="notice">Consultando la señal...</div><div id="livePlayer" class="live-player hidden" style="margin-top:18px"><div id="playerTarget"></div><div id="liveProgram" class="live-meta"></div></div></div></section>
+<section class="publicidad-section" id="publicidad"><div class="container"><div class="section-head"><div><p class="eyebrow">PUBLICIDAD</p><h2>Publicidad</h2></div></div><div class="publicidad-slider" id="publicidadSlider"><div class="publicidad-loading">Cargando publicidad...</div></div></div></section>
 <section class="section"><div class="container"><div class="special"><div><p class="eyebrow">ESPECIAL · OCTUBRE 2026</p><h2>64 Datos Históricos</h2><p class="intro">Un recorrido audiovisual por la historia de la Diócesis de Ocaña.</p><a class="btn" href="/64-datos/">Entrar al especial</a></div><img src="https://i.ibb.co/HfhqmYQs/file-000000006d4c81f5b9452f237ee19824.png" alt="64 Datos Históricos"></div></div></section>
 <section class="section gray"><div class="container"><div class="section-head"><div><p class="eyebrow">ACTUALIDAD</p><h2>Últimas noticias</h2></div><a class="btn alt" href="/iglesia-al-dia/">Ver todas</a></div><div class="category-tabs"><a href="/iglesia-al-dia/?categoria=diocesis">Diócesis de Ocaña</a><a href="/iglesia-al-dia/?categoria=nacionales">Noticias nacionales</a><a href="/iglesia-al-dia/?categoria=internacionales">Noticias internacionales</a><a href="/iglesia-al-dia/?categoria=vaticano">Noticias del Vaticano</a></div><div id="homeNews" class="news-grid"></div></div></section>
 <section class="section"><div class="container"><p class="eyebrow">CONTENIDO</p><h2>Explora nuestro sitio</h2><div class="cards"><a class="card" href="/iglesia-al-dia/"><h3>📰 Iglesia al Día</h3><p>Noticias diocesanas, nacionales, internacionales y del Vaticano.</p></a><a class="card" href="/programas/"><h3>🎬 Programas</h3><p>Los 11 programas y sus episodios.</p></a><a class="card" href="/en-vivo/"><h3>🔴 En Vivo</h3><p>Reproductor para la señal activa.</p></a><a class="card" href="/64-datos/"><h3>✝️ 64 Datos</h3><p>Historia y memoria de la Diócesis.</p></a><a class="card" href="/diocesis/"><h3>⛪ Diócesis</h3><p>Historia, parroquias y contenidos diocesanos.</p></a><a class="card" href="/editorial/"><h3>✍️ Editorial</h3><p>Artículos y reflexión.</p></a></div></div></section>
@@ -10,4 +11,37 @@
 <script src="/config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/common.js"></script><script>
 (async()=>{const n=document.getElementById('liveNotice'),p=document.getElementById('livePlayer'),b=document.getElementById('liveBadge'),target='playerTarget',meta=document.getElementById('liveProgram');try{const sb=await JIS.supa();const r=await sb.from('live_streams').select('*').eq('active',true).eq('show_live',true).order('updated_at',{ascending:false}).limit(1).maybeSingle();if(r.error)throw r.error;if(r.data){n.classList.add('hidden');p.classList.remove('hidden');b.classList.remove('hidden');JIS.playerMarkup(r.data,target);meta.textContent=r.data.program_name||r.data.title||'Transmisión en vivo';}else n.textContent='La señal no está activa en este momento.';}catch(e){console.error(e);n.textContent='No se pudo consultar la señal. Verifica las políticas de lectura de live_streams en Supabase.'}
 try{const sb=await JIS.supa();const r=await sb.from('news').select('id,title,slug,excerpt,image_url,category,author_name,published_at').eq('published',true).order('published_at',{ascending:false}).limit(6);const box=document.getElementById('homeNews');if(r.error)throw r.error;box.innerHTML=(r.data||[]).map(x=>`<a class="news-card" href="/iglesia-al-dia/noticia/${encodeURIComponent(x.slug||x.id)}"><img src="${JIS.esc(x.image_url||'/favicon.svg')}" alt=""><div class="body"><span class="tag">${JIS.esc(x.category||'Noticias')}</span><h3>${JIS.esc(x.title)}</h3><p>${JIS.esc(x.excerpt||'Leer noticia')}</p></div></a>`).join('')||'<div class="notice">Todavía no hay noticias publicadas.</div>';}catch(e){document.getElementById('homeNews').innerHTML='<div class="notice">No se pudieron cargar las noticias.</div>'}})();
-</script></body></html>
+</script><script>
+(async function(){
+  const section=document.getElementById('publicidad');
+  const slider=document.getElementById('publicidadSlider');
+  if(!section||!slider)return;
+  try{
+    const sb=await JIS.supa();
+    const r=await sb.from('advertising_banners').select('id,title,image_url,link_url,duration_seconds,sort_order,active,created_at').eq('active',true).order('sort_order',{ascending:true}).order('created_at',{ascending:true});
+    if(r.error)throw r.error;
+    const data=r.data||[];
+    if(!data.length){section.style.display='none';return;}
+    slider.innerHTML=data.map((b,i)=>{
+      const img='<img src="'+JIS.esc(b.image_url||'')+'" alt="'+JIS.esc(b.title||'Publicidad')+'">';
+      const content=b.link_url?'<a href="'+JIS.esc(b.link_url)+'" target="_blank" rel="noopener noreferrer">'+img+'</a>':img;
+      return '<div class="publicidad-slide '+(i===0?'active':'')+'">'+content+'</div>';
+    }).join('');
+    if(data.length===1)return;
+    let i=0;
+    const next=()=>{
+      const slides=slider.querySelectorAll('.publicidad-slide');
+      if(!slides.length)return;
+      slides[i].classList.remove('active');
+      i=(i+1)%slides.length;
+      slides[i].classList.add('active');
+      setTimeout(next,Math.max(1000,Number(data[i].duration_seconds)||5000));
+    };
+    setTimeout(next,Math.max(1000,Number(data[0].duration_seconds)||5000));
+  }catch(e){
+    console.error('Publicidad:',e);
+    section.style.display='none';
+  }
+})();
+</script>
+</body></html>
