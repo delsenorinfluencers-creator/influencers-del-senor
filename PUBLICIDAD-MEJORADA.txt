@@ -1,0 +1,6 @@
+PUBLICIDAD MEJORADA
+- El título "Publicidad" aparece una sola vez.
+- El banner mantiene proporción 1983 x 793.
+- Transición Fade suave entre anuncios.
+- Diseño responsive para PC y celular.
+- Se eliminó el CSS que podía aparecer como texto visible.

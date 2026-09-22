@@ -1,17 +1,25 @@
-/* Banner publicitario con transición Fade */
-
+/* PUBLICIDAD - banner 1983 x 793 */
 .publicidad-section {
   width: 100%;
-  padding: 25px 0;
+  padding: 28px 0 34px;
+}
+
+.publicidad-heading {
+  margin-bottom: 16px;
+}
+
+.publicidad-heading h2 {
+  margin: 0;
 }
 
 .publicidad-slider {
   position: relative;
   width: 100%;
-  height: 220px;
+  aspect-ratio: 1983 / 793;
   overflow: hidden;
   border-radius: 18px;
-  background: #f1f1f1;
+  background: #f4f4f1;
+  box-shadow: 0 8px 28px rgba(0,0,0,.08);
 }
 
 .publicidad-slide {
@@ -21,7 +29,7 @@
   height: 100%;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.7s ease-in-out, visibility 0.7s ease-in-out;
+  transition: opacity .75s ease-in-out, visibility .75s ease-in-out;
 }
 
 .publicidad-slide.active {
@@ -40,20 +48,25 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 18px;
+  object-position: center;
+}
+
+.publicidad-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+  font-size: 1rem;
 }
 
 @media (max-width: 768px) {
-  .publicidad-section { padding: 18px 0; }
-  .publicidad-slider { height: 160px; border-radius: 12px; }
-  .publicidad-slide img { border-radius: 12px; }
+  .publicidad-section { padding: 20px 0 26px; }
+  .publicidad-slider { border-radius: 12px; }
 }
 
 @media (max-width: 480px) {
-  .publicidad-slider { height: 120px; border-radius: 10px; }
-  .publicidad-slide img { border-radius: 10px; }
+  .publicidad-section { padding: 16px 0 22px; }
+  .publicidad-slider { border-radius: 10px; }
 }
-.publicidad-loading{height:100%;display:flex;align-items:center;justify-content:center;color:#777;padding:40px}
-.publicidad-section .section-head{margin-bottom:12px}
-.publicidad-loading{height:100%;display:flex;align-items:center;justify-content:center;color:#777;padding:40px}
-.publicidad-section .section-head{margin-bottom:12px}
