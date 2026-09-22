@@ -5,3 +5,36 @@ DROP POLICY IF EXISTS about_us_admin_all ON public.about_us;
 CREATE POLICY about_us_public_select ON public.about_us FOR SELECT TO anon, authenticated USING (published = true);
 CREATE POLICY about_us_admin_all ON public.about_us FOR ALL TO authenticated USING (EXISTS (SELECT 1 FROM public.admins WHERE admins.id = auth.uid())) WITH CHECK (EXISTS (SELECT 1 FROM public.admins WHERE admins.id = auth.uid()));
 NOTIFY pgrst, 'reload schema';
+
+DO $$
+BEGIN
+  IF EXISTS (SELECT 1 FROM public.about_us) THEN
+    UPDATE public.about_us
+    SET title='Quiénes somos',
+        content=$about$Influencers del Señor es un proyecto de evangelización digital en la Diócesis de Ocaña, nacido con el propósito de llevar el mensaje de Jesucristo a los nuevos espacios de encuentro: las redes sociales, los medios digitales y las plataformas de comunicación.
+
+Somos jóvenes misioneros digitales que, desde la fe, la creatividad y la comunicación, buscamos anunciar el Evangelio de una manera cercana, dinámica y actual, creando contenidos que inspiren, formen y acerquen a las personas a Dios.
+
+A través de diferentes estrategias y medios, desarrollamos contenidos de información, formación, reflexión, oración y entretenimiento con sentido cristiano, haciendo de cada publicación una oportunidad para evangelizar.
+
+Nuestro compromiso es “restaurar las redes”, entendiendo el mundo digital como un territorio de misión en el que también estamos llamados a ser testigos de Cristo.
+
+Influencers del Señor: 3 años restaurando las redes, con contenidos que evangelizan.$about$,
+        published=true,
+        updated_at=now()
+    WHERE id=(SELECT id FROM public.about_us ORDER BY id LIMIT 1);
+  ELSE
+    INSERT INTO public.about_us(title,content,published)
+    VALUES ('Quiénes somos',$about$Influencers del Señor es un proyecto de evangelización digital en la Diócesis de Ocaña, nacido con el propósito de llevar el mensaje de Jesucristo a los nuevos espacios de encuentro: las redes sociales, los medios digitales y las plataformas de comunicación.
+
+Somos jóvenes misioneros digitales que, desde la fe, la creatividad y la comunicación, buscamos anunciar el Evangelio de una manera cercana, dinámica y actual, creando contenidos que inspiren, formen y acerquen a las personas a Dios.
+
+A través de diferentes estrategias y medios, desarrollamos contenidos de información, formación, reflexión, oración y entretenimiento con sentido cristiano, haciendo de cada publicación una oportunidad para evangelizar.
+
+Nuestro compromiso es “restaurar las redes”, entendiendo el mundo digital como un territorio de misión en el que también estamos llamados a ser testigos de Cristo.
+
+Influencers del Señor: 3 años restaurando las redes, con contenidos que evangelizan.$about$,true);
+  END IF;
+END $$;
+
+NOTIFY pgrst, 'reload schema';
