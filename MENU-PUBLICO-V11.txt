@@ -1,0 +1,6 @@
+MENÚ PÚBLICO V11
+- Navegación centrada y ordenada en PC.
+- Menú responsive en celular con botón ☰.
+- Enlaces en columna en pantallas pequeñas.
+- Barra sticky para conservar el menú visible.
+- Se conservan las rutas públicas existentes.
