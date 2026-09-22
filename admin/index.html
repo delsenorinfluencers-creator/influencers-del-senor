@@ -25,7 +25,14 @@ html,body{margin:0!important;min-height:100%;overflow-x:hidden}
 }
 .banner-preview{width:180px;aspect-ratio:1983/793; height:auto;object-fit:cover;border-radius:10px;border:1px solid #ddd}
 </style>
-</head><body><div id="root">Cargando panel...</div>
+</head><body>
+<a id="btn-ver-pagina" href="../index.html" target="_blank"
+   style="display:inline-flex;align-items:center;gap:8px;margin:10px 0;
+          padding:10px 16px;border-radius:10px;background:#5d7d42;color:#fff;
+          text-decoration:none;font-weight:700;box-shadow:0 3px 10px rgba(0,0,0,.12);">
+  🌐 Ver página
+</a>
+<div id="root">Cargando panel...</div>
 <script src="/config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/common.js"></script><script>
 (async()=>{
  const root=document.getElementById('root');const sb=await JIS.supa();

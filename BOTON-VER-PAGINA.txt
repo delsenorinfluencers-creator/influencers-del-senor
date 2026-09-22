@@ -1,0 +1,5 @@
+BOTÓN VER PÁGINA
+=================
+El panel administrativo incluye un botón "🌐 Ver página".
+Al pulsarlo abre la página pública en una pestaña nueva.
+La ruta usa ../index.html desde las páginas del directorio admin.
