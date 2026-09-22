@@ -17,3 +17,10 @@ CORRECCIONES:
 
 NOTA:
 Este paquete corrige el panel y los errores de esquema mostrados. Las políticas RLS de cada tabla deben permitir al administrador autenticado leer/escribir. No se incluye ninguna clave secreta de Supabase.
+
+
+ACTUALIZACION - SLUG DE NOTICIAS
+- Al escribir el título de una noticia, el campo Slug se genera automáticamente.
+- El Slug se normaliza: minúsculas, sin tildes y palabras separadas por guiones.
+- Al guardar, el panel vuelve a generarlo desde el título para evitar inconsistencias.
+- El SQL agrega la columna news.slug si no existe y también crea un trigger en Supabase para generarlo automáticamente desde la base de datos.

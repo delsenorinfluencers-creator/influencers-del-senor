@@ -32,3 +32,24 @@ from information_schema.columns
 where table_schema='public'
 and table_name in ('admins','news','programs','episodes','live_streams','historical_64','diocese','parishes','team_members','editorials','site_settings')
 order by table_name,ordinal_position;
+
+
+-- Slug automático para noticias
+alter table if exists public.news add column if not exists slug text;
+
+-- Genera el slug automáticamente cuando se inserta o modifica el título de una noticia.
+create or replace function public.generate_news_slug() returns trigger
+language plpgsql as $$
+begin
+  if new.title is not null then
+    new.slug := lower(trim(regexp_replace(translate(new.title, 'áéíóúÁÉÍÓÚñÑüÜ', 'aeiouAEIOUnNuU'), '[^a-zA-Z0-9]+', '-', 'g')));
+    new.slug := trim(both '-' from new.slug);
+  end if;
+  return new;
+end;
+$$;
+
+drop trigger if exists news_generate_slug on public.news;
+create trigger news_generate_slug
+before insert or update of title on public.news
+for each row execute function public.generate_news_slug();
