@@ -1,37 +1,32 @@
-PANEL REPARADO - JÓVENES INFLUENCERS DEL SEÑOR
+PANEL ADMINISTRATIVO ACTUALIZADO
+Jóvenes Influencers del Señor
 
-Incluye:
-- panel administrativo con barra lateral fija en PC;
-- versión adaptable a celular;
-- opción visible "🖼️ Banner publicitario";
-- carga de banners mediante URL;
-- duración configurable, por defecto 5 segundos;
-- no envía "true" a columnas integer en la configuración;
-- compatibilidad con SUPABASE_PUBLISHABLE_KEY y SUPABASE_KEY;
-- favicon del panel conservado.
+CAMBIOS
+1. Panel fijo en PC: la barra lateral queda fija y el contenido se desplaza sin mover el menú.
+2. Celular: menú tipo hamburguesa, lateral desplegable y fondo de cierre. El contenido ocupa todo el ancho.
+3. Botón “↻ Actualizar” y actualización automática del dashboard cada 30 segundos.
+4. Nueva opción visible en el menú: “🖼️ Publicidad / Banner”.
+5. Publicidad por URL, duración configurable (5 segundos por defecto), listado y eliminación.
+6. Configuración reparada: ya NO utiliza la tabla de configuración antigua que provocaba “invalid input syntax for type integer: \"true\"”. Usa public.site_settings y guarda valores como texto; show_ads se guarda como 1/0.
+7. Se mantiene el favicon/logo del panel.
 
-IMPORTANTE
-Este paquete se construyó a partir del panel que fue proporcionado en la conversación. No contiene las demás páginas privadas de tu proyecto que no fueron adjuntadas.
+PASOS
+A) En Supabase > SQL Editor ejecuta COMPLETO:
+   supabase_reparacion.sql
 
-TABLA PARA BANNERS
-Si todavía no tienes la tabla banners en Supabase, ejecuta:
+B) Sube/reemplaza:
+   /admin/panel.html
+   /config.js
 
-create table if not exists public.banners (
-  id uuid primary key default gen_random_uuid(),
-  image_url text not null,
-  duration_seconds integer not null default 5,
-  created_at timestamptz not null default now()
-);
+C) Haz un redeploy en Vercel.
 
-Luego habilita RLS según tus políticas de administración.
+D) En el navegador usa Ctrl+F5 para limpiar la versión anterior.
 
-Para que el panel pueda insertar/eliminar, la sesión del administrador debe tener una política RLS que lo permita.
+PUBLICIDAD
+En Panel > 🖼️ Publicidad / Banner:
+- pega la URL directa de la imagen (JPG/PNG/WebP),
+- deja 5 segundos o cambia la duración,
+- pulsa “Agregar publicidad”.
 
-ERROR "invalid input syntax for type integer: true"
-Ese error no debe solucionarse enviando true a una columna integer. La columna debe recibir un número (por ejemplo 1/0) o, si conceptualmente es verdadero/falso, debe ser boolean. La estructura exacta de la tabla de configuración no estaba incluida en el archivo proporcionado, por eso este panel no inventa nombres ni tipos de columnas.
-
-INSTALACIÓN
-1. Reemplaza admin/panel.html por el panel.html incluido.
-2. Mantén tu config.js en la raíz.
-3. El config.js incluido usa la clave pública que ya proporcionaste.
-4. Si tu panel está en /admin/panel.html, conserva config.js en la raíz para que ../config.js funcione.
+NOTA
+Una URL de página de Google Drive no es una URL directa de imagen. Para banners usa una URL que termine en .jpg, .jpeg, .png o .webp o una URL pública de un CDN/Storage.
