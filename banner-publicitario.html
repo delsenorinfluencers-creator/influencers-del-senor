@@ -1,27 +1,3 @@
-<style id="banner-publicitario-1983x793">
-
-/* Banner publicitario 1983 x 793 */
-.banner-publicitario,
-.advertising-banner,
-.banner-carousel,
-.banner-slider,
-.banner-slide {
-  width: 100%;
-  aspect-ratio: 1983 / 793;
-  overflow: hidden;
-}
-.banner-publicitario img,
-.advertising-banner img,
-.banner-carousel img,
-.banner-slider img,
-.banner-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-</style>
 <!-- BANNER PUBLICITARIO -->
 <section class="publicidad-section" id="publicidad">
   <div class="container">
@@ -109,4 +85,23 @@ async function cargarBannersPublicitarios() {
 document.addEventListener("DOMContentLoaded", cargarBannersPublicitarios);
 </script>
 
-
+/* BANNER PUBLICITARIO: proporción exacta 1983 x 793 */
+.banner-publicitario,
+.advertising-banner,
+.banner-carousel,
+.banner-slider,
+.banner-slide {
+  width: 100%;
+  aspect-ratio: 1983 / 793;
+  overflow: hidden;
+}
+.banner-publicitario img,
+.advertising-banner img,
+.banner-carousel img,
+.banner-slider img,
+.banner-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
