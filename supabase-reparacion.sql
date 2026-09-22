@@ -61,3 +61,34 @@ for each row execute function public.generate_news_slug();
 -- en:
 -- https://drive.google.com/uc?export=download&id=FILE_ID
 -- No hace falta almacenar una segunda columna.
+
+
+-- SUPABASE STORAGE PARA IMÁGENES DE EN VIVO
+-- Si el bucket ya existe, no se recrea.
+insert into storage.buckets (id, name, public)
+values ('live-images', 'live-images', true)
+on conflict (id) do update set public = true;
+
+drop policy if exists "live-images public read" on storage.objects;
+create policy "live-images public read"
+on storage.objects for select
+using (bucket_id = 'live-images');
+
+drop policy if exists "live-images authenticated upload" on storage.objects;
+create policy "live-images authenticated upload"
+on storage.objects for insert
+to authenticated
+with check (bucket_id = 'live-images');
+
+drop policy if exists "live-images authenticated update" on storage.objects;
+create policy "live-images authenticated update"
+on storage.objects for update
+to authenticated
+using (bucket_id = 'live-images')
+with check (bucket_id = 'live-images');
+
+drop policy if exists "live-images authenticated delete" on storage.objects;
+create policy "live-images authenticated delete"
+on storage.objects for delete
+to authenticated
+using (bucket_id = 'live-images');

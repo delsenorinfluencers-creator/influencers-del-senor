@@ -36,3 +36,12 @@ El panel lo convierte automáticamente a:
 https://drive.google.com/uc?export=download&id=1pU59WNaYLllFXcXtOJW_XzgnZ34P1OZw
 
 La conversión se realiza antes de guardar en live_streams.loop_url.
+
+
+CARGA DE IMAGENES DE EN VIVO
+-----------------------------
+1. Ejecuta supabase-reparacion.sql en Supabase.
+2. El SQL crea el bucket público "live-images" y políticas para usuarios autenticados.
+3. En Panel > En Vivo > Imagen de la transmisión, selecciona JPG/PNG/WEBP/GIF.
+4. Al guardar, el archivo se sube a Storage/live-images/live/ y la URL pública se guarda en live_streams.image_url.
+5. Máximo recomendado: 8 MB.

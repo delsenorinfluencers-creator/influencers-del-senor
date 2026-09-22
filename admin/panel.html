@@ -101,6 +101,28 @@ function normalizePayload(table,payload){
   return payload;
 }
 
+
+async function uploadLiveImage(file){
+  if(!file) return "";
+  const allowed=["image/jpeg","image/png","image/webp","image/gif"];
+  if(!allowed.includes(file.type)) throw new Error("La imagen debe ser JPG, PNG, WEBP o GIF.");
+  if(file.size > 8*1024*1024) throw new Error("La imagen no puede superar 8 MB.");
+  const ext=(file.name.split(".").pop()||"jpg").toLowerCase();
+  const safe=crypto.randomUUID()+"."+ext;
+  const path="live/"+safe;
+  const up=await sb.storage.from("live-images").upload(path,file,{upsert:false,contentType:file.type});
+  if(up.error) throw up.error;
+  const pub=sb.storage.from("live-images").getPublicUrl(path);
+  return pub.data.publicUrl;
+}
+function liveImageField(value){
+  return `<div class="field full"><label>Imagen de la transmisión</label>
+    <input id="liveImageFile" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
+    <small class="muted">Se subirá automáticamente a Supabase Storage (bucket: live-images).</small>
+    ${value?`<img id="liveImagePreview" src="${esc(value)}" style="display:block;max-width:320px;max-height:180px;object-fit:cover;border-radius:10px;margin-top:8px">`:`<img id="liveImagePreview" style="display:none;max-width:320px;max-height:180px;object-fit:cover;border-radius:10px;margin-top:8px">`}
+  </div>`;
+}
+
 function openEditor(table,row){
  const keys=Object.keys(row||{}).filter(k=>!["id","created_at","updated_at"].includes(k));
  if(!keys.length){return msg("La tabla no tiene columnas editables visibles en un registro. Crea primero un registro desde Supabase o dime su estructura para preparar el formulario.",false);}
@@ -121,7 +143,14 @@ window.closeEditor=()=>document.getElementById("editorModal")?.remove();
 window.saveEditor=async function(table,id){
  const payload={};document.querySelectorAll("#editorModal [data-k]").forEach(el=>{payload[el.dataset.k]=el.type==="checkbox"?el.checked:el.value;});
  if(table==="news"&&payload.title!==undefined)payload.slug=slugify(payload.title);
- normalizePayload(table,payload); let r=id?await sb.from(table).update(payload).eq("id",id):await sb.from(table).insert(payload);
+ if(table==="live_streams"){
+  const file=document.getElementById("liveImageFile")?.files?.[0];
+  if(file){
+    try{ payload.image_url=await uploadLiveImage(file); }
+    catch(e){ return msg("No se pudo subir la imagen: "+(e.message||e),false); }
+  }
+}
+normalizePayload(table,payload); let r=id?await sb.from(table).update(payload).eq("id",id):await sb.from(table).insert(payload);
  if(r.error)return msg(r.error.message,false);closeEditor();msg(table==="news"?"Noticia guardada. Slug generado automáticamente.":"Guardado correctamente.");show(state.current);
 };
 window.newRecord=async function(table){
