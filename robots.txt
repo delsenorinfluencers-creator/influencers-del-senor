@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
-Sitemap: https://influencersdelsenor.com/sitemap.xml
+Sitemap: https://influencers-del-senor.com/sitemap.xml
