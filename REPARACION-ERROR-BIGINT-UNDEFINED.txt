@@ -1,0 +1,17 @@
+REPARACIÓN DEL ERROR:
+invalid input syntax for type bigint: "undefined"
+
+CAUSA:
+Cuando "Quiénes somos" no tiene todavía una fila, el panel abría un objeto vacío
+y al guardar intentaba ejecutar .eq('id', undefined) contra about_us.id (bigint).
+
+CORRECCIÓN:
+El panel ahora comprueba que exista un ID real.
+- Si existe ID: UPDATE.
+- Si no existe ID: INSERT.
+Así se puede crear el primer registro de Quiénes somos sin enviar "undefined".
+
+También:
+- Se eliminó footer_creator de Configuración.
+- Se eliminó la entrada duplicada de Quiénes somos.
+- Se eliminó CSS que pudiera quedar fuera del HTML.

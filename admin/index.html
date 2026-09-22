@@ -25,57 +25,6 @@ html,body{margin:0!important;min-height:100%;overflow-x:hidden}
 }
 .banner-preview{width:180px;aspect-ratio:1983/793; height:auto;object-fit:cover;border-radius:10px;border:1px solid #ddd}
 </style>
-
-<style id="menu-pagina-v11">
-/* Menú público v11: limpio, centrado, responsive y accesible */
-.site-header, header{
-  position:sticky;top:0;z-index:900;
-  background:rgba(255,255,255,.97);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(0,0,0,.08);
-}
-.site-nav, nav.main-nav, header nav{
-  width:100%;max-width:1200px;margin:0 auto;
-  display:flex;align-items:center;justify-content:center;
-  gap:6px;padding:10px 16px;
-  flex-wrap:wrap;
-}
-.site-nav a, nav.main-nav a, header nav a{
-  display:inline-flex;align-items:center;justify-content:center;
-  min-height:42px;padding:9px 14px;border-radius:10px;
-  color:inherit;text-decoration:none;font-weight:700;
-  white-space:nowrap;transition:.2s ease;
-}
-.site-nav a:hover, nav.main-nav a:hover, header nav a:hover{
-  background:rgba(93,125,66,.12);
-}
-.menu-toggle{
-  display:none;border:0;background:#5d7d42;color:#fff;
-  border-radius:10px;padding:10px 14px;font-weight:800;cursor:pointer;
-}
-@media(max-width:900px){
-  .menu-toggle{display:inline-flex;align-items:center;gap:7px}
-  .site-nav, nav.main-nav, header nav{
-    justify-content:flex-start;
-    max-width:none;
-    padding:8px 12px;
-  }
-  .site-nav .nav-links, nav.main-nav .nav-links, header nav .nav-links{
-    display:none;width:100%;flex-direction:column;align-items:stretch;
-    padding-top:8px;
-  }
-  .site-nav.open .nav-links, nav.main-nav.open .nav-links,
-  header nav.open .nav-links{display:flex}
-  .site-nav a, nav.main-nav a, header nav a{
-    width:100%;justify-content:flex-start;
-    min-height:46px;
-  }
-}
-@media(max-width:520px){
-  .site-header, header{position:sticky}
-  .site-nav, nav.main-nav, header nav{padding:7px 10px}
-}
-</style>
 </head><body>
 <a id="btn-ver-pagina" href="../index.html" target="_blank"
    style="display:inline-flex;align-items:center;gap:8px;margin:10px 0;
@@ -100,7 +49,6 @@ html,body{margin:0!important;min-height:100%;overflow-x:hidden}
   parishes:{label:'⛪ Parroquias',table:'parishes',title:'Parroquias',fields:[['name','Nombre','text',true],['location','Ubicación','text'],['description','Descripción','textarea'],['image_url','Imagen','url'],['published','Publicado','checkbox']]},
   team:{label:'👥 Integrantes',table:'team_members',title:'Integrantes',fields:[['name','Nombre','text',true],['role','Cargo / función','text'],['biography','Biografía','textarea'],['photo_url','Foto','url'],['facebook_url','Facebook','url'],['instagram_url','Instagram','url'],['youtube_url','YouTube','url'],['published','Publicado','checkbox'],['sort_order','Orden','number']]},
   about:{label:'ℹ️ Quiénes somos',table:'about_us',title:'Quiénes somos',single:true,fields:[['title','Título','text',true],['content','Contenido','textarea',true],['mission','Misión','textarea'],['vision','Visión','textarea'],['image_url','Imagen','url'],['published','Publicado','checkbox']]},
-  about:{label:'ℹ️ Quiénes somos',table:'about_us',title:'Quiénes somos',single:true,fields:[['title','Título','text',true],['content','Contenido','textarea',true],['mission','Misión','textarea'],['vision','Visión','textarea'],['image_url','Imagen','url'],['published','Publicado','checkbox']]},
   editorial:{label:'✍️ Editorial',table:'editorials',title:'Editorial',fields:[['title','Título','text',true],['slug','Slug','text'],['content','Contenido','textarea'],['image_url','Imagen','url'],['author_name','Autor','text'],['published_at','Fecha','datetime-local'],['published','Publicado','checkbox']]},
   admins:{label:'👤 Usuarios / administradores',table:'admins',title:'Administradores',fields:[['id','UUID del usuario','text',true],['email','Correo','text'],['role','Rol','select',['admin','editor']]]},
   banners:{label:'📢 Publicidad / Banner',table:'advertising_banners',title:'Publicidad / Banners',fields:[
@@ -124,13 +72,10 @@ html,body{margin:0!important;min-height:100%;overflow-x:hidden}
  if(m.single&&rows[0])openForm(key,rows[0],programs);else if(m.single&&!rows[0])openForm(key,{},programs);
  }catch(e){v.innerHTML=`<div class="panel"><div class="notice">${JIS.esc(e.message)}</div></div>`}}
  function slugify(value){return String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,140)}
- function openForm(key,row,programs){const m=modules[key],area=document.getElementById('formArea');area.innerHTML=`<div class="panel" style="margin:0 0 20px;background:#fbfaf6"><h2>${row?'Editar':'Nuevo'}</h2><form id="editForm" class="form-grid">${m.fields.map(f=>fieldHtml(f,row,programs)).join('')}<div class="field full"><div class="admin-actions"><button class="btn" type="submit">Guardar</button><button class="small-btn" type="button" id="cancelForm">Cancelar</button></div><div id="formMsg"></div></div></form></div>`;document.getElementById('cancelForm').onclick=()=>area.innerHTML='';if(key==='news'){const titleEl=document.getElementById('f_title'),slugEl=document.getElementById('f_slug');if(titleEl&&slugEl){slugEl.readOnly=true;titleEl.addEventListener('input',()=>slugEl.value=slugify(titleEl.value));if(!row)slugEl.value=slugify(titleEl.value);}}m.fields.filter(f=>['image_url','photo_url','logo_url','logo64_url'].includes(f[0])).forEach(f=>{const input=document.getElementById('up_'+f[0]);if(input)input.onchange=async()=>{if(!input.files[0])return;const file=input.files[0];const path='admin/'+Date.now()+'-'+file.name.replace(/[^a-zA-Z0-9._-]/g,'-');const up=await sb.storage.from('media').upload(path,file,{upsert:true,contentType:file.type});if(up.error){alert(up.error.message);return}const pub=sb.storage.from('media').getPublicUrl(path);document.getElementById('f_'+f[0]).value=pub.data.publicUrl;}});document.getElementById('editForm').onsubmit=async e=>{e.preventDefault();const obj={};for(const f of m.fields){const key=f[0],type=f[2],el=document.getElementById('f_'+key);if(key==='id'&&m.table!=='admins'&&m.table!=='historical_64')continue;if(type==='checkbox')obj[key]=el.checked;else if(type==='number')obj[key]=el.value===''?null:Number(el.value);else obj[key]=el.value||null;}if(m.table==='news'){obj.slug=slugify(obj.title);if(!obj.author_name)obj.author_name=session.user.email;}if(m.table==='news'&&obj.published&&!obj.published_at)obj.published_at=new Date().toISOString();if(m.table==='editorials'&&obj.published&&!obj.published_at)obj.published_at=new Date().toISOString();let r;if(row){
-   if(m.single){
-     const existingId=row.id;
-     r=await sb.from(m.table).update(obj).eq('id',existingId);
-   }else{
-     r=await sb.from(m.table).update(obj).eq('id',row.id);
-   }
+ function openForm(key,row,programs){const m=modules[key],area=document.getElementById('formArea');area.innerHTML=`<div class="panel" style="margin:0 0 20px;background:#fbfaf6"><h2>${row?'Editar':'Nuevo'}</h2><form id="editForm" class="form-grid">${m.fields.map(f=>fieldHtml(f,row,programs)).join('')}<div class="field full"><div class="admin-actions"><button class="btn" type="submit">Guardar</button><button class="small-btn" type="button" id="cancelForm">Cancelar</button></div><div id="formMsg"></div></div></form></div>`;document.getElementById('cancelForm').onclick=()=>area.innerHTML='';if(key==='news'){const titleEl=document.getElementById('f_title'),slugEl=document.getElementById('f_slug');if(titleEl&&slugEl){slugEl.readOnly=true;titleEl.addEventListener('input',()=>slugEl.value=slugify(titleEl.value));if(!row)slugEl.value=slugify(titleEl.value);}}m.fields.filter(f=>['image_url','photo_url','logo_url','logo64_url'].includes(f[0])).forEach(f=>{const input=document.getElementById('up_'+f[0]);if(input)input.onchange=async()=>{if(!input.files[0])return;const file=input.files[0];const path='admin/'+Date.now()+'-'+file.name.replace(/[^a-zA-Z0-9._-]/g,'-');const up=await sb.storage.from('media').upload(path,file,{upsert:true,contentType:file.type});if(up.error){alert(up.error.message);return}const pub=sb.storage.from('media').getPublicUrl(path);document.getElementById('f_'+f[0]).value=pub.data.publicUrl;}});document.getElementById('editForm').onsubmit=async e=>{e.preventDefault();const obj={};for(const f of m.fields){const key=f[0],type=f[2],el=document.getElementById('f_'+key);if(key==='id'&&m.table!=='admins'&&m.table!=='historical_64')continue;if(type==='checkbox')obj[key]=el.checked;else if(type==='number')obj[key]=el.value===''?null:Number(el.value);else obj[key]=el.value||null;}if(m.table==='news'){obj.slug=slugify(obj.title);if(!obj.author_name)obj.author_name=session.user.email;}if(m.table==='news'&&obj.published&&!obj.published_at)obj.published_at=new Date().toISOString();if(m.table==='editorials'&&obj.published&&!obj.published_at)obj.published_at=new Date().toISOString();let r;
+ const hasExistingId = !!(row && row.id !== undefined && row.id !== null && row.id !== '');
+ if(hasExistingId){
+   r=await sb.from(m.table).update(obj).eq('id',row.id);
  }else{
    r=await sb.from(m.table).insert(obj);
  }const msg=document.getElementById('formMsg');if(r.error){msg.className='notice';msg.textContent=r.error.message}else{area.innerHTML='<div class="notice">Guardado correctamente.</div>';setTimeout(()=>moduleView(key),500)}}}
@@ -142,24 +87,3 @@ document.querySelectorAll('.side button[data-mod]').forEach(b=>b.addEventListene
 show('dashboard');
 })();
 </script></body></html>
-
-/* BANNER PUBLICITARIO: proporción exacta 1983 x 793 */
-.banner-publicitario,
-.advertising-banner,
-.banner-carousel,
-.banner-slider,
-.banner-slide {
-  width: 100%;
-  aspect-ratio: 1983 / 793;
-  overflow: hidden;
-}
-.banner-publicitario img,
-.advertising-banner img,
-.banner-carousel img,
-.banner-slider img,
-.banner-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}

@@ -35,9 +35,11 @@ create table if not exists public.site_settings(
  youtube_url text,
  whatsapp text,
  site_description text,
+ footer_creator text default 'Gamarra TV',
  updated_at timestamptz default now()
 );
-insert into public.site_settings(id,site_name,logo_url,logo64_url,facebook_url) values (true,'Jóvenes Influencers del Señor','https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png','https://i.ibb.co/HfhqmYQs/file-000000006d4c81f5b9452f237ee19824.png','https://www.facebook.com/jovenesinfluencersdelsenor','Gamarra TV')
+insert into public.site_settings(id,site_name,logo_url,logo64_url,facebook_url,footer_creator)
+values(true,'Jóvenes Influencers del Señor','https://i.ibb.co/tw6GTfyV/Dise-o-sin-t-tulo-12.png','https://i.ibb.co/HfhqmYQs/file-000000006d4c81f5b9452f237ee19824.png','https://www.facebook.com/jovenesinfluencersdelsenor','Gamarra TV')
 on conflict(id) do nothing;
 
 create table if not exists public.news(
