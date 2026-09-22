@@ -92,3 +92,22 @@ create policy "live-images authenticated delete"
 on storage.objects for delete
 to authenticated
 using (bucket_id = 'live-images');
+
+
+-- BANNERS PUBLICITARIOS
+CREATE TABLE IF NOT EXISTS public.advertising_banners (
+    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+    title text,
+    image_url text NOT NULL,
+    link_url text,
+    duration_seconds integer NOT NULL DEFAULT 5,
+    sort_order integer NOT NULL DEFAULT 0,
+    active boolean NOT NULL DEFAULT true,
+    created_at timestamptz NOT NULL DEFAULT now(),
+    updated_at timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_advertising_banners_sort
+ON public.advertising_banners(sort_order);
+
+NOTIFY pgrst, 'reload schema';

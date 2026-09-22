@@ -31,7 +31,7 @@ const sections=[
 ["dashboard","📊 Dashboard"],["noticias","📰 Iglesia al Día"],["programas","🎬 Los 11 programas"],
 ["episodios","🎞️ Episodios"],["envivo","🔴 En Vivo"],["datos64","✝️ 64 Datos"],
 ["diocesis","⛪ Diócesis"],["parroquias","⛪ Parroquias"],["equipo","👥 Integrantes"],
-["editorial","✍️ Editorial"],["usuarios","👤 Usuarios / administradores"],["configuracion","⚙️ Configuración"]
+["editorial","✍️ Editorial"],["usuarios","👤 Usuarios / administradores"],["configuracion","⚙️ Configuración"],["banners","📢 Banners publicitarios"]
 ];
 const state={user:null,current:"dashboard"};
 function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));}
@@ -60,7 +60,7 @@ window.show=async function(name){
  document.getElementById("nav-"+name)?.classList.add("active");
  document.getElementById("section-title").textContent=(sections.find(s=>s[0]===name)||["","Panel"])[1];
  const c=document.getElementById("contenido-panel"); c.innerHTML='<div class="card">Cargando...</div>';
- try{await ({dashboard:dashboard,noticias:news,programas:programs,episodios:episodes,envivo:live,datos64:data64,diocesis:diocese,parroquias:parishes,equipo:team,editorial:editorial,usuarios:admins,configuracion:settings}[name]||dashboard)();}
+ try{await ({dashboard:dashboard,noticias:news,programas:programs,episodios:episodes,envivo:live,datos64:data64,diocesis:diocese,parroquias:parishes,equipo:team,editorial:editorial,usuarios:admins,configuracion:settings,banners:banners}[name]||dashboard)();}
  catch(e){c.innerHTML='<div class="card error">'+esc(e.message||e)+'</div>';}
 };
 window.mostrarSeccion=window.show;
@@ -174,6 +174,87 @@ const team=()=>section("team_members","👥 Integrantes","Nuevo integrante");
 const editorial=()=>section("editorials","✍️ Editorial","Nuevo artículo");
 const admins=()=>section("admins","👤 Usuarios / administradores","Nuevo administrador");
 const settings=()=>section("site_settings","⚙️ Configuración","Nueva configuración");
+
+async function banners(){
+  const data=await rows("advertising_banners");
+  const c=document.getElementById("contenido-panel");
+  c.innerHTML=`<div class="card">
+    <div class="toolbar">
+      <div>
+        <h2>📢 Banners publicitarios</h2>
+        <p class="muted">Una imagen a la vez, en el mismo espacio, con transición Fade. Las imágenes se agregan mediante URL.</p>
+      </div>
+      <button class="btn alt" onclick="newBanner()">＋ Nuevo banner</button>
+    </div>
+    <div class="notice">
+      <b>Funcionamiento:</b> cada banner permanece los segundos configurados y luego cambia suavemente al siguiente.
+      La duración predeterminada es de 5 segundos.
+    </div>
+    ${bannerTable(data)}
+  </div>`;
+}
+function bannerTable(data){
+  if(!data.length) return '<div class="notice">No hay banners. Pulsa <b>Nuevo banner</b> para agregar el primero.</div>';
+  return `<div class="table-wrap"><table class="data-table"><thead><tr>
+    <th>Imagen</th><th>Título</th><th>Duración</th><th>Orden</th><th>Activo</th><th>Acciones</th>
+  </tr></thead><tbody>${data.map(r=>`<tr>
+    <td><img src="${esc(r.image_url||"")}" style="width:140px;height:70px;object-fit:cover;border-radius:8px" onerror="this.style.display='none'"></td>
+    <td>${esc(r.title||"")}</td>
+    <td>${esc(r.duration_seconds??5)} s</td>
+    <td>${esc(r.sort_order??0)}</td>
+    <td>${r.active?"Sí":"No"}</td>
+    <td><button class="btn light" onclick='editBanner(${JSON.stringify(r)})'>Editar</button>
+    <button class="btn danger" onclick='deleteBanner(${JSON.stringify(r.id)})'>Eliminar</button></td>
+  </tr>`).join("")}</tbody></table></div>`;
+}
+window.newBanner=function(){openBannerEditor(null);};
+window.editBanner=function(row){openBannerEditor(row);};
+function openBannerEditor(row){
+  const r=row||{title:"",image_url:"",link_url:"",duration_seconds:5,sort_order:0,active:true};
+  document.getElementById("contenido-panel").insertAdjacentHTML("beforeend",`
+  <div class="modal open" id="bannerModal"><div class="modal-box">
+    <h2>${row?"Editar banner":"Nuevo banner"}</h2>
+    <div class="form-grid">
+      <div class="field full"><label>Título</label><input id="bannerTitle" value="${esc(r.title||"")}"></div>
+      <div class="field full"><label>Imagen URL *</label><input id="bannerImage" value="${esc(r.image_url||"")}" placeholder="https://.../imagen.jpg"></div>
+      <div class="field full"><label>Enlace al hacer clic (opcional)</label><input id="bannerLink" value="${esc(r.link_url||"")}" placeholder="https://..."></div>
+      <div class="field"><label>Duración (segundos)</label><input id="bannerDuration" type="number" min="1" value="${Number(r.duration_seconds)||5}"></div>
+      <div class="field"><label>Orden</label><input id="bannerOrder" type="number" value="${Number(r.sort_order)||0}"></div>
+      <div class="field"><label>Activo</label><input id="bannerActive" type="checkbox" ${r.active!==false?"checked":""}></div>
+    </div>
+    <div style="margin-top:12px"><img id="bannerPreview" src="${esc(r.image_url||"")}" style="max-width:100%;max-height:220px;border-radius:12px;${r.image_url?"":"display:none"}" onerror="this.style.display='none'"></div>
+    <div class="toolbar" style="margin-top:18px">
+      <button class="btn alt" onclick='saveBanner(${row?JSON.stringify(row.id):"null"})'>Guardar banner</button>
+      <button class="btn light" onclick="closeBanner()">Cancelar</button>
+    </div>
+  </div></div>`);
+  document.getElementById("bannerImage").addEventListener("input",e=>{
+    const p=document.getElementById("bannerPreview"); p.src=e.target.value; p.style.display=e.target.value?"block":"none";
+  });
+}
+window.closeBanner=()=>document.getElementById("bannerModal")?.remove();
+window.saveBanner=async function(id){
+  const image_url=document.getElementById("bannerImage").value.trim();
+  if(!image_url)return msg("Debes indicar la URL de la imagen.",false);
+  const payload={
+    title:document.getElementById("bannerTitle").value.trim(),
+    image_url,
+    link_url:document.getElementById("bannerLink").value.trim()||null,
+    duration_seconds:Math.max(1,parseInt(document.getElementById("bannerDuration").value||"5",10)),
+    sort_order:parseInt(document.getElementById("bannerOrder").value||"0",10),
+    active:document.getElementById("bannerActive").checked
+  };
+  const r=id?await sb.from("advertising_banners").update(payload).eq("id",id):await sb.from("advertising_banners").insert(payload);
+  if(r.error)return msg(r.error.message,false);
+  closeBanner(); msg("Banner guardado correctamente."); show("banners");
+};
+window.deleteBanner=async function(id){
+  if(!confirm("¿Eliminar este banner?"))return;
+  const r=await sb.from("advertising_banners").delete().eq("id",id);
+  if(r.error)return msg(r.error.message,false);
+  msg("Banner eliminado."); show("banners");
+};
+
 window.logout=async()=>{await sb.auth.signOut();location.href="./index.html";};
 init();
 })();
