@@ -1,0 +1,13 @@
+REPARACIÓN QUIÉNES SOMOS
+
+1. En Supabase abre SQL Editor.
+2. Ejecuta TODO el archivo REPARACION-DEFINITIVA-ABOUT-US.sql.
+3. La última consulta debe mostrar la tabla about_us y al menos una fila.
+4. Recarga Vercel y en el navegador usa Ctrl+F5.
+
+IMPORTANTE:
+- Integrantes sigue usando team_members.
+- Quiénes somos usa about_us.
+- No borres site_settings ni team_members.
+- Si Supabase muestra "Could not find the table public.about_us in the schema cache",
+  ejecuta este archivo completo; incluye NOTIFY pgrst, 'reload schema'.
