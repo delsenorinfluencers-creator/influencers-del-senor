@@ -1,0 +1,7 @@
+CORRECCIÓN DEL TEXTO CSS VISIBLE
+
+Se eliminó del HTML el bloque que empezaba con:
+BANNER PUBLICITARIO: proporción exacta 1983 x 793
+
+El CSS ahora está únicamente en publicidad.css, que ya está enlazado desde index.html.
+No hay que pegar CSS dentro del contenido de la página.
