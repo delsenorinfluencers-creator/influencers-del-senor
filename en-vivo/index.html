@@ -49,4 +49,28 @@
   .site-nav, nav.main-nav, header nav{padding:7px 10px}
 }
 </style>
+<style id="banner-publicitario-1983x793">
+
+/* Banner publicitario 1983 x 793 */
+.banner-publicitario,
+.advertising-banner,
+.banner-carousel,
+.banner-slider,
+.banner-slide {
+  width: 100%;
+  aspect-ratio: 1983 / 793;
+  overflow: hidden;
+}
+.banner-publicitario img,
+.advertising-banner img,
+.banner-carousel img,
+.banner-slider img,
+.banner-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+</style>
 </head><body><header class="header"><div class="container bar"><a class="brand" href="/"><img data-logo alt="Logo"><span>Jóvenes Influencers<br><small>del Señor</small></span></a><button class="menu" id="menuBtn">☰</button><nav class="nav" id="nav"><button class="menu-toggle" type="button" onclick="this.parentElement.classList.toggle(\'open\')">☰ Menú</button><div class="nav-links"><a data-nav href="/">Inicio</a><a data-nav href="/iglesia-al-dia/">Iglesia al Día</a><a data-nav href="/programas/">Programas</a><a data-nav href="/en-vivo/">En Vivo</a><a data-nav href="/64-datos/">64 Datos</a><a data-nav href="/diocesis/">Diócesis</a><a data-nav href="/editorial/">Editorial</a><a data-nav href="/quienes-somos/">Quiénes somos</a><a data-nav href="/integrantes/">Integrantes</a><a href="/admin/login.html">🔐 Iniciar sesión</a></div></nav></div></header><main><section class="hero"><div class="container"><p class="eyebrow">TRANSMISIÓN</p><h1><span class="dot"></span>En Vivo</h1><p class="lead">La señal se reproduce directamente en esta página cuando está activa.</p></div></section><section class="live-section"><div class="container"><div id="notice" class="notice">Consultando la señal...</div><div id="player" class="live-player hidden" style="margin-top:18px"><div id="target"></div><div id="program" class="live-meta"></div></div></div></section></main><footer><div class="container footer"><img data-logo alt="Logo"><div class="footer-center"><strong>Jóvenes Influencers del Señor</strong><p>Comunicación al servicio de Dios.</p><p>© <span data-year></span> Jóvenes Influencers del Señor</p><div class="footer-creator">Creado por <b>Gamarra TV</b></div></div></div></footer><script src="/config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/common.js"></script><script>(async()=>{const n=document.getElementById('notice'),p=document.getElementById('player');try{const sb=await JIS.supa();const r=await sb.from('live_streams').select('*').eq('active',true).eq('show_live_page',true).order('updated_at',{ascending:false}).limit(1).maybeSingle();if(r.error)throw r.error;if(!r.data){n.textContent='La señal no está activa en este momento.';return}n.classList.add('hidden');p.classList.remove('hidden');JIS.playerMarkup(r.data,'target');document.getElementById('program').textContent=r.data.program_name||r.data.title||'Transmisión en vivo';}catch(e){console.error(e);n.textContent='No se pudo consultar la señal. Verifica la tabla live_streams y sus políticas de lectura.'}})();</script></body></html>

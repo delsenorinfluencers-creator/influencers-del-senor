@@ -49,4 +49,28 @@
   .site-nav, nav.main-nav, header nav{padding:7px 10px}
 }
 </style>
+<style id="banner-publicitario-1983x793">
+
+/* Banner publicitario 1983 x 793 */
+.banner-publicitario,
+.advertising-banner,
+.banner-carousel,
+.banner-slider,
+.banner-slide {
+  width: 100%;
+  aspect-ratio: 1983 / 793;
+  overflow: hidden;
+}
+.banner-publicitario img,
+.advertising-banner img,
+.banner-carousel img,
+.banner-slider img,
+.banner-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+</style>
 </head><body><header class="header"><div class="container bar"><a class="brand" href="/"><img data-logo alt="Logo"><span>Jóvenes Influencers<br><small>del Señor</small></span></a><button class="menu" id="menuBtn">☰</button><nav class="nav" id="nav"><button class="menu-toggle" type="button" onclick="this.parentElement.classList.toggle(\'open\')">☰ Menú</button><div class="nav-links"><a data-nav href="/">Inicio</a><a data-nav href="/iglesia-al-dia/">Iglesia al Día</a><a data-nav href="/programas/">Programas</a><a data-nav href="/en-vivo/">En Vivo</a><a data-nav href="/64-datos/">64 Datos</a><a data-nav href="/diocesis/">Diócesis</a><a data-nav href="/editorial/">Editorial</a><a data-nav href="/quienes-somos/">Quiénes somos</a><a data-nav href="/integrantes/">Integrantes</a><a href="/admin/login.html">🔐 Iniciar sesión</a></div></nav></div></header><main><section class="hero"><div class="container"><p class="eyebrow">ACTUALIDAD</p><h1>Iglesia al Día</h1><p class="lead">Noticias de la Diócesis de Ocaña, Colombia, el mundo y el Vaticano.</p></div></section><section class="section"><div class="container"><div class="category-tabs"><a href="/iglesia-al-dia/">Todas</a><a href="?categoria=diocesis">Diócesis de Ocaña</a><a href="?categoria=nacionales">Noticias nacionales</a><a href="?categoria=internacionales">Noticias internacionales</a><a href="?categoria=vaticano">Noticias del Vaticano</a></div><div id="news" class="news-grid"></div></div></section></main><footer><div class="container footer"><img data-logo alt="Logo"><div class="footer-center"><strong>Jóvenes Influencers del Señor</strong><p>Comunicación al servicio de Dios.</p><p>© <span data-year></span> Jóvenes Influencers del Señor</p><div class="footer-creator">Creado por <b>Gamarra TV</b></div></div></div></footer><script src="/config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/common.js"></script><script>(async()=>{const box=document.getElementById('news');const p=new URLSearchParams(location.search).get('categoria');let cat=null;if(p==='diocesis')cat='Diócesis de Ocaña';if(p==='nacionales')cat='Noticias nacionales';if(p==='internacionales')cat='Noticias internacionales';if(p==='vaticano')cat='Noticias del Vaticano';try{const sb=await JIS.supa();let q=sb.from('news').select('*').eq('published',true).order('published_at',{ascending:false});if(cat)q=q.eq('category',cat);const r=await q;if(r.error)throw r.error;box.innerHTML=(r.data||[]).map(x=>`<a class="news-card" href="/iglesia-al-dia/noticia/${encodeURIComponent(x.slug||x.id)}"><img src="${JIS.esc(x.image_url||'/favicon.svg')}" alt=""><div class="body"><span class="tag">${JIS.esc(x.category||'Noticias')}</span><h3>${JIS.esc(x.title)}</h3><p>${JIS.esc(x.excerpt||'Leer noticia completa')}</p><small>${JIS.esc(x.author_name||'Redacción')} · ${x.published_at?new Date(x.published_at).toLocaleString('es-CO'):''}</small></div></a>`).join('')||'<div class="notice">No hay noticias publicadas en esta categoría.</div>'}catch(e){box.innerHTML='<div class="notice">No se pudieron cargar las noticias.</div>'}})();</script></body></html>
