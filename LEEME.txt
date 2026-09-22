@@ -12,3 +12,11 @@ JÓVENES INFLUENCERS DEL SEÑOR - VERSIÓN MEJORADA
 10. Todas las páginas conservan el mismo encabezado, menú, logo, favicon y pie de página. El pie muestra centrado © año Jóvenes Influencers del Señor y Creado por Gamarra TV.
 11. Si cambias el logo desde Configuración, las páginas públicas lo cargan desde site_settings; el favicon también se actualiza al logo configurado.
 12. Después de subir el proyecto a Vercel, haz un despliegue nuevo y limpia la caché del navegador con Ctrl+F5.
+
+CORRECCIÓN DE URL DE NOTICIAS
+- Las noticias generan automáticamente un slug a partir del título.
+- La URL pública queda /iglesia-al-dia/noticia/slug
+- La página de detalle también obtiene el slug directamente de la ruta, incluso si el rewrite no pasa el parámetro query.
+- Ejecuta supabase-slug-migration.sql una vez en Supabase para crear/backfillear la columna slug y el trigger.
+Ejemplo:
+/iglesia-al-dia/noticia/con-el-papa-en-francia-cubrimiento-especial-jovenes-influencers-del-senor-iglesia-al-dia
