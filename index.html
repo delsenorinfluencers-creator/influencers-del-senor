@@ -33,8 +33,8 @@
       allowfullscreen loading="eager"
       referrerpolicy="strict-origin-when-cross-origin"></iframe>
   </div>
-  <div class="home-live-program"><span class="eyebrow">HOY EN</span><h2>PROGRAMACIÓN</h2>
-    <p>Consulta la programación disponible.</p>
+  <div class="home-live-program"><div class="home-program-head"><div><span class="eyebrow">HOY EN GTV</span><h2>PROGRAMACIÓN</h2></div><span id="homeToday" class="home-day">HOY</span></div>
+    <div id="homeProgramList" class="home-program-list"><div class="program-loading">Cargando programación...</div></div>
     <a class="btn" href="/en-vivo/">Ver señal y programación →</a>
   </div>
 </div></div></section>
@@ -45,6 +45,52 @@
 </main><footer><div class="container footer"><img data-logo alt="Logo"><div class="footer-center"><strong>Jóvenes Influencers del Señor</strong><p>Comunicación al servicio de Dios.</p><p>© <span data-year></span> Jóvenes Influencers del Señor</p><div class="footer-creator">Creado por <b>Gamarra TV</b></div></div></div></footer>
 <script src="/config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/common.js"></script><script>
 // La señal En Vivo de portada usa directamente SSH101.
+</script><script>
+(async function(){
+  const box=document.getElementById('homeProgramList');
+  const dayBox=document.getElementById('homeToday');
+  if(!box)return;
+  const names=['DOM','LUN','MAR','MIÉ','JUE','VIE','SÁB'];
+  const today=new Date().getDay();
+  if(dayBox)dayBox.textContent=names[today];
+  try{
+    const sb=await JIS.supa();
+    const r=await sb.from('programs').select('id,name,description,image_url,sort_order,published,days_of_week,start_time,end_time').eq('published',true).order('sort_order',{ascending:true});
+    if(r.error)throw r.error;
+    const rows=(r.data||[]).filter(p=>{
+      const ds=String(p.days_of_week||'').split(',').map(x=>x.trim()).filter(Boolean);
+      return !ds.length || ds.includes(String(today));
+    }).sort((a,b)=>String(a.start_time||'').localeCompare(String(b.start_time||'')));
+    if(!rows.length){
+      box.innerHTML='<div class="program-empty">No hay programas publicados para hoy.</div>';
+      return;
+    }
+    box.innerHTML=rows.slice(0,5).map(p=>{
+      const img=p.image_url?'<img src="'+JIS.esc(p.image_url)+'" alt="" loading="lazy">':'<div class="program-icon">▶</div>';
+      const time=(p.start_time||p.end_time)?((p.start_time||'')+' — '+(p.end_time||'')).replace(/^ — | — $/g,''):'Horario';
+      return '<article class="program-item">'+img+'<div><small>'+JIS.esc(time)+'</small><strong>'+JIS.esc(p.name||'Programa')+'</strong></div></article>';
+    }).join('');
+  }catch(e){
+    console.error('Programación portada:',e);
+    box.innerHTML='<div class="program-empty">No se pudo cargar la programación.</div>';
+  }
+})();
+</script><script>
+(async function(){
+  const box=document.getElementById('homeNews');
+  if(!box)return;
+  try{
+    const sb=await JIS.supa();
+    const r=await sb.from('news').select('id,title,slug,excerpt,image_url,category,author_name,published_at').eq('published',true).order('published_at',{ascending:false}).limit(6);
+    if(r.error)throw r.error;
+    const rows=r.data||[];
+    if(!rows.length){box.innerHTML='<div class="notice">No hay noticias publicadas.</div>';return;}
+    box.innerHTML=rows.map(x=>`<a class="news-card" href="/iglesia-al-dia/noticia/${encodeURIComponent(x.slug||x.id)}"><img src="${JIS.esc(x.image_url||'/favicon.svg')}" alt=""><div class="body"><span class="tag">${JIS.esc(x.category||'Noticias')}</span><h3>${JIS.esc(x.title||'Noticia')}</h3><p>${JIS.esc(x.excerpt||'Leer noticia completa')}</p><small>${JIS.esc(x.author_name||'Redacción')} · ${x.published_at?new Date(x.published_at).toLocaleDateString('es-CO'):''}</small></div></a>`).join('');
+  }catch(e){
+    console.error('Noticias portada:',e);
+    box.innerHTML='<div class="notice">No se pudieron cargar las noticias publicadas.</div>';
+  }
+})();
 </script><script>
 (async function(){
   const section=document.getElementById('publicidad');
