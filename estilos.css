@@ -396,3 +396,220 @@ footer .footer-creator b{color:#fff}
 .ssh101-live-player iframe{display:block;width:100%;height:100%;border:0;background:#000}
 .ssh101-live-title{margin-top:14px;font-weight:800;font-size:1.05rem}
 @media(max-width:700px){.ssh101-live-player{min-height:210px;border-radius:10px}}
+
+
+/* =========================================================
+   V19 — EN VIVO: señal a la izquierda + programación a la derecha
+   Diseño inspirado en el ejemplo entregado por el usuario.
+   ========================================================= */
+.envivo-page{background:#050b14;min-height:calc(100vh - 78px)}
+.envivo-stage{padding:0;background:#050b14}
+.envivo-layout{
+  width:min(1500px,calc(100% - 28px));
+  display:grid;
+  grid-template-columns:minmax(0,1.72fr) minmax(340px,.82fr);
+  gap:22px;
+  align-items:stretch;
+  padding:18px 0 28px;
+}
+.envivo-screen{
+  position:relative;
+  min-width:0;
+  aspect-ratio:16/9;
+  background:#000;
+  border:1px solid #1c2a3c;
+  border-radius:0 0 20px 20px;
+  overflow:hidden;
+  box-shadow:0 18px 50px rgba(0,0,0,.35);
+}
+.envivo-screen iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  border:0;
+  background:#000;
+}
+.envivo-live-badge{
+  position:absolute;
+  z-index:5;
+  top:20px;
+  left:20px;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:10px 14px;
+  border-radius:12px;
+  background:rgba(5,12,22,.88);
+  color:#fff;
+  font-weight:900;
+  font-size:14px;
+  letter-spacing:.3px;
+  pointer-events:none;
+}
+.envivo-live-badge span{
+  width:10px;height:10px;border-radius:50%;
+  background:#ef3340;
+  box-shadow:0 0 0 5px rgba(239,51,64,.12);
+}
+.program-sidebar{
+  background:#0b1421;
+  color:#fff;
+  border:1px solid #1b2a3d;
+  border-radius:20px;
+  padding:24px;
+  min-height:100%;
+  box-shadow:0 18px 50px rgba(0,0,0,.28);
+}
+.program-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:22px;
+}
+.program-kicker{
+  display:block;
+  color:#91a0b2;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:1.5px;
+}
+.program-header h1{
+  color:#fff;
+  font-size:34px;
+  line-height:1;
+  letter-spacing:-.5px;
+  margin:7px 0 0;
+}
+.today-short{
+  background:#ffc400;
+  color:#101923;
+  border-radius:11px;
+  padding:11px 15px;
+  font-size:13px;
+  font-weight:950;
+}
+.day-tabs{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:8px;
+  margin-bottom:22px;
+}
+.day-tabs button{
+  border:0;
+  border-radius:11px;
+  background:#172334;
+  color:#c9d2dd;
+  padding:11px 5px;
+  font-weight:900;
+  font-size:12px;
+  cursor:pointer;
+}
+.day-tabs button:hover,.day-tabs button.active{
+  background:#ffc400;
+  color:#101923;
+}
+.program-list{
+  display:grid;
+  gap:12px;
+}
+.program-item{
+  display:grid;
+  grid-template-columns:72px 1fr;
+  gap:14px;
+  align-items:center;
+  background:#172131;
+  border-radius:16px;
+  padding:14px;
+  min-height:94px;
+}
+.program-item img,.program-icon{
+  width:72px;
+  height:72px;
+  border-radius:13px;
+  object-fit:cover;
+  background:#263347;
+}
+.program-icon{
+  display:grid;
+  place-items:center;
+  color:#ffc400;
+  font-size:25px;
+}
+.program-item small{
+  display:block;
+  color:#ffc400;
+  font-weight:900;
+  font-size:11px;
+  margin-bottom:5px;
+}
+.program-item strong{
+  display:block;
+  font-size:17px;
+  line-height:1.15;
+  color:#fff;
+}
+.program-item p{
+  margin:5px 0 0;
+  color:#91a0b2;
+  font-size:12px;
+  line-height:1.35;
+}
+.program-loading,.program-empty{
+  padding:28px 10px;
+  text-align:center;
+  color:#9ba8b8;
+}
+.next-program{
+  margin-top:20px;
+  padding:18px 20px;
+  border:1px solid #1e5483;
+  border-radius:16px;
+  background:#071b34;
+}
+.next-program span{
+  display:block;
+  color:#18bde8;
+  font-weight:950;
+  font-size:12px;
+  letter-spacing:1px;
+}
+.next-program strong{
+  display:block;
+  font-size:18px;
+  margin-top:6px;
+}
+.next-program small{
+  display:block;
+  color:#8fa2b8;
+  margin-top:7px;
+  font-size:13px;
+}
+@media(max-width:1050px){
+  .envivo-layout{grid-template-columns:1fr;}
+  .program-sidebar{min-height:0;}
+}
+@media(max-width:620px){
+  .envivo-layout{width:100%;padding:0 0 20px;gap:12px;}
+  .envivo-screen{border-radius:0;aspect-ratio:16/9;}
+  .envivo-live-badge{top:12px;left:12px;font-size:12px;padding:8px 11px;}
+  .program-sidebar{border-radius:0;padding:16px;}
+  .program-header h1{font-size:27px;}
+  .day-tabs{gap:4px;}
+  .day-tabs button{font-size:10px;padding:9px 2px;}
+  .program-item{grid-template-columns:58px 1fr;padding:11px;}
+  .program-item img,.program-icon{width:58px;height:58px;}
+  .program-item strong{font-size:15px;}
+}
+
+
+/* Portada: reproductor y programación compactos */
+.home-live-compact{display:grid;grid-template-columns:1.7fr .8fr;gap:20px;background:#050b14;border-radius:22px;overflow:hidden;padding:10px}
+.home-live-screen{aspect-ratio:16/9;background:#000;border-radius:16px;overflow:hidden}
+.home-live-screen iframe{width:100%;height:100%;border:0;display:block}
+.home-live-program{display:flex;flex-direction:column;justify-content:center;padding:24px;color:#fff;background:#0b1421;border-radius:16px}
+.home-live-program h2{color:#fff}
+.home-live-program p{color:#aeb8c6}
+@media(max-width:900px){.home-live-compact{grid-template-columns:1fr}.home-live-program{padding:20px}}

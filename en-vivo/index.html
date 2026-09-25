@@ -1,22 +1,157 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>En Vivo | Jóvenes Influencers del Señor</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/estilos.css"></head><body><header class="header"><div class="container bar"><a class="brand" href="/"><img data-logo alt="Logo"><span>Jóvenes Influencers<br><small>del Señor</small></span></a><button class="menu" id="menuBtn">☰</button><nav class="nav" id="nav" aria-label="Navegación principal">
-<a data-nav href="/">Inicio</a>
-<div class="nav-dropdown"><button class="nav-drop-btn" type="button" aria-expanded="false">Iglesia al Día <span>⌄</span></button><div class="nav-submenu">
-<a data-nav href="/iglesia-al-dia/">Noticias</a>
-<a href="/iglesia-al-dia/?categoria=diocesis">Diócesis de Ocaña</a>
-<a href="/iglesia-al-dia/?categoria=nacionales">Nacionales</a>
-<a href="/iglesia-al-dia/?categoria=internacionales">Internacionales</a>
-<a href="/iglesia-al-dia/?categoria=vaticano">Vaticano</a>
-</div></div>
-<div class="nav-dropdown"><button class="nav-drop-btn" type="button" aria-expanded="false">Programas <span>⌄</span></button><div class="nav-submenu">
-<a data-nav href="/programas/">Todos los programas</a>
-</div></div>
-<a data-nav href="/en-vivo/">En Vivo</a>
-<div class="nav-dropdown"><button class="nav-drop-btn" type="button" aria-expanded="false">Más <span>⌄</span></button><div class="nav-submenu nav-submenu-right">
-<a data-nav href="/64-datos/">64 Datos</a>
-<a data-nav href="/diocesis/">Diócesis</a>
-<a data-nav href="/editorial/">Editorial</a>
-<a data-nav href="/quienes-somos/">Quiénes somos</a>
-<a data-nav href="/integrantes/">Integrantes</a>
-</div></div>
-<a class="nav-login" href="/admin/login.html">🔐 Iniciar sesión</a>
-</nav></div></header><main><section class="hero"><div class="container"><p class="eyebrow">TRANSMISIÓN</p><h1><span class="dot"></span>En Vivo</h1><p class="lead">La señal se reproduce directamente en esta página cuando está activa.</p></div></section><section class="live-section"><div class="container"><div id="player" class="live-player" style="margin-top:18px"><div class="ssh101-live-player"><iframe src="https://ssh101.com/securelive/index.php?id=influencersdels" title="Señal en vivo — Jóvenes Influencers del Señor" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe></div><div class="live-meta ssh101-live-title">Señal en vivo</div></div></div></section></main><footer><div class="container footer"><img data-logo alt="Logo"><div class="footer-center"><strong>Jóvenes Influencers del Señor</strong><p>Comunicación al servicio de Dios.</p><p>© <span data-year></span> Jóvenes Influencers del Señor</p><div class="footer-creator">Creado por <b>Gamarra TV</b></div></div></div></footer><script src="/config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/common.js"></script></body></html>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>En Vivo | Jóvenes Influencers del Señor</title>
+<link rel="icon" href="/favicon.svg">
+<link rel="stylesheet" href="/estilos.css">
+</head>
+<body>
+<header class="header">
+  <div class="container bar">
+    <a class="brand" href="/"><img data-logo alt="Logo"><span>Jóvenes Influencers<br><small>del Señor</small></span></a>
+    <button class="menu" id="menuBtn" aria-label="Abrir menú">☰</button>
+    <nav class="nav" id="nav" aria-label="Navegación principal">
+      <a data-nav href="/">Inicio</a>
+      <div class="nav-dropdown"><button class="nav-drop-btn" type="button" aria-expanded="false">Iglesia al Día <span>⌄</span></button>
+        <div class="nav-submenu">
+          <a data-nav href="/iglesia-al-dia/">Noticias</a>
+          <a href="/iglesia-al-dia/?categoria=diocesis">Diócesis de Ocaña</a>
+          <a href="/iglesia-al-dia/?categoria=nacionales">Nacionales</a>
+          <a href="/iglesia-al-dia/?categoria=internacionales">Internacionales</a>
+          <a href="/iglesia-al-dia/?categoria=vaticano">Vaticano</a>
+        </div>
+      </div>
+      <div class="nav-dropdown"><button class="nav-drop-btn" type="button" aria-expanded="false">Programas <span>⌄</span></button>
+        <div class="nav-submenu"><a data-nav href="/programas/">Todos los programas</a></div>
+      </div>
+      <a data-nav href="/en-vivo/">En Vivo</a>
+      <div class="nav-dropdown"><button class="nav-drop-btn" type="button" aria-expanded="false">Más <span>⌄</span></button>
+        <div class="nav-submenu nav-submenu-right">
+          <a data-nav href="/64-datos/">64 Datos</a>
+          <a data-nav href="/diocesis/">Diócesis</a>
+          <a data-nav href="/editorial/">Editorial</a>
+          <a data-nav href="/quienes-somos/">Quiénes somos</a>
+          <a data-nav href="/integrantes/">Integrantes</a>
+        </div>
+      </div>
+      <a class="nav-login" href="/admin/login.html">🔐 Iniciar sesión</a>
+    </nav>
+  </div>
+</header>
+
+<main class="envivo-page">
+  <section class="envivo-stage">
+    <div class="container envivo-layout">
+      <div class="envivo-screen">
+        <div class="envivo-live-badge"><span></span> EN VIVO</div>
+        <iframe
+          id="ssh101Player"
+          src="https://ssh101.com/securelive/index.php?id=influencersdels&autoplay=1&muted=1"
+          title="Señal en vivo — Jóvenes Influencers del Señor"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen
+          loading="eager"
+          referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+
+      <aside class="program-sidebar" aria-label="Programación">
+        <div class="program-header">
+          <div>
+            <span class="program-kicker">HOY EN</span>
+            <h1>PROGRAMACIÓN</h1>
+          </div>
+          <span class="today-short" id="todayShort">HOY</span>
+        </div>
+
+        <div class="day-tabs" id="dayTabs">
+          <button data-day="1">LUN</button><button data-day="2">MAR</button>
+          <button data-day="3">MIÉ</button><button data-day="4">JUE</button>
+          <button data-day="5">VIE</button><button data-day="6">SÁB</button>
+          <button data-day="0">DOM</button>
+        </div>
+
+        <div id="programList" class="program-list">
+          <div class="program-loading">Cargando programación...</div>
+        </div>
+
+        <div class="next-program" id="nextProgram">
+          <span>PRÓXIMO</span>
+          <strong>Programación</strong>
+          <small>Consulta los programas disponibles.</small>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer">
+    <img data-logo alt="Logo">
+    <div class="footer-center">
+      <strong>Jóvenes Influencers del Señor</strong>
+      <p>Comunicación al servicio de Dios.</p>
+      <p>© <span data-year></span> Jóvenes Influencers del Señor</p>
+      <div class="footer-creator">Creado por <b>Gamarra TV</b></div>
+    </div>
+  </div>
+</footer>
+
+<script src="/config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/common.js"></script>
+<script>
+(function(){
+  const tabs = document.querySelectorAll('#dayTabs button');
+  const today = new Date().getDay();
+  tabs.forEach(b=>{
+    if(Number(b.dataset.day)===today) b.classList.add('active');
+    b.addEventListener('click',()=>{
+      tabs.forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+      loadPrograms(Number(b.dataset.day));
+    });
+  });
+  const names = ['DOM','LUN','MAR','MIÉ','JUE','VIE','SÁB'];
+  const short = document.getElementById('todayShort');
+  if(short) short.textContent = names[today];
+
+  async function loadPrograms(day){
+    const box=document.getElementById('programList');
+    if(!box) return;
+    box.innerHTML='<div class="program-loading">Cargando programación...</div>';
+    try{
+      const sb=await JIS.supa();
+      const r=await sb.from('programs').select('id,name,description,image_url,sort_order,published,days_of_week,start_time,end_time').eq('published',true).order('sort_order',{ascending:true});
+      if(r.error) throw r.error;
+      const allRows=r.data||[];
+      const rows=allRows.filter(p=>{const ds=String(p.days_of_week||'').split(',').map(x=>x.trim()).filter(Boolean);return !ds.length || ds.includes(String(day));});
+      if(!rows.length){
+        box.innerHTML='<div class="program-empty">No hay programas publicados para este día.</div>';
+        return;
+      }
+      const dayLabel = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'][day] || 'hoy';
+      box.innerHTML=rows.slice(0,6).map((p,i)=>{
+        const img=p.image_url
+          ? '<img src="'+JIS.esc(p.image_url)+'" alt="" loading="lazy">'
+          : '<div class="program-icon">▶</div>';
+        const time=(p.start_time||p.end_time)?((p.start_time||'')+' — '+(p.end_time||'')).replace(/^ — | — $/g,''):'';
+        return '<article class="program-item">'+img+
+          '<div><small>'+JIS.esc(time||dayLabel.toUpperCase())+'</small><strong>'+JIS.esc(p.name||'Programa')+'</strong>'+
+          '<p>'+JIS.esc(p.description||'Contenido de Jóvenes Influencers del Señor.')+'</p></div></article>';
+      }).join('');
+      const now=new Date(); const minutes=now.getHours()*60+now.getMinutes();
+      const timed=rows.map(p=>{const m=String(p.start_time||'').match(/^(\d{1,2}):(\d{2})/);return {p,m:m?Number(m[1])*60+Number(m[2]):9999};}).filter(x=>x.m>=minutes).sort((a,b)=>a.m-b.m);
+      const next=(timed[0]||{p:rows[0]}).p;
+      const np=document.getElementById('nextProgram');
+      if(np) np.innerHTML='<span>PRÓXIMO</span><strong>'+JIS.esc(next.name||'Programación')+'</strong><small>'+JIS.esc((next.start_time||'')+(next.end_time?' — '+next.end_time:''))+'</small>';
+    }catch(e){
+      box.innerHTML='<div class="program-empty">No se pudo cargar la programación.</div>';
+    }
+  }
+  loadPrograms(today);
+})();
+</script>
+</body>
+</html>
