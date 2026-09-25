@@ -23,6 +23,34 @@ function footer(){return `<footer><div class="wrap foot"><div><div class="foot-b
 function layout(title,tag,content){return header()+`<div class="head"><div class="wrap"><span class="tag">${tag}</span><h1>${title}</h1></div></div>${content}`+footer()}
 function yt(url){if(!url)return "";try{let u=new URL(url),id=u.searchParams.get("v")||u.pathname.split("/").pop();return id?`<div class="video"><iframe src="https://www.youtube.com/embed/${id}" allowfullscreen loading="lazy"></iframe></div>`:""}catch(e){return""}}
 function date(v){return v?new Date(v).toLocaleDateString("es-CO",{day:"2-digit",month:"long",year:"numeric"}):""}
+function todaySchedule(rows){
+ const day=((new Date().getDay()+6)%7)+1;
+ return (rows||[]).filter(p=>{
+  if(p.visible===false) return false;
+  const ds=String(p.days_of_week??'1,2,3,4,5').split(',').map(x=>x.trim()).filter(Boolean);
+  return !p.days_of_week || ds.includes(String(day));
+ }).sort((a,b)=>String(a.start_time||'').localeCompare(String(b.start_time||'')));
+}
+function scheduleHtml(rows){
+ const days=['LUN','MAR','MIÉ','JUE','VIE','SÁB','DOM'];
+ const day=((new Date().getDay()+6)%7);
+ const items=rows||[];
+ return `<div class="schedule-panel">
+   <div class="schedule-head"><div><span class="schedule-eyebrow">HOY EN JIS</span><h2>PROGRAMACIÓN</h2></div><span class="schedule-day">${days[day]}</span></div>
+   <div class="schedule-days">${days.map((d,i)=>`<span class="${i===day?'active':''}">${d}</span>`).join('')}</div>
+   <div class="schedule-list">${items.length?items.map(p=>`<div class="schedule-item">${p.image_url?`<img src="${p.image_url}" alt="">`:`<div class="schedule-placeholder">▶</div>`}<div><b>${p.start_time||'Horario' }${p.end_time?` — ${p.end_time}`:''}</b><h3>${p.name||'Programa'}</h3></div></div>`).join(''):`<div class="schedule-empty">No hay programas publicados para hoy.</div>`}</div>
+ </div>`;
+}
+async function loadSchedule(){
+ try{
+  const {createClient}=await import("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm");
+  const s=createClient(C.supabaseUrl,C.supabaseKey);
+  const r=await s.from('programs').select('*').eq('visible',true).order('sort_order',{ascending:true}).order('name',{ascending:true});
+  if(r.error) return [];
+  return todaySchedule(r.data||[]);
+ }catch(e){return []}
+}
+
 async function home(){
  let activitiesHtml='<div class="empty" style="padding:40px">Cargando actividades...</div>';
  try{
@@ -46,15 +74,18 @@ ${x.link_url?`<span class="btn">${x.button_text||'Ver actividad'} →</span>`:''
  }catch(e){
   activitiesHtml='<div class="notice" style="margin:20px">Agrega y administra las actividades desde el panel administrativo.</div>';
  }
+ const schedule=await loadSchedule();
+ const scheduleMarkup=scheduleHtml(schedule);
+ const liveLayoutReady=`${scheduleMarkup}`;
  return `<div class="hero hero-tv"><div class="wrap hero-grid"><div class="hero-copy"><span class="eyebrow">✝ Canal y medio de comunicación católico</span><h1>Jóvenes Influencers del Señor</h1><p>La voz joven de la Iglesia en el mundo digital. Noticias, espiritualidad, formación, programas y transmisiones desde la Diócesis de Ocaña.</p><a class="btn red" href="#/en-vivo">🔴 SEÑAL EN VIVO</a><a class="btn" href="#/programas">▶ NUESTRA PROGRAMACIÓN</a></div><div><img class="hero-logo" src="${C.logo}" alt="Jóvenes Influencers del Señor"><p style="text-align:center;color:var(--purple);font-weight:800">Una Iglesia que comunica y evangeliza</p></div></div></div>
 <section class="home-activities"><div class="wrap"><div class="section-top"><div><span class="tag">Actividades</span><h2>Actividades destacadas</h2><p>Conoce las actividades actuales de Jóvenes Influencers del Señor.</p></div></div><div id="homepageActivities" class="activities-carousel">${activitiesHtml}</div></div></section>
 <section class="breaking"><div class="wrap breaking-in"><b>ACTUALIDAD</b><span>Información y vida de la Iglesia</span><a href="#/noticias">Ver noticias →</a></div></section>
 
 <section><div class="wrap"><div class="section-top"><div><span class="tag">Actualidad</span><h2>Noticias de la Iglesia</h2><p>Noticias diocesanas, nacionales e internacionales.</p></div><a class="btn light" href="#/noticias">Ver todas</a></div><div class="news-grid"><article class="news-main"><div class="news-main-image">📰</div><div class="news-main-body"><span class="tag">Iglesia al día</span><h2>La actualidad de nuestra Iglesia</h2><p>Un espacio informativo para conocer los acontecimientos de la Diócesis de Ocaña y las noticias que marcan la vida de la Iglesia.</p><a class="btn" href="#/noticias">Entrar a Iglesia al día →</a></div></article><div class="news-side"><div class="card"><span class="tag">Diócesis</span><h3>Noticias diocesanas</h3><p>Celebraciones, comunidades, parroquias y acontecimientos.</p></div><div class="card"><span class="tag">Iglesia universal</span><h3>Noticias nacionales e internacionales</h3><p>Información para estar conectados con la Iglesia.</p></div></div></div></div></section>
 
-<section class="live-home"><div class="wrap live-box"><div class="live"><div class="live-screen"><div><h2><span class="dot"></span>SEÑAL EN VIVO</h2><p>Acompaña nuestras transmisiones.</p></div></div></div><div class="live-info"><span class="tag" style="color:#e2bce9">Ahora en pantalla</span><h2>Jóvenes Influencers del Señor</h2><p>Transmisiones de celebraciones, eventos y contenidos especiales.</p><a class="btn red" href="#/en-vivo">Ver señal completa →</a></div></div></section>
+<section class="live-home"><div class="wrap home-live-layout"><div class="home-live-player"><div class="live-badge"><span class="dot"></span> GTV EN VIVO</div><iframe src="https://ssh101.com/securelive/index.php?id=influencersdels&autoplay=1&muted=1" title="Señal en vivo" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><div id="homeSchedule">${liveLayoutReady}</div></div></section>
 
-<section class="program-section"><div class="wrap"><div class="section-top"><div><span class="tag">Programación</span><h2>Programas destacados</h2><p>Producciones propias para acompañarte en la fe.</p></div><a class="btn light" href="#/programas">Toda la programación</a></div><div class="poster-grid">${programs.slice(0,8).map((p,i)=>`<a class="poster" href="#/programas/${p[0]}"><div class="poster-top">▶</div><div class="poster-body"><span class="program-number">${String(i+1).padStart(2,"0")}</span><h3>${p[1]}</h3><p>${p[2]}</p><small>Ver programa →</small></div></a>`).join("")}</div></div></section>
+<section class="program-section"><div class="wrap"><div class="section-top"><div><span class="tag">Programación</span><h2>Hoy en Jóvenes Influencers del Señor</h2><p>La programación que aparece aquí es la misma que encontrarás en la sección En vivo.</p></div><a class="btn light" href="#/en-vivo">Ver señal y programación →</a></div><div id="homeScheduleBottom" class="schedule-bottom">${liveLayoutReady}</div></div></section>
 
 <section><div class="wrap"><div class="section-top"><div><span class="tag">Especial de octubre</span><h2>64 datos históricos</h2><p>Un recorrido audiovisual por la historia de nuestra Diócesis.</p></div><a class="btn light" href="#/64-datos">Ver especial</a></div><div class="history-banner"><img src="${C.logo64}" alt="64 años"><div><span class="tag">Sección temporal</span><h2>64 datos, 64 momentos de historia y fe</h2><p>Durante todo octubre presentamos un dato histórico acompañado de video.</p><a class="btn" href="#/64-datos">Conocer el especial →</a></div></div></div></section>
 
@@ -64,12 +95,15 @@ ${x.link_url?`<span class="btn">${x.button_text||'Ver actividad'} →</span>`:''
 async function noticias(){let c=`<section><div class="wrap" id="news"><div class="empty">Cargando noticias...</div></div></section>`;render(layout("Iglesia al día","Noticias y videos",c));try{const {createClient}=await import("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm");let s=createClient(C.supabaseUrl,C.supabaseKey),r=await s.from("news").select("*").eq("published",true).order("published_at",{ascending:false});document.getElementById("news").innerHTML=r.data?.length?r.data.map(n=>`<article class="article"><small>${date(n.published_at)}</small><h2>${n.title}</h2><p>${n.excerpt||""}</p>${yt(n.youtube_url)}${n.facebook_url?`<a class="btn light" target="_blank" href="${n.facebook_url}">Ver en Facebook</a>`:""}<p>${n.content||""}</p></article>`).join(""):'<div class="empty"><h3>Aún no hay noticias</h3><p>Publícalas desde el panel administrativo.</p></div>'}catch(e){document.getElementById("news").innerHTML='<div class="notice">Configura Supabase y ejecuta supabase.sql para cargar noticias.</div>'}}
 function programas(){return layout("Nuestros programas","Espacios audiovisuales",`<section><div class="wrap"><p class="intro">Todos nuestros programas son de video y están pensados para evangelizar y acompañar.</p><div class="grid">${programs.map((p,i)=>`<a class="card program" href="#/programas/${p[0]}"><div><span class="tag">${String(i+1).padStart(2,"0")}</span><h3>${p[1]}</h3><p>${p[2]}</p></div><span class="btn light">Ver programa</span></a>`).join("")}</div></div></section>`)}
 function programa(slug){let p=programs.find(x=>x[0]===slug);return layout(p?p[1]:"Programa","Programa audiovisual",`<section><div class="wrap"><div class="article"><h2>${p?p[1]:"Programa"}</h2><p>${p?p[2]:"Contenido audiovisual de Jóvenes Influencers del Señor."}</p><div class="notice">Los episodios y videos de este programa podrán publicarse desde el panel administrativo.</div></div></div></section>`)}
-function live(){return layout("Señal en vivo","Transmisión",`<section><div class="wrap"><div class="live"><div id="live" class="live-screen"><div><h2><span class="dot"></span>Señal en vivo</h2><p>Configura tu URL .m3u8 en <b>config.js</b> para activar la señal.</p></div></div></div></div></section>`)}
+async function live(){
+ const schedule=await loadSchedule();
+ return header()+`<section class="live-page"><div class="wrap live-page-grid"><div class="live-page-player"><div class="live-badge"><span class="dot"></span> GTV EN VIVO</div><iframe src="https://ssh101.com/securelive/index.php?id=influencersdels&autoplay=1&muted=1" title="Señal en vivo" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>${scheduleHtml(schedule)}</div></section>`+footer();
+}
 function history(){return layout("64 datos históricos","Especial de octubre de 2026",`<section><div class="wrap"><div class="article"><img class="logo64" src="${C.logo64}"><h2>64 datos históricos de la Diócesis de Ocaña</h2><p>Sección temporal activa durante octubre de 2026. Cada dato puede incluir su video.</p></div><div class="notice">Los 64 datos se administrarán desde Supabase.</div></div></section>`)}
 function diocesis(){return layout("Diócesis de Ocaña","Historia, parroquias y advocaciones",`<section><div class="wrap"><div class="grid"><div class="card"><h3>Historia</h3><p>Espacio para presentar la historia de la Diócesis de Ocaña.</p></div><div class="card"><h3>Parroquias</h3><p>Directorio de todas las parroquias de la diócesis.</p></div><div class="card"><h3>Advocaciones marianas</h3><p>Conoce las advocaciones marianas.</p></div></div></div></section>`)}
 function editorial(){return layout("Editorial","Escritos y reflexiones",`<section><div class="wrap"><div class="empty">Aquí aparecerán los escritos y temas importantes publicados desde el panel administrativo.</div></div></section>`)}
 function quienes(){return layout("Quiénes somos","Equipo y misión",`<section><div class="wrap"><div class="article"><h2>Una misión de evangelización digital</h2><p>Jóvenes Influencers del Señor es un medio de comunicación católico de la Diócesis de Ocaña dedicado a informar, formar y evangelizar.</p><p>Aquí estará la historia del proyecto, la misión y la presentación de todos sus integrantes.</p></div><div class="empty">Los integrantes se cargarán desde Supabase.</div></div></section>`)}
 function admin(){return layout("Panel administrativo","Gestión del sitio",`<section><div class="wrap" style="max-width:850px"><div class="article"><h2>Administración</h2><p>Desde aquí se gestionarán noticias, videos, 64 datos, editoriales, integrantes, parroquias y advocaciones.</p><div class="notice">La conexión de administración se habilita con Supabase Auth y la tabla <b>admins</b>.</div></div></div></section>`)}
 function render(html){document.getElementById("app").innerHTML=html;window.scrollTo(0,0);let h=location.hash;document.querySelectorAll(".menu a").forEach(a=>a.classList.toggle("active",a.getAttribute("href")===h||(!h&&a.getAttribute("href")==="#/")));const slides=[...document.querySelectorAll(".activity-slide")],dots=[...document.querySelectorAll(".activity-dot")];if(slides.length>1){let i=0,t;const go=n=>{i=(n+slides.length)%slides.length;slides.forEach((x,j)=>x.classList.toggle("active",j===i));dots.forEach((x,j)=>x.classList.toggle("active",j===i));};const start=()=>{clearInterval(t);t=setInterval(()=>go(i+1),5000)};dots.forEach((d,j)=>d.onclick=e=>{e.preventDefault();e.stopPropagation();go(j);start()});start();}}
-async function router(){let path=(location.hash||"#/").replace(/^#\/?/,"").replace(/\/$/,"");let parts=path.split("/").filter(Boolean);if(!parts.length)return render(await home());if(parts[0]==="noticias")return noticias();if(parts[0]==="programas")return parts[1]?render(programa(parts[1])):render(programas());if(parts[0]==="en-vivo")return render(live());if(parts[0]==="64-datos")return render(history());if(parts[0]==="diocesis")return render(diocesis());if(parts[0]==="editorial")return render(editorial());if(parts[0]==="quienes-somos")return render(quienes());if(parts[0]==="admin")return render(admin());return render(await home())}
+async function router(){let path=(location.hash||"#/").replace(/^#\/?/,"").replace(/\/$/,"");let parts=path.split("/").filter(Boolean);if(!parts.length)return render(await home());if(parts[0]==="noticias")return noticias();if(parts[0]==="programas")return parts[1]?render(programa(parts[1])):render(programas());if(parts[0]==="en-vivo")return render(await live());if(parts[0]==="64-datos")return render(history());if(parts[0]==="diocesis")return render(diocesis());if(parts[0]==="editorial")return render(editorial());if(parts[0]==="quienes-somos")return render(quienes());if(parts[0]==="admin")return render(admin());return render(await home())}
 window.addEventListener("hashchange",router);router();
