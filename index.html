@@ -24,7 +24,6 @@
 <main>
 <section class="hero"><div class="container hero-grid"><div><p class="eyebrow">MEDIO CATÓLICO DE COMUNICACIÓN</p><h1>Jóvenes Influencers del Señor</h1><p class="lead">Comunicación al servicio de Dios. Información, formación y evangelización digital desde la Iglesia.</p><a class="btn" href="/iglesia-al-dia/">Ver noticias</a><a class="btn alt" href="/en-vivo/">🔴 En Vivo</a></div><div class="hero-logo"><img data-logo alt="Jóvenes Influencers del Señor"></div></div></section>
 <section class="live-section"><div class="container">
-<div class="section-head"><div><p class="eyebrow">SEÑAL EN VIVO</p><h2>Transmisión</h2></div></div>
 <div class="home-live-compact">
   <div class="home-live-screen">
     <iframe src="https://ssh101.com/securelive/index.php?id=influencersdels&autoplay=1&muted=1"
@@ -50,9 +49,9 @@
   const box=document.getElementById('homeProgramList');
   const dayBox=document.getElementById('homeToday');
   if(!box)return;
-  const names=['DOM','LUN','MAR','MIÉ','JUE','VIE','SÁB'];
-  const today=new Date().getDay();
-  if(dayBox)dayBox.textContent=names[today];
+  const names=['','LUN','MAR','MIÉ','JUE','VIE','SÁB','DOM'];
+  const today=((new Date().getDay()+6)%7)+1;
+  if(dayBox)dayBox.textContent=names[today]||'HOY';
   try{
     const sb=await JIS.supa();
     const r=await sb.from('programs').select('id,name,description,image_url,sort_order,published,days_of_week,start_time,end_time').eq('published',true).order('sort_order',{ascending:true});
