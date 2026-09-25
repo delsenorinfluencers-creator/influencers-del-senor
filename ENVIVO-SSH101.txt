@@ -1,0 +1,4 @@
+Señal En Vivo configurada:
+https://ssh101.com/securelive/index.php?id=influencersdels
+
+Se aplica directamente en Inicio y En Vivo. El panel usa esta URL como valor inicial cuando no existe una URL guardada.

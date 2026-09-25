@@ -390,3 +390,9 @@ footer .footer-creator b{color:#fff}
 .about-us-page .about-content p{
   margin:0 0 18px;
 }
+
+/* V17 - Señal en vivo SSH101 */
+.ssh101-live-player{position:relative;width:100%;aspect-ratio:16/9;min-height:280px;background:#000;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+.ssh101-live-player iframe{display:block;width:100%;height:100%;border:0;background:#000}
+.ssh101-live-title{margin-top:14px;font-weight:800;font-size:1.05rem}
+@media(max-width:700px){.ssh101-live-player{min-height:210px;border-radius:10px}}
