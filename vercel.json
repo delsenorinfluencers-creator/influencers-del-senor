@@ -1,6 +1,12 @@
 {
   "rewrites": [
-    {"source":"/iglesia-al-dia/noticia/:slug","destination":"/iglesia-al-dia/noticia.html?slug=:slug"},
-    {"source":"/programas/:slug","destination":"/programas/programa.html?slug=:slug"}
+    {
+      "source": "/iglesia-al-dia/noticia/:slug",
+      "destination": "/api/noticia?slug=:slug"
+    },
+    {
+      "source": "/programas/:slug",
+      "destination": "/programas/programa.html?slug=:slug"
+    }
   ]
 }
