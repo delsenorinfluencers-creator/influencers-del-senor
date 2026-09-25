@@ -24,3 +24,19 @@ footer{background:#17131c;color:#ded5e3;padding:48px 0 0}.foot{display:grid;grid
 .footer-social{display:flex;gap:10px;margin-top:16px}.social{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#2b2430;color:#fff;font-weight:800}
 @media(max-width:1050px){.poster-grid{grid-template-columns:repeat(2,1fr)}.live-box{grid-template-columns:1fr}.toplinks{display:none}}
 @media(max-width:600px){.poster-grid{grid-template-columns:1fr}.hero-tv .hero-grid{min-height:auto}.news-grid{grid-template-columns:1fr}}
+
+/* ACTIVIDADES DESTACADAS EN PORTADA */
+.home-activities{padding:34px 0 12px}
+.activities-carousel{position:relative;width:100%;aspect-ratio:1983/793;min-height:260px;overflow:hidden;border-radius:22px;background:#17110b;box-shadow:0 12px 35px rgba(0,0,0,.12)}
+.activity-slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .7s ease;display:block}
+.activity-slide.active{opacity:1;visibility:visible;z-index:2}
+.activity-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.activity-overlay{position:absolute;inset:0;display:flex;align-items:flex-end;padding:34px;background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.76) 100%)}
+.activity-copy{max-width:760px;color:#fff}
+.activity-copy .activity-date{font-size:.85rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;opacity:.9}
+.activity-copy h2{margin:.35rem 0 .45rem;font-size:clamp(1.45rem,3vw,2.45rem);line-height:1.05}
+.activity-copy p{margin:0 0 14px;font-size:1rem;line-height:1.45;max-width:680px}
+.activity-dots{position:absolute;z-index:5;right:22px;bottom:20px;display:flex;gap:7px}
+.activity-dot{width:9px;height:9px;border:0;border-radius:50%;background:rgba(255,255,255,.55);padding:0;cursor:pointer}
+.activity-dot.active{background:#fff;transform:scale(1.25)}
+@media(max-width:700px){.home-activities{padding:22px 0 8px}.activities-carousel{aspect-ratio:16/9;min-height:210px;border-radius:14px}.activity-overlay{padding:18px}.activity-copy h2{font-size:1.35rem}.activity-copy p{font-size:.88rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.activity-dots{right:14px;bottom:13px}}
