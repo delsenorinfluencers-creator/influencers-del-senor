@@ -1,38 +1,88 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Panel administrativo | Jóvenes Influencers del Señor</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/estilos.css">
-<style id="admin-fixed-v8">
+<style id="admin-mobile-v10">
 html,body{margin:0!important;min-height:100%;overflow-x:hidden}
+body{background:#f5f3ea}
 .admin{min-height:100vh!important;display:block!important}
 .side{
  position:fixed!important;left:0!important;top:0!important;bottom:0!important;
  width:270px!important;height:100vh!important;overflow-y:auto!important;
- z-index:9999!important;box-sizing:border-box!important;
+ z-index:10050!important;box-sizing:border-box!important;
+ scrollbar-width:thin;
 }
 .main{margin-left:270px!important;min-height:100vh!important;padding:28px!important;box-sizing:border-box!important}
-.admin-mobile-toggle{display:none;position:fixed;z-index:10001;top:10px;left:10px;border:0;border-radius:10px;padding:10px 13px;background:#21180f;color:#fff;font-weight:800;cursor:pointer}
+.admin-mobile-bar{display:none}
+.admin-mobile-backdrop{display:none}
+.admin-mobile-toggle{border:0;background:#21180f;color:#fff;border-radius:12px;padding:10px 13px;font-size:22px;line-height:1;cursor:pointer}
+.admin-site-link{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 14px;border-radius:11px;background:#5d7d42;color:#fff;text-decoration:none;font-weight:800;box-shadow:0 3px 10px rgba(0,0,0,.12)}
+.admin-close-mobile{display:none}
+.banner-preview{width:180px;aspect-ratio:1983/793;height:auto;object-fit:cover;border-radius:10px;border:1px solid #ddd}
+.days-picker{display:flex;flex-wrap:wrap;gap:8px;margin-top:7px}
+.days-picker label{display:inline-flex;align-items:center;gap:5px;padding:8px 10px;border:1px solid #ddd;border-radius:10px;background:#fff;font-weight:700}
+.program-schedule{font-size:12px;color:#6b625a;white-space:nowrap}
+
 @media(max-width:980px){
- .admin-mobile-toggle{display:block}
- .side{width:260px!important;transform:translateX(-105%);transition:transform .2s ease}
+ body{background:#f5f3ea}
+ .admin-mobile-bar{
+   display:flex;position:sticky;top:0;z-index:10000;
+   min-height:62px;padding:10px 12px;box-sizing:border-box;
+   align-items:center;gap:10px;background:#21180f;color:#fff;
+   box-shadow:0 3px 18px rgba(0,0,0,.16)
+ }
+ .admin-mobile-title{font-weight:900;font-size:15px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ .admin-mobile-backdrop{
+   position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:10020
+ }
+ .side{
+   width:min(310px,86vw)!important;
+   transform:translateX(-105%);
+   transition:transform .22s ease;
+   box-shadow:8px 0 30px rgba(0,0,0,.22);
+ }
  .side.mobile-open{transform:translateX(0)}
- .main{margin-left:0!important;padding:70px 14px 22px!important}
- .side nav{display:grid!important;grid-template-columns:1fr!important}
- .side h2{font-size:16px}
-}
-@media(max-width:620px){
- .side{width:88vw!important;max-width:320px!important}
+ .side .admin-close-mobile{
+   display:flex;position:absolute;right:12px;top:12px;
+   width:38px;height:38px;border:0;border-radius:10px;
+   background:rgba(255,255,255,.12);color:#fff;font-size:20px;
+   align-items:center;justify-content:center;cursor:pointer
+ }
+ .side img{margin-top:42px}
+ .main{margin-left:0!important;padding:14px!important}
+ .panel{padding:18px!important;border-radius:18px!important}
  .admin-top{align-items:flex-start!important;flex-direction:column!important}
- .admin-table{min-width:700px}
- .table-wrap{overflow-x:auto!important}
+ .admin-top .btn{width:100%;min-height:46px}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ .stat{padding:14px!important;min-width:0}
+ .stat span{font-size:14px}
+ .stat b{font-size:27px}
+ .form-grid{grid-template-columns:1fr!important}
+ .field.full{grid-column:auto!important}
+ .field input,.field textarea,.field select{font-size:16px!important;min-height:46px}
+ .field textarea{min-height:150px}
+ .admin-actions{width:100%}
+ .admin-actions .btn,.admin-actions .small-btn{min-height:44px;padding:10px 13px}
+ .table-wrap{width:100%;overflow-x:auto!important;-webkit-overflow-scrolling:touch;border:1px solid #eee;border-radius:12px}
+ .admin-table{min-width:720px}
+ .admin-table th,.admin-table td{padding:10px 9px;font-size:13px}
+ .days-picker label{padding:9px 10px}
 }
-.banner-preview{width:180px;aspect-ratio:1983/793; height:auto;object-fit:cover;border-radius:10px;border:1px solid #ddd}
-.days-picker{display:flex;flex-wrap:wrap;gap:8px;margin-top:7px}.days-picker label{display:inline-flex;align-items:center;gap:5px;padding:8px 10px;border:1px solid #ddd;border-radius:10px;background:#fff;font-weight:700}.program-schedule{font-size:12px;color:#6b625a;white-space:nowrap}
+
+@media(max-width:560px){
+ .admin-mobile-bar{padding:9px 10px}
+ .admin-mobile-title{font-size:14px}
+ .admin-site-link{padding:9px 10px;font-size:13px}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .stat{border-radius:14px}
+ .stat b{font-size:25px}
+ .panel h1{font-size:32px!important;line-height:1.05!important;margin:0}
+ .panel h2{font-size:22px!important}
+ .notice{font-size:14px}
+}
+@media(max-width:380px){
+ .grid{grid-template-columns:1fr!important}
+ .admin-site-link{font-size:12px}
+}
 </style>
 </head><body>
-<a id="btn-ver-pagina" href="../index.html" target="_blank"
-   style="display:inline-flex;align-items:center;gap:8px;margin:10px 0;
-          padding:10px 16px;border-radius:10px;background:#5d7d42;color:#fff;
-          text-decoration:none;font-weight:700;box-shadow:0 3px 10px rgba(0,0,0,.12);">
-  🌐 Ver página
-</a>
 <div id="root">Cargando panel...</div>
 <script src="/config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/common.js"></script><script>
 (async()=>{
@@ -73,7 +123,10 @@ html,body{margin:0!important;min-height:100%;overflow-x:hidden}
   settings:{label:'⚙️ Configuración',table:'site_settings',title:'Configuración del sitio',single:true,fields:[['site_name','Nombre del sitio','text'],['logo_url','Logo','url'],['logo64_url','Logo 64 Datos','url'],['facebook_url','Facebook','url'],['youtube_url','YouTube','url'],['whatsapp','WhatsApp','text'],['site_description','Descripción','textarea']]}
  };
  let current='dashboard';
- function layout(){root.innerHTML=`<div class="admin"><aside class="side"><img src="${JIS.esc(window.JIS_CONFIG.logo)}" alt=""><h2>Panel administrativo</h2><nav id="sideNav">${Object.entries(modules).map(([k,v])=>`<button data-mod="${k}">${v.label}</button>`).join('')}</nav><hr><button id="logout">🚪 Cerrar sesión</button></aside><main class="main"><div id="view"></div></main></div>`;root.querySelectorAll('[data-mod]').forEach(b=>b.onclick=()=>show(b.dataset.mod));document.getElementById('logout').onclick=async()=>{await sb.auth.signOut();location.href='/admin/login.html'};}
+ function layout(){root.innerHTML=`<div class="admin-mobile-bar"><button class="admin-mobile-toggle" id="mobileAdminMenu" aria-label="Abrir menú">☰</button><div class="admin-mobile-title">Panel administrativo</div><a class="admin-site-link" href="/" target="_blank">🌐 Ver página</a></div><div class="admin-mobile-backdrop" id="adminBackdrop"></div><div class="admin"><aside class="side"><button class="admin-close-mobile" id="closeAdminMenu" aria-label="Cerrar menú">×</button><img src="${JIS.esc(window.JIS_CONFIG.logo)}" alt=""><h2>Panel administrativo</h2><nav id="sideNav">${Object.entries(modules).map(([k,v])=>`<button data-mod="${k}">${v.label}</button>`).join('')}</nav><hr><button id="logout">🚪 Cerrar sesión</button><a class="admin-site-link" href="/" target="_blank" style="margin:10px 4px 0;width:calc(100% - 8px);box-sizing:border-box">🌐 Ver página</a></aside><main class="main"><div id="view"></div></main></div>`;root.querySelectorAll('[data-mod]').forEach(b=>b.onclick=()=>{show(b.dataset.mod);closeMobileMenu()});document.getElementById('logout').onclick=async()=>{await sb.auth.signOut();location.href='/admin/login.html'};document.getElementById('mobileAdminMenu').onclick=openMobileMenu;document.getElementById('closeAdminMenu').onclick=closeMobileMenu;document.getElementById('adminBackdrop').onclick=closeMobileMenu;}
+function openMobileMenu(){document.querySelector('.side')?.classList.add('mobile-open');document.getElementById('adminBackdrop').style.display='block';document.body.style.overflow='hidden'}
+function closeMobileMenu(){document.querySelector('.side')?.classList.remove('mobile-open');const b=document.getElementById('adminBackdrop');if(b)b.style.display='none';document.body.style.overflow=''}
+
  async function count(table){const r=await sb.from(table).select('*',{count:'exact',head:true});return r.error?'—':(r.count||0)}
  async function dashboard(){const pairs=[['Noticias','news'],['Programas','programs'],['Episodios','episodes'],['En vivo','live_streams'],['64 datos','historical_64'],['Editoriales','editorials'],['Integrantes','team_members'],['Actividades portada','homepage_activities']];const vals=await Promise.all(pairs.map(async x=>[x[0],await count(x[1])]));document.getElementById('view').innerHTML=`<div class="panel"><div class="admin-top"><div><p class="eyebrow">ADMINISTRACIÓN</p><h1>Dashboard</h1><p>Sesión: <b>${JIS.esc(session.user.email)}</b></p></div></div><div class="grid">${vals.map(x=>`<div class="stat"><span>${x[0]}</span><br><b>${x[1]}</b></div>`).join('')}</div><div class="panel" style="margin-top:18px"><h2>Control central</h2><p>Desde este panel puedes administrar los contenidos que aparecen en el sitio, incluida la señal en vivo, noticias, programas, episodios, 64 Datos, Diócesis, integrantes, editoriales, usuarios y configuración.</p></div></div>`}
  async function loadRows(m){let q=sb.from(m.table).select('*');if(m.single)q=q.order('id',{ascending:true}).limit(1);if(m.table==='programs')q=q.order('sort_order');if(m.table==='episodes')q=q.order('sort_order');if(m.table==='homepage_activities')q=q.order('sort_order').order('created_at',{ascending:false});if(m.table==='historical_64')q=q.order('id');if(m.table==='news'||m.table==='editorials')q=q.order('created_at',{ascending:false});const r=await q;if(r.error)throw r.error;return r.data||[]}
@@ -92,9 +145,6 @@ html,body{margin:0!important;min-height:100%;overflow-x:hidden}
  }const msg=document.getElementById('formMsg');if(r.error){msg.className='notice';msg.textContent=r.error.message}else{area.innerHTML='<div class="notice">Guardado correctamente.</div>';setTimeout(()=>moduleView(key),500)}}}
  async function show(k){current=k;root.querySelectorAll('[data-mod]').forEach(b=>b.classList.toggle('active',b.dataset.mod===k));await moduleView(k)}
  layout();
-const mobileBtn=document.getElementById('mobileAdminMenu');
-if(mobileBtn)mobileBtn.onclick=()=>document.querySelector('.side')?.classList.toggle('mobile-open');
-document.querySelectorAll('.side button[data-mod]').forEach(b=>b.addEventListener('click',()=>document.querySelector('.side')?.classList.remove('mobile-open')));
 show('dashboard');
 })();
 </script></body></html>
