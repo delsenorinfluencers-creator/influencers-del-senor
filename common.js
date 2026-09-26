@@ -1,6 +1,6 @@
 (function(){
   const C=window.JIS_CONFIG||{};
-  const apply=s=>{const S=s||{};document.querySelectorAll('[data-logo]').forEach(e=>e.src=S.logo_url||C.logo||'');document.querySelectorAll('[data-site-name]').forEach(e=>e.textContent=S.site_name||C.siteName||'Jóvenes Influencers del Señor');document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());const icon=document.querySelector('link[rel="icon"]');if(icon)icon.href=S.logo_url||C.logo||'/favicon.svg';};
+  const apply=s=>{const S=s||{};document.querySelectorAll('[data-logo]').forEach(e=>e.src=C.logoOverride||S.logo_url||C.logo||'');document.querySelectorAll('[data-site-name]').forEach(e=>e.textContent=S.site_name||C.siteName||'Jóvenes Influencers del Señor');document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());const icon=document.querySelector('link[rel="icon"]');if(icon)icon.href=C.logoOverride||S.logo_url||C.logo||'/favicon.svg';};
   apply({logo_url:C.logo,site_name:C.siteName});
   const b=document.getElementById('menuBtn'),n=document.getElementById('nav');
 if(b&&n){
