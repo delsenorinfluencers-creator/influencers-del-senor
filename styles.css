@@ -95,3 +95,17 @@ footer{background:#17131c;color:#ded5e3;padding:48px 0 0}.foot{display:grid;grid
 .footer-social a{display:block!important;width:auto!important;height:auto!important;border-radius:0!important;background:transparent!important;color:#cbd5e1!important;text-decoration:none!important;font-size:20px;line-height:1.4;font-weight:500;transition:color .2s ease,transform .2s ease}
 .footer-social a:hover{color:#fff!important;transform:translateX(3px)}
 @media(max-width:700px){.footer-social{gap:7px}.footer-social strong{font-size:23px}.footer-social a{font-size:19px}}
+
+/* V34 - Pie de página organizado */
+footer{padding-top:42px}
+.foot{align-items:start}
+.foot>div{min-width:0}
+.foot>div>strong{display:block;font-size:18px;margin-bottom:14px}
+.foot a{transition:transform .2s ease,color .2s ease}
+.foot a:hover{transform:translateX(3px)}
+.footer-social{padding-top:0}
+.footer-social strong{margin-bottom:12px!important}
+.creator{font-size:14px}
+.copy{background:#120f16}
+@media(max-width:850px){.foot{grid-template-columns:1fr 1fr;gap:28px}.foot>div:first-child{grid-column:1/-1}.footer-social{margin-top:22px}}
+@media(max-width:560px){footer{padding-top:30px}.foot{grid-template-columns:1fr;gap:25px}.foot>div:first-child{grid-column:auto}.foot-brand img{width:58px;height:58px}.foot-brand strong{font-size:16px}.footer-social a{font-size:17px!important}.creator{margin-top:24px;padding:15px 10px}.copy{padding:15px 10px;font-size:12px}}
