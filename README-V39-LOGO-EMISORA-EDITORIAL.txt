@@ -1,6 +1,6 @@
 V39 - LOGO + EMISORA ONLINE + AUTOR DE EDITORIALES
 
-Logo del sitio actualizado a: https://i.ibb.co/hF3t07Lt/IMG-7484.png
+Logo del sitio actualizado a: /logo-influencers-del-senor.png
 Emisora online persistente: https://stream.zeno.fm/9wmjjnrd0rsvv
 El reproductor aparece fijo abajo y tiene botón reproducir/pausar.
 Panel > Editorial: se agregaron nombre del autor, cargo del autor y foto del autor con subida a Storage.

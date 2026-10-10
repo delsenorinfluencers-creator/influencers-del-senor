@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>En Vivo | Jóvenes Influencers del Señor</title>
-<link rel="icon" href="https://i.ibb.co/hF3t07Lt/IMG-7484.png">
+<link rel="icon" href="/logo-influencers-del-senor.png">
 <link rel="stylesheet" href="/estilos.css">
 </head>
 <body>
@@ -104,13 +104,14 @@
 <script>
 (function(){
   const tabs = document.querySelectorAll('#dayTabs button');
-  const today = new Date().getDay();
+  const jsToday = new Date().getDay();
+  const today = jsToday===0?7:jsToday;
   tabs.forEach(b=>{
-    if(Number(b.dataset.day)===today) b.classList.add('active');
+    if((Number(b.dataset.day)===0?7:Number(b.dataset.day))===today) b.classList.add('active');
     b.addEventListener('click',()=>{
       tabs.forEach(x=>x.classList.remove('active'));
       b.classList.add('active');
-      loadPrograms(Number(b.dataset.day));
+      loadPrograms(Number(b.dataset.day)===0?7:Number(b.dataset.day));
     });
   });
   const names = ['DOM','LUN','MAR','MIÉ','JUE','VIE','SÁB'];
@@ -131,7 +132,7 @@
         box.innerHTML='<div class="program-empty">No hay programas publicados para este día.</div>';
         return;
       }
-      const dayLabel = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'][day] || 'hoy';
+      const dayLabel = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'][day===7?0:day] || 'hoy';
       box.innerHTML=rows.slice(0,6).map((p,i)=>{
         const img=p.image_url
           ? '<img src="'+JIS.esc(p.image_url)+'" alt="" loading="lazy">'
