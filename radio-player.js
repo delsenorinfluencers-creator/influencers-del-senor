@@ -1,12 +1,9 @@
 (function(){
-  const STREAM='https://stream.zeno.fm/9wmjjnrd0rsvv';
-  if(document.getElementById('jisRadio')) return;
-  const el=document.createElement('div'); el.id='jisRadio'; el.className='jis-radio';
-  el.innerHTML='<div class="jis-radio-inner"><div class="jis-radio-title"><span class="jis-radio-icon">📻</span><div><b>Influencers del Señor Radio</b><small><i></i> EMISORA VIRTUAL</small></div></div><button id="jisRadioBtn" aria-label="Reproducir radio">▶</button><div class="jis-radio-text"><b>La voz de la evangelización digital</b><span>Señal de audio en vivo</span></div><button id="jisRadioClose" aria-label="Cerrar reproductor">×</button><audio id="jisRadioAudio" preload="none" playsinline></audio></div>';
-  document.body.appendChild(el);
-  const audio=el.querySelector('#jisRadioAudio'), btn=el.querySelector('#jisRadioBtn'); audio.src=STREAM;
-  btn.onclick=async()=>{try{if(audio.paused){await audio.play()}else audio.pause()}catch(e){alert('No fue posible iniciar la emisora. Intenta nuevamente.')}};
-  audio.onplaying=()=>{el.classList.add('playing');btn.textContent='❚❚'};
-  audio.onpause=()=>{el.classList.remove('playing');btn.textContent='▶'};
-  el.querySelector('#jisRadioClose').onclick=()=>{audio.pause();el.classList.add('closed')};
+ const STREAM='https://stream.zeno.fm/9wmjjnrd0rsvv';
+ if(document.getElementById('jis-radio-dock'))return;
+ const wrap=document.createElement('aside');wrap.id='jis-radio-dock';wrap.innerHTML='<div class="jis-radio-dock-inner"><img src="https://i.ibb.co/hF3t07Lt/IMG-7484.png" alt="Logo Influencers del Señor"><div class="jis-radio-info"><strong>Emisora Online</strong><span>Influencers del Señor · Radio en vivo</span></div><button type="button" id="jis-radio-toggle" aria-label="Reproducir emisora">▶</button><button type="button" id="jis-radio-hide" aria-label="Ocultar reproductor">×</button><audio id="jis-radio-audio" preload="none" playsinline></audio></div>';
+ document.body.appendChild(wrap);const audio=wrap.querySelector('audio'),play=wrap.querySelector('#jis-radio-toggle');audio.src=STREAM;
+ play.addEventListener('click',async()=>{try{if(audio.paused)await audio.play();else audio.pause()}catch(e){alert('No se pudo iniciar la emisora. Comprueba la conexión e inténtalo de nuevo.')}});
+ audio.addEventListener('play',()=>{play.textContent='Ⅱ';wrap.classList.add('is-playing')});audio.addEventListener('pause',()=>{play.textContent='▶';wrap.classList.remove('is-playing')});
+ wrap.querySelector('#jis-radio-hide').addEventListener('click',()=>wrap.classList.add('is-hidden'));
 })();
