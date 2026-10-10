@@ -36,7 +36,7 @@ export default async function handler(req, res) {
 
     const title = news.title || 'Noticia';
     const description = truncate(news.summary || news.excerpt || news.description || news.content || 'Jóvenes Influencers del Señor - Comunicación al servicio de Dios.');
-    const image = news.image_url || absoluteUrl(req, '/logo-influencers-del-senor.png');
+    const image = news.image_url || absoluteUrl(req, 'https://i.ibb.co/hF3t07Lt/IMG-7484.png');
     const canonical = absoluteUrl(req, `/iglesia-al-dia/noticia/${encodeURIComponent(news.slug || slug)}`);
     const published = news.published_at || news.created_at;
     const date = published ? new Date(published).toLocaleDateString('es-CO', {day:'2-digit', month:'long', year:'numeric'}) : '';
@@ -79,7 +79,7 @@ ${published ? `<meta property="article:published_time" content="${esc(new Date(p
 </style>
 </head>
 <body>
-<header class="header"><div class="container bar"><a class="brand" href="/"><img src="/logo-influencers-del-senor.png" alt="Logo"><span>Jóvenes Influencers<br><small>del Señor</small></span></a><button class="menu" id="menuBtn" type="button" aria-label="Abrir menú" aria-controls="nav" aria-expanded="false"><span></span><span></span><span></span></button><nav class="nav" id="nav" aria-label="Navegación principal"><a href="/">Inicio</a><a href="/iglesia-al-dia/">Iglesia al Día</a><a href="/programas/">Programas</a><a href="/en-vivo/">En Vivo</a><a href="/quienes-somos/">Quiénes somos</a></nav></div></header>
+<header class="header"><div class="container bar"><a class="brand" href="/"><img src="https://i.ibb.co/hF3t07Lt/IMG-7484.png" alt="Logo"><span>Jóvenes Influencers<br><small>del Señor</small></span></a><button class="menu" id="menuBtn" type="button" aria-label="Abrir menú" aria-controls="nav" aria-expanded="false"><span></span><span></span><span></span></button><nav class="nav" id="nav" aria-label="Navegación principal"><a href="/">Inicio</a><a href="/iglesia-al-dia/">Iglesia al Día</a><a href="/programas/">Programas</a><a href="/en-vivo/">En Vivo</a><a href="/quienes-somos/">Quiénes somos</a></nav></div></header>
 <main class="share-card"><article>
 ${image ? `<img class="hero-image" src="${esc(image)}" alt="${esc(title)}">` : ''}
 <div class="body"><span class="tag">${esc(category)}</span><h1>${esc(title)}</h1>
@@ -87,7 +87,7 @@ ${image ? `<img class="hero-image" src="${esc(image)}" alt="${esc(title)}">` : '
 <div class="content">${safeContent}</div>
 <div class="buttons"><a class="btn" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(canonical)}">Compartir en Facebook</a><a class="btn alt" href="/iglesia-al-dia/">← Volver a noticias</a></div>
 </div></article></main>
-<footer><div class="container footer"><img src="/logo-influencers-del-senor.png" alt="Logo"><div class="footer-center"><strong>Jóvenes Influencers del Señor</strong><p>Comunicación al servicio de Dios.</p><p>© ${new Date().getFullYear()} Jóvenes Influencers del Señor</p><div class="footer-creator">Creado por <b>Gamarra TV</b></div></div></div></footer>
+<footer><div class="container footer"><img src="https://i.ibb.co/hF3t07Lt/IMG-7484.png" alt="Logo"><div class="footer-center"><strong>Jóvenes Influencers del Señor</strong><p>Comunicación al servicio de Dios.</p><p>© ${new Date().getFullYear()} Jóvenes Influencers del Señor</p><div class="footer-creator">Creado por <b>Gamarra TV</b></div></div></div></footer>
 </body></html>`);
   } catch (error) {
     console.error(error);
