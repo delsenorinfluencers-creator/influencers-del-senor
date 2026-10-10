@@ -79,7 +79,7 @@ ${published ? `<meta property="article:published_time" content="${esc(new Date(p
 </style>
 </head>
 <body>
-<header class="header"><div class="container bar"><a class="brand" href="/"><img src="/logo-influencers-del-senor.png" alt="Logo"><span>Jóvenes Influencers<br><small>del Señor</small></span></a><nav class="nav" style="display:flex"><a href="/">Inicio</a><a href="/iglesia-al-dia/">Iglesia al Día</a><a href="/programas/">Programas</a><a href="/en-vivo/">En Vivo</a><a href="/quienes-somos/">Quiénes somos</a></nav></div></header>
+<header class="header"><div class="container bar"><a class="brand" href="/"><img src="/logo-influencers-del-senor.png" alt="Logo"><span>Jóvenes Influencers<br><small>del Señor</small></span></a><button class="menu" id="menuBtn" type="button" aria-label="Abrir menú" aria-controls="nav" aria-expanded="false"><span></span><span></span><span></span></button><nav class="nav" id="nav" aria-label="Navegación principal"><a href="/">Inicio</a><a href="/iglesia-al-dia/">Iglesia al Día</a><a href="/programas/">Programas</a><a href="/en-vivo/">En Vivo</a><a href="/quienes-somos/">Quiénes somos</a></nav></div></header>
 <main class="share-card"><article>
 ${image ? `<img class="hero-image" src="${esc(image)}" alt="${esc(title)}">` : ''}
 <div class="body"><span class="tag">${esc(category)}</span><h1>${esc(title)}</h1>

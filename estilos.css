@@ -625,3 +625,34 @@ footer .footer-creator b{color:#fff}
 .home-program-list .program-item strong{display:block;color:#fff;font-size:15px;line-height:1.2}
 .home-program-list .program-empty,.home-program-list .program-loading{padding:25px 8px;text-align:center;color:#aeb8c6}
 @media(max-width:980px){.home-program-list{max-height:none}}
+
+/* V39 - Dock emisora online y logo actualizado */
+.brand img{object-fit:contain;max-width:66px;max-height:66px}
+.jis-radio-dock{position:fixed;z-index:9999;left:0;right:0;bottom:0;padding:0 12px 12px;pointer-events:none}.jis-radio-dock-inner{pointer-events:auto;max-width:1000px;margin:auto;display:flex;align-items:center;gap:12px;padding:10px 14px;background:#201426;color:white;border:1px solid #ffffff24;border-radius:17px;box-shadow:0 10px 32px #0004}.jis-radio-dock-inner>img{width:44px;height:44px;object-fit:contain;background:white;border-radius:10px}.jis-radio-info{flex:1;min-width:0}.jis-radio-info strong,.jis-radio-info span{display:block}.jis-radio-info strong{font-size:15px}.jis-radio-info span{font-size:12px;color:#d7c9dd;margin-top:3px}.jis-radio-dock button{border:0;cursor:pointer}.jis-radio-dock #jis-radio-toggle{width:43px;height:43px;border-radius:50%;background:#e6bd42;color:#24162b;font-size:17px;font-weight:bold}.jis-radio-dock #jis-radio-hide{background:transparent;color:#fff;font-size:23px}.jis-radio-dock.is-hidden{display:none}body{padding-bottom:86px}
+.editorial-list-card .editorial-list-cover{width:100%;height:230px;object-fit:cover;border-radius:14px;margin-bottom:15px}.editorial-author-fields{display:flex;align-items:center;gap:12px}
+@media(max-width:600px){.jis-radio-dock{padding:0 7px 7px}.jis-radio-dock-inner{gap:8px;padding:8px 10px}.jis-radio-dock-inner>img{width:38px;height:38px}.jis-radio-info strong{font-size:13px}.jis-radio-info span{font-size:10px}.jis-radio-dock #jis-radio-toggle{width:40px;height:40px}body{padding-bottom:72px}.editorial-list-card .editorial-list-cover{height:190px}}
+
+
+/* V40 — menú móvil con tres rayitas visibles y táctiles */
+.header .menu{
+  align-items:center;justify-content:center;flex-direction:column;gap:5px;
+  min-width:46px;min-height:46px;padding:9px;
+}
+.header .menu span{display:block;width:25px;height:3px;border-radius:3px;background:var(--cafe);flex:0 0 3px}
+@media(max-width:980px){
+  .header .bar{position:relative}
+  .header .menu{display:flex!important;visibility:visible!important;opacity:1!important;margin-left:auto;flex-shrink:0}
+  .header .nav{display:none}
+  .header .nav.open{display:flex!important}
+}
+@media(min-width:981px){.header .menu{display:none!important}}
+
+/* V42: barra de emisora fija y reproducción persistente entre subpáginas */
+.jis-radio-dock{position:fixed!important;left:0;right:0;bottom:0;z-index:2147483000;padding-bottom:env(safe-area-inset-bottom,0);}
+.jis-radio-dock-inner{width:100%;box-sizing:border-box}
+html{scroll-padding-bottom:100px}
+body{padding-bottom:100px!important}
+@media(max-width:600px){body{padding-bottom:82px!important}.jis-radio-dock{padding-left:6px;padding-right:6px}.jis-radio-dock-inner{border-radius:13px}}
+
+/* Programación semanal: selector de días claro y adaptable */
+.days-field{border:1px solid #d7dce5;border-radius:12px;padding:12px;margin:12px 0}.days-field legend{font-weight:700;padding:0 6px}.days-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.days-options label{display:flex;align-items:center;gap:7px;background:#f4f6fa;border-radius:8px;padding:9px}.days-field small{display:block;color:#667085;margin-top:8px}@media(min-width:650px){.days-options{grid-template-columns:repeat(4,minmax(0,1fr))}}

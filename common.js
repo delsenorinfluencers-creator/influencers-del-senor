@@ -1,13 +1,23 @@
 (function(){
   const C=window.JIS_CONFIG||{};
-  const apply=s=>{const S=s||{};document.querySelectorAll('[data-logo]').forEach(e=>e.src=S.logo_url||C.logo||'');document.querySelectorAll('[data-site-name]').forEach(e=>e.textContent=S.site_name||C.siteName||'Jóvenes Influencers del Señor');document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());const icon=document.querySelector('link[rel="icon"]');if(icon)icon.href=S.logo_url||C.logo||'/favicon.svg';};
+  const apply=s=>{const S=s||{};document.querySelectorAll('[data-logo]').forEach(e=>e.src=C.logo||'/logo-influencers-del-senor.png');document.querySelectorAll('[data-site-name]').forEach(e=>e.textContent=S.site_name||C.siteName||'Jóvenes Influencers del Señor');document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());const icon=document.querySelector('link[rel="icon"]');if(icon)icon.href='/favicon.png';};
   apply({logo_url:C.logo,site_name:C.siteName});
   const b=document.getElementById('menuBtn'),n=document.getElementById('nav');
 if(b&&n){
   b.setAttribute('aria-expanded','false');
+  b.setAttribute('aria-label','Abrir menú');
   b.addEventListener('click',()=>{
     const open=n.classList.toggle('open');
     b.setAttribute('aria-expanded',String(open));
+    b.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú');
+  });
+  n.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
+    n.classList.remove('open');
+    b.setAttribute('aria-expanded','false');
+    b.setAttribute('aria-label','Abrir menú');
+  }));
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){n.classList.remove('open');b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','Abrir menú');}
   });
   n.querySelectorAll('.nav-drop-btn').forEach(btn=>{
     btn.addEventListener('click',e=>{
@@ -35,7 +45,7 @@ if(b&&n){
   });
 }
   const path=location.pathname.replace(/\/+$/,'')||'/';document.querySelectorAll('#nav a[data-nav]').forEach(a=>{const p=(a.getAttribute('href')||'').replace(/\/+$/,'')||'/';if(p===path)a.classList.add('active');});
-  if(window.SUPABASE_URL&&window.SUPABASE_PUBLISHABLE_KEY&&window.supabase){try{const sb=window.supabase.createClient(window.SUPABASE_URL,window.SUPABASE_PUBLISHABLE_KEY);sb.from('site_settings').select('site_name,logo_url').eq('id',true).maybeSingle().then(r=>{if(!r.error&&r.data)apply(r.data)}).catch(()=>{});}catch(e){}}
+  if(window.SUPABASE_URL&&window.SUPABASE_PUBLISHABLE_KEY&&window.supabase){try{const sb=window.supabase.createClient(window.SUPABASE_URL,window.SUPABASE_PUBLISHABLE_KEY);sb.from('site_settings').select('site_name,logo_url').limit(1).maybeSingle().then(r=>{if(!r.error&&r.data)apply(r.data)}).catch(()=>{});}catch(e){}}
 })();
 window.JIS={
  esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));},
