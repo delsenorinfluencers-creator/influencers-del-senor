@@ -1,10 +1,6 @@
 {
   "rewrites": [
     {
-      "source": "/editoriales/editorial/:slug",
-      "destination": "/api/editorial?slug=:slug"
-    },
-    {
       "source": "/iglesia-al-dia/noticia/:slug",
       "destination": "/api/noticia?slug=:slug"
     },

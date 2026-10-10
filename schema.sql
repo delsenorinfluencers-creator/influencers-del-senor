@@ -91,7 +91,6 @@ alter table public.live_streams add column if not exists muted boolean default t
 create table if not exists public.historical_64(
  id integer primary key, title text, content text, image_url text, video_url text, published boolean default false, available_from date, available_until date
 );
-alter table public.historical_64 add column if not exists number integer;
 create table if not exists public.diocesan_pages(id uuid primary key default gen_random_uuid(), section text unique not null, title text, content text, image_url text, updated_at timestamptz default now());
 create table if not exists public.parishes(id uuid primary key default gen_random_uuid(), name text not null, location text, description text, image_url text, published boolean default true, created_at timestamptz default now());
 create table if not exists public.team_members(id uuid primary key default gen_random_uuid(), name text not null, role text, biography text, photo_url text, facebook_url text, instagram_url text, youtube_url text, published boolean default true, sort_order integer default 0);
