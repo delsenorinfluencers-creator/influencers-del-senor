@@ -5,9 +5,19 @@
   const b=document.getElementById('menuBtn'),n=document.getElementById('nav');
 if(b&&n){
   b.setAttribute('aria-expanded','false');
+  b.setAttribute('aria-label','Abrir menú');
   b.addEventListener('click',()=>{
     const open=n.classList.toggle('open');
     b.setAttribute('aria-expanded',String(open));
+    b.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú');
+  });
+  n.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
+    n.classList.remove('open');
+    b.setAttribute('aria-expanded','false');
+    b.setAttribute('aria-label','Abrir menú');
+  }));
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){n.classList.remove('open');b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','Abrir menú');}
   });
   n.querySelectorAll('.nav-drop-btn').forEach(btn=>{
     btn.addEventListener('click',e=>{

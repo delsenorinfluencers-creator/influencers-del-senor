@@ -631,3 +631,18 @@ footer .footer-creator b{color:#fff}
 .jis-radio-dock{position:fixed;z-index:9999;left:0;right:0;bottom:0;padding:0 12px 12px;pointer-events:none}.jis-radio-dock-inner{pointer-events:auto;max-width:1000px;margin:auto;display:flex;align-items:center;gap:12px;padding:10px 14px;background:#201426;color:white;border:1px solid #ffffff24;border-radius:17px;box-shadow:0 10px 32px #0004}.jis-radio-dock-inner>img{width:44px;height:44px;object-fit:contain;background:white;border-radius:10px}.jis-radio-info{flex:1;min-width:0}.jis-radio-info strong,.jis-radio-info span{display:block}.jis-radio-info strong{font-size:15px}.jis-radio-info span{font-size:12px;color:#d7c9dd;margin-top:3px}.jis-radio-dock button{border:0;cursor:pointer}.jis-radio-dock #jis-radio-toggle{width:43px;height:43px;border-radius:50%;background:#e6bd42;color:#24162b;font-size:17px;font-weight:bold}.jis-radio-dock #jis-radio-hide{background:transparent;color:#fff;font-size:23px}.jis-radio-dock.is-hidden{display:none}body{padding-bottom:86px}
 .editorial-list-card .editorial-list-cover{width:100%;height:230px;object-fit:cover;border-radius:14px;margin-bottom:15px}.editorial-author-fields{display:flex;align-items:center;gap:12px}
 @media(max-width:600px){.jis-radio-dock{padding:0 7px 7px}.jis-radio-dock-inner{gap:8px;padding:8px 10px}.jis-radio-dock-inner>img{width:38px;height:38px}.jis-radio-info strong{font-size:13px}.jis-radio-info span{font-size:10px}.jis-radio-dock #jis-radio-toggle{width:40px;height:40px}body{padding-bottom:72px}.editorial-list-card .editorial-list-cover{height:190px}}
+
+
+/* V40 — menú móvil con tres rayitas visibles y táctiles */
+.header .menu{
+  align-items:center;justify-content:center;flex-direction:column;gap:5px;
+  min-width:46px;min-height:46px;padding:9px;
+}
+.header .menu span{display:block;width:25px;height:3px;border-radius:3px;background:var(--cafe);flex:0 0 3px}
+@media(max-width:980px){
+  .header .bar{position:relative}
+  .header .menu{display:flex!important;visibility:visible!important;opacity:1!important;margin-left:auto;flex-shrink:0}
+  .header .nav{display:none}
+  .header .nav.open{display:flex!important}
+}
+@media(min-width:981px){.header .menu{display:none!important}}
