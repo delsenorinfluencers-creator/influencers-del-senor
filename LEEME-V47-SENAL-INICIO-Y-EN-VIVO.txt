@@ -1,0 +1,13 @@
+ACTUALIZACIÓN V47 — SEÑAL EN INICIO Y EN VIVO
+
+Se unificó la URL del reproductor en la portada y en /en-vivo/:
+https://new.opencaster.com/player/embed?user=influencersdelsenor
+
+INSTALACIÓN
+1. Haz una copia de seguridad de los archivos actuales y de Supabase.
+2. Descomprime este ZIP conservando la carpeta influencers-del-senor y su estructura.
+3. Sube los archivos al hosting y reemplaza los archivos correspondientes.
+4. No borres ni reinicies tablas de Supabase.
+5. Prueba la señal en la portada y en https://www.influencersdelsenor.com/en-vivo/ desde móvil y computador.
+
+Nota: este ZIP no publica cambios en el hosting automáticamente. La reproducción depende de que Opencaster tenga la señal activa y permita incrustación.
