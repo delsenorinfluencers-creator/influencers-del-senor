@@ -1,0 +1,20 @@
+ACTUALIZACIÓN V46 — PANEL MÓVIL Y SEÑAL EN VIVO
+
+Cambios:
+- El panel administrativo incorpora un botón visible “Menú del panel” en teléfonos y tabletas.
+- El menú lateral puede abrirse y cerrarse y se cierra al seleccionar una sección.
+- Campos y botones se adaptan a pantallas pequeñas para facilitar la edición y publicación.
+- La página En Vivo usa el nuevo reproductor indicado:
+  https://new.opencaster.com/player/embed?user=influencersdelsenor
+- El reproductor y la programación se adaptan a móviles.
+
+INSTALACIÓN SEGURA:
+1. Haz una copia de los archivos actuales y un respaldo de Supabase.
+2. Descomprime el ZIP.
+3. Sube/reemplaza los archivos del proyecto manteniendo la misma estructura de carpetas.
+4. No borres ni reinicialices las tablas de Supabase; esta actualización no requiere SQL.
+5. Abre /admin/ en el teléfono, inicia sesión y prueba crear/editar una noticia y marcar “Publicado”.
+6. Abre /en-vivo/ y confirma que el reproductor carga. La reproducción depende de que el enlace de Opencaster esté activo y permita inserción (iframe).
+7. Si usas CDN/caché, purga la caché y recarga forzada.
+
+NOTA: El ZIP no publica automáticamente el sitio ni cambia permisos de Supabase. Si publicar falla, revisa la consola del navegador y las políticas RLS/permisos de la tabla correspondiente. No ejecutes scripts SQL destructivos.

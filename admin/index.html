@@ -10,7 +10,7 @@ html,body{margin:0!important;min-height:100%;overflow-x:hidden}
 .main{margin-left:270px!important;min-height:100vh!important;padding:28px!important;box-sizing:border-box!important}
 .admin-mobile-toggle{display:none;position:fixed;z-index:10001;top:10px;left:10px;border:0;border-radius:10px;padding:10px 13px;background:#21180f;color:#fff;font-weight:800;cursor:pointer}
 @media(max-width:980px){
- .admin-mobile-toggle{display:block}
+ .admin-mobile-toggle{display:block!important}
  .side{width:260px!important;transform:translateX(-105%);transition:transform .2s ease}
  .side.mobile-open{transform:translateX(0)}
  .main{margin-left:0!important;padding:70px 14px 22px!important}
@@ -25,6 +25,11 @@ html,body{margin:0!important;min-height:100%;overflow-x:hidden}
 }
 .banner-preview{width:180px;aspect-ratio:1983/793; height:auto;object-fit:cover;border-radius:10px;border:1px solid #ddd}
 .days-picker{display:flex;flex-wrap:wrap;gap:8px;margin-top:7px}.days-picker label{display:inline-flex;align-items:center;gap:5px;padding:8px 10px;border:1px solid #ddd;border-radius:10px;background:#fff;font-weight:700}.program-schedule{font-size:12px;color:#6b625a;white-space:nowrap}
+
+/* V46: panel usable on phones and tablets */
+#mobileAdminMenu{display:none;position:fixed;top:10px;left:10px;z-index:10005;background:#21180f;color:#fff;border:0;border-radius:12px;padding:12px 15px;font-size:16px;font-weight:800;box-shadow:0 4px 16px #0003;cursor:pointer;touch-action:manipulation}
+@media(max-width:980px){#mobileAdminMenu{display:block!important}.main{padding-top:76px!important}.side{z-index:10004!important;box-shadow:8px 0 30px #0003}.side.mobile-open:after{content:'Toca aquí para cerrar el menú';display:block;padding:12px;color:#fff;background:#3d352c;font-size:12px}}
+@media(max-width:620px){.main{padding-left:12px!important;padding-right:12px!important}.main button,.main input[type=submit],.main input[type=button],.main .btn{min-height:42px;touch-action:manipulation}.main input,.main select,.main textarea{max-width:100%;font-size:16px!important}.main form button{width:auto;max-width:100%;white-space:normal}.admin-table{min-width:640px}}
 </style>
 </head><body>
 <a id="btn-ver-pagina" href="../index.html" target="_blank"
@@ -33,7 +38,7 @@ html,body{margin:0!important;min-height:100%;overflow-x:hidden}
           text-decoration:none;font-weight:700;box-shadow:0 3px 10px rgba(0,0,0,.12);">
   🌐 Ver página
 </a>
-<div id="root">Cargando panel...</div>
+<button id="mobileAdminMenu" type="button" aria-label="Abrir menú del panel" aria-controls="adminSidebar">☰ Menú del panel</button><div id="root">Cargando panel...</div>
 <script src="/config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/common.js"></script><script>
 (async()=>{
  const root=document.getElementById('root');const sb=await JIS.supa();

@@ -6,7 +6,14 @@
 <title>En Vivo | Jóvenes Influencers del Señor</title>
 <link rel="icon" href="/logo-influencers-del-senor.png">
 <link rel="stylesheet" href="/estilos.css">
-</head>
+<style>
+/* V46: reproductor adaptable a móviles */
+.envivo-layout{grid-template-columns:minmax(0,1.7fr) minmax(290px,.8fr)}
+.envivo-screen{width:100%;aspect-ratio:16/9;min-height:220px}
+.envivo-screen iframe{width:100%;height:100%;min-height:220px}
+@media(max-width:900px){.envivo-layout{grid-template-columns:minmax(0,1fr)!important;width:calc(100% - 24px)!important;gap:16px!important}.envivo-screen{aspect-ratio:16/9;min-height:220px;border-radius:14px}.program-sidebar{padding:18px!important}.program-header h1{font-size:27px!important}}
+@media(max-width:480px){.envivo-layout{width:calc(100% - 16px)!important;padding-top:10px!important}.envivo-screen,.envivo-screen iframe{min-height:210px}.envivo-live-badge{top:10px;left:10px;padding:7px 10px;font-size:11px}.program-sidebar{border-radius:14px;padding:14px!important}.program-header{margin-bottom:14px!important}.program-header h1{font-size:23px!important}}
+</style></head>
 <body>
 <header class="header">
   <div class="container bar">
@@ -48,9 +55,9 @@
         <div class="envivo-live-badge"><span></span> EN VIVO</div>
         <iframe
           id="ssh101Player"
-          src="https://ssh101.com/securelive/index.php?id=influencersdels&autoplay=1&muted=1"
+          src="https://new.opencaster.com/player/embed?user=influencersdelsenor"
           title="Señal en vivo — Jóvenes Influencers del Señor"
-          allow="autoplay; fullscreen; picture-in-picture"
+          allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
           allowfullscreen
           loading="eager"
           referrerpolicy="strict-origin-when-cross-origin"></iframe>
