@@ -23,7 +23,7 @@
 </nav></div></header>
 <main>
 <section class="hero"><div class="container hero-grid"><div><p class="eyebrow">MEDIO CATÓLICO DE COMUNICACIÓN</p><h1>Jóvenes Influencers del Señor</h1><p class="lead">Comunicación al servicio de Dios. Información, formación y evangelización digital desde la Iglesia.</p><a class="btn" href="/iglesia-al-dia/">Ver noticias</a><a class="btn alt" href="/en-vivo/">🔴 En Vivo</a></div><div class="hero-logo"><img data-logo alt="Jóvenes Influencers del Señor"></div></div></section>
-<section class="jingle-64-section" aria-labelledby="jingle64-title">
+<section class="jingle-64-section" aria-labelledby="jingle64-title" data-retirar-aniversario="true">
   <div class="jingle-64-layout">
     <div class="jingle-64-video">
       <div class="jingle-64-frame">
@@ -60,7 +60,7 @@
 <section class="publicidad-section" id="publicidad"><div class="container"><div class="section-head"><div><p class="eyebrow">PUBLICIDAD</p><h2>Publicidad</h2></div></div><div class="publicidad-slider" id="publicidadSlider"><div class="publicidad-loading">Cargando publicidad...</div></div></div></section>
 <section class="section"><div class="container"><div class="special"><div><p class="eyebrow">ESPECIAL · OCTUBRE 2026</p><h2>64 Datos Históricos</h2><p class="intro">Un recorrido audiovisual por la historia de la Diócesis de Ocaña.</p><a class="btn" href="/64-datos/">Entrar al especial</a></div><img src="https://i.ibb.co/HfhqmYQs/file-000000006d4c81f5b9452f237ee19824.png" alt="64 Datos Históricos"></div></div></section>
 <section class="section gray"><div class="container"><div class="section-head"><div><p class="eyebrow">ACTUALIDAD</p><h2>Últimas noticias</h2></div><a class="btn alt" href="/iglesia-al-dia/">Ver todas</a></div><div class="category-tabs"><a href="/iglesia-al-dia/?categoria=diocesis">Diócesis de Ocaña</a><a href="/iglesia-al-dia/?categoria=nacionales">Noticias nacionales</a><a href="/iglesia-al-dia/?categoria=internacionales">Noticias internacionales</a><a href="/iglesia-al-dia/?categoria=vaticano">Noticias del Vaticano</a></div><div id="homeNews" class="news-grid"></div></div></section>
-<section class="section"><div class="container"><p class="eyebrow">CONTENIDO</p><h2>Explora nuestro sitio</h2><div class="cards"><a class="card" href="/iglesia-al-dia/"><h3>📰 Iglesia al Día</h3><p>Noticias diocesanas, nacionales, internacionales y del Vaticano.</p></a><a class="card" href="/programas/"><h3>🎬 Programas</h3><p>Los 11 programas y sus episodios.</p></a><a class="card" href="/en-vivo/"><h3>🔴 En Vivo</h3><p>Reproductor para la señal activa.</p></a><a class="card" href="/64-datos/"><h3>✝️ 64 Datos</h3><p>Historia y memoria de la Diócesis.</p></a><a class="card" href="/diocesis/"><h3>⛪ Diócesis</h3><p>Historia, parroquias y contenidos diocesanos.</p></a><a class="card" href="/editorial/"><h3>✍️ Editorial</h3><p>Artículos y reflexión.</p></a></div></div></section>
+<section class="section"><div class="container"><p class="eyebrow">CONTENIDO</p><h2>Explora nuestro sitio</h2><div class="cards"><a class="card" href="/iglesia-al-dia/"><h3>📰 Iglesia al Día</h3><p>Noticias diocesanas, nacionales, internacionales y del Vaticano.</p></a><a class="card" href="/programas/"><h3>🎬 Programas</h3><p>Los 11 programas y sus episodios.</p></a><a class="card" href="/en-vivo/"><h3>🔴 En Vivo</h3><p>Reproductor para la señal activa.</p></a><a class="card" href="/64-datos/" data-retirar-aniversario-link="true"><h3>✝️ 64 Datos</h3><p>Historia y memoria de la Diócesis.</p></a><a class="card" href="/diocesis/"><h3>⛪ Diócesis</h3><p>Historia, parroquias y contenidos diocesanos.</p></a><a class="card" href="/editorial/"><h3>✍️ Editorial</h3><p>Artículos y reflexión.</p></a></div></div></section>
 </main><footer><div class="container footer"><img data-logo alt="Logo"><div class="footer-center"><strong>Jóvenes Influencers del Señor</strong><p>Comunicación al servicio de Dios.</p><p>© <span data-year></span> Jóvenes Influencers del Señor</p><div class="footer-creator">Creado por <b>Gamarra TV</b></div></div></div></footer>
 <script src="/config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/common.js"></script><script>
 // La señal En Vivo de portada usa OpenCaster, igual que la página En Vivo.
@@ -144,4 +144,18 @@
   }
 })();
 </script>
-<script src="/radio-player.js"></script></body></html>
+<script src="/radio-player.js"></script>
+<script>
+/* Retiro automático del contenido conmemorativo desde el 1 de noviembre de 2026 (hora Colombia).
+   Se calcula en el navegador para que no dependa de una tarea programada en Vercel. */
+(function(){
+  try {
+    var parts = new Intl.DateTimeFormat('en-CA', {timeZone:'America/Bogota', year:'numeric', month:'2-digit', day:'2-digit'}).formatToParts(new Date());
+    var date = {}; parts.forEach(function(p){ if(p.type !== 'literal') date[p.type]=p.value; });
+    var after = (date.year + '-' + date.month + '-' + date.day) >= '2026-11-01';
+    if (!after) return;
+    document.querySelectorAll('[data-retirar-aniversario="true"], [data-retirar-aniversario-link="true"]').forEach(function(el){el.remove();});
+  } catch(e) { /* No interrumpir el resto de la página si falla la detección de fecha. */ }
+})();
+</script>
+</body></html>
