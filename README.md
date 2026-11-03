@@ -52,3 +52,11 @@ Todas las páginas incluyen el mismo logo del proyecto en el menú, pie de pági
 ## 6. Seguridad
 
 La clave `sb_publishable_...` es una clave pública diseñada para el navegador. Nunca pongas una `service_role` en `config.js` ni en ningún archivo público.
+
+
+## 7. Revista HECHOS (Issuu)
+
+1. En Supabase > SQL Editor, ejecuta `supabase-revista.sql` una sola vez. Este SQL crea/actualiza la tabla `magazines` y registra HECHOS como edición pública.
+2. La edición usa el lector Issuu en `reader_url`; subir un PDF a Storage es opcional.
+3. En el panel administrativo > Revista puedes crear o editar ediciones con portada, enlace Issuu y, opcionalmente, PDF descargable.
+4. La página `/revista/` muestra las ediciones publicadas y abre el lector Issuu integrado.
